@@ -48,7 +48,7 @@ public class ChaveDAO {
             
             while (rs.next()) {
                 Chave chave = new Chave();
-                chave.setId(rs.getLong("id"));
+                chave.setId(rs.getLong("id_chave"));
                 chave.setNumero(rs.getInt("numero"));
                 
                 chaves.add(chave);
@@ -64,7 +64,7 @@ public class ChaveDAO {
     }
     
     public void altera(Chave chave) {
-        String sql = "update chaves set numero=? where id=?";
+        String sql = "update chaves set numero=? where id_chave=?";
         
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -80,7 +80,7 @@ public class ChaveDAO {
     
     public void remove(Chave chave) {
         try {
-            PreparedStatement stmt = connection.prepareStatement("delete from chaves where id=?");
+            PreparedStatement stmt = connection.prepareStatement("delete from chaves where id_chave=?");
             stmt.setLong(1, chave.getId());
             stmt.execute();
             stmt.close();

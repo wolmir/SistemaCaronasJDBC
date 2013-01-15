@@ -33,7 +33,7 @@ public class AlunoDAO {
             
             while (rs.next()) {
                 Aluno aluno = new Aluno();
-                aluno.setId(rs.getLong("id"));
+                aluno.setId(rs.getLong("id_aluno"));
                 aluno.setNome(rs.getString("nome"));
                 aluno.setEmail(rs.getString("email"));
                 aluno.setCurso(rs.getString("curso"));
