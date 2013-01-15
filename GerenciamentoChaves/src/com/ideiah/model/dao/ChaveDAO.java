@@ -25,6 +25,21 @@ public class ChaveDAO {
         this.connection = new ConnectionFactory().getConnection();
     }
     
+    public void adiciona(Chave chave) {
+        String sql = "insert into chaves " +
+                "(numero) values (?)";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            
+            stmt.setInt(1, chave.getNumero());
+            stmt.execute();
+            stmt.close();
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     public List<Chave> getChaves() {
         try {
             List<Chave> chaves = new ArrayList<Chave>();
@@ -43,6 +58,32 @@ public class ChaveDAO {
             stmt.close();
             return chaves;
             
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void altera(Chave chave) {
+        String sql = "update chaves set numero=? where id=?";
+        
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, chave.getNumero());
+            stmt.setLong(2, chave.getId());
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } 
+    }
+    
+    
+    public void remove(Chave chave) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("delete from chaves where id=?");
+            stmt.setLong(1, chave.getId());
+            stmt.execute();
+            stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
