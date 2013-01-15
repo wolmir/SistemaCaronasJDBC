@@ -10,6 +10,7 @@ import com.ideiah.model.entity.Aluno;
 import com.ideiah.model.entity.Emprestimo;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -75,7 +76,7 @@ public class AlunoController {
         return resultado;
     }
     
-    /*public List<Aluno> getAtrasados() {
+    public List<Aluno> getAtrasados() {
         List<Aluno> resultado = new ArrayList<Aluno>();
         List<Aluno> alunos = new AlunoDAO().getAlunos();
         for (Aluno aluno: alunos) {
@@ -83,11 +84,13 @@ public class AlunoController {
             controller.setAluno(aluno);
             List<Emprestimo> emprestimos = controller.getEmprestimos();
             for (Emprestimo emprestimo: emprestimos) {
-                if (emprestimo.getData_retirada().before(Calendar.getInstance().))
+                if (emprestimo.getData_retirada().before(new Date()) && emprestimo.getData_devolucao() == null) {
+                    resultado.add(aluno);
+                }
             }
         }
         return resultado;
-    }*/
+    }
    
 
     /**
