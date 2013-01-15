@@ -67,8 +67,9 @@ public class AlunoController {
         List<Emprestimo> resultado = new ArrayList<Emprestimo>();
         List<Emprestimo> emprestimos = new EmprestimoDAO().getEmprestimos();
         for (Emprestimo emprestimo: emprestimos) {
-            if (emprestimo.getAluno().getId() == this.aluno.getId())
+            if (emprestimo.getAluno().getId() == this.aluno.getId()) {
                 resultado.add(emprestimo);
+            }
         }
         return resultado;
     }
