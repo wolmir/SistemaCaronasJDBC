@@ -25,15 +25,30 @@ public class ChaveDAO {
         this.connection = new ConnectionFactory().getConnection();
     }
     
+    public void adiciona(Chave chave) {
+        String sql = "insert into chave " +
+                "(numero) values (?)";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            
+            stmt.setInt(1, chave.getNumero());
+            stmt.execute();
+            stmt.close();
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     public List<Chave> getChaves() {
         try {
             List<Chave> chaves = new ArrayList<Chave>();
-            PreparedStatement stmt = this.connection.prepareStatement("select * from chaves");
+            PreparedStatement stmt = this.connection.prepareStatement("select * from chave");
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) {
                 Chave chave = new Chave();
-                chave.setId(rs.getLong("id"));
+                chave.setId(rs.getLong("id_chave"));
                 chave.setNumero(rs.getInt("numero"));
                 
                 chaves.add(chave);
@@ -43,6 +58,32 @@ public class ChaveDAO {
             stmt.close();
             return chaves;
             
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void altera(Chave chave) {
+        String sql = "update chave set numero=? where id_chave=?";
+        
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, chave.getNumero());
+            stmt.setLong(2, chave.getId());
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } 
+    }
+    
+    
+    public void remove(Chave chave) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("delete from chave where id_chave=?");
+            stmt.setLong(1, chave.getId());
+            stmt.execute();
+            stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
