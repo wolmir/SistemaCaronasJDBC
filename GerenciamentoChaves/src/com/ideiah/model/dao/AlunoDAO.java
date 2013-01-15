@@ -28,7 +28,7 @@ public class AlunoDAO {
     public List<Aluno> getAlunos() {
         try {
             List<Aluno> alunos = new ArrayList<Aluno>();
-            PreparedStatement stmt = this.connection.prepareStatement("select * from alunos");
+            PreparedStatement stmt = this.connection.prepareStatement("select * from aluno");
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) {

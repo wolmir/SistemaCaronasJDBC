@@ -26,7 +26,7 @@ public class ChaveDAO {
     }
     
     public void adiciona(Chave chave) {
-        String sql = "insert into chaves " +
+        String sql = "insert into chave " +
                 "(numero) values (?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -43,7 +43,7 @@ public class ChaveDAO {
     public List<Chave> getChaves() {
         try {
             List<Chave> chaves = new ArrayList<Chave>();
-            PreparedStatement stmt = this.connection.prepareStatement("select * from chaves");
+            PreparedStatement stmt = this.connection.prepareStatement("select * from chave");
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) {
@@ -64,7 +64,7 @@ public class ChaveDAO {
     }
     
     public void altera(Chave chave) {
-        String sql = "update chaves set numero=? where id_chave=?";
+        String sql = "update chave set numero=? where id_chave=?";
         
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -80,7 +80,7 @@ public class ChaveDAO {
     
     public void remove(Chave chave) {
         try {
-            PreparedStatement stmt = connection.prepareStatement("delete from chaves where id_chave=?");
+            PreparedStatement stmt = connection.prepareStatement("delete from chave where id_chave=?");
             stmt.setLong(1, chave.getId());
             stmt.execute();
             stmt.close();

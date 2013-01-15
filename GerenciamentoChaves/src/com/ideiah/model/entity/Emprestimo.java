@@ -14,7 +14,8 @@ public class Emprestimo {
     private Long id;
     private Aluno aluno;
     private Chave chave;
-    private Calendar data;
+    private Calendar data_retirada;
+    private Calendar data_devolucao;
 
     /**
      * @return the id
@@ -59,16 +60,32 @@ public class Emprestimo {
     }
 
     /**
-     * @return the data
+     * @return the data_retirada
      */
-    public Calendar getData() {
-        return data;
+    public Calendar getData_retirada() {
+        return data_retirada;
     }
 
     /**
-     * @param data the data to set
+     * @param data_retirada the data_retirada to set
      */
-    public void setData(Calendar data) {
-        this.data = data;
+    public void setData_retirada(Calendar data_retirada) {
+        this.data_retirada = data_retirada;
     }
+
+    /**
+     * @return the data_devolucao
+     */
+    public Calendar getData_devolucao() {
+        return data_devolucao;
+    }
+
+    /**
+     * @param data_devolucao the data_devolucao to set
+     */
+    public void setData_devolucao(Calendar data_devolucao) {
+        this.data_devolucao = data_devolucao;
+    }
+
+    
 }
