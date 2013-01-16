@@ -65,6 +65,18 @@ public class AlunoController {
         return resultado;
     }
     
+    public List<Aluno> pesquisarPorMatricula(Integer matricula) {
+        List<Aluno> alunos = new AlunoDAO().getAlunos();
+        List<Aluno> resultado = new ArrayList<Aluno>();
+        for (Aluno aluno: alunos) {
+            if (aluno.getMatricula() == matricula) {
+                resultado.add(aluno);
+            }
+        }
+        
+        return resultado;
+    }
+    
     public List<Emprestimo> getEmprestimos() {
         List<Emprestimo> resultado = new ArrayList<Emprestimo>();
         List<Emprestimo> emprestimos = new EmprestimoDAO().getEmprestimos();
@@ -90,6 +102,17 @@ public class AlunoController {
             }
         }
         return resultado;
+    }
+    
+    
+    public Emprestimo getEmprestimoAberto() {
+        List<Emprestimo> emprestimos = this.getEmprestimos();
+        for (Emprestimo emprestimo: emprestimos) {
+            if (emprestimo.getData_devolucao() == null) {
+                return emprestimo;
+            }
+        }
+        return null;
     }
    
 

@@ -24,15 +24,15 @@ public class ChaveController {
     }
     
     public void salvar() {
-        new ChaveDAO().adiciona(chave);
+        new ChaveDAO().adiciona(getChave());
     }
     
     public void alterar() {
-        new ChaveDAO().altera(chave);
+        new ChaveDAO().altera(getChave());
     }
     
     public void deletar() {
-        new ChaveDAO().remove(chave);
+        new ChaveDAO().remove(getChave());
     }
     
     public List<Chave> getTodas() {
@@ -43,11 +43,47 @@ public class ChaveController {
         List<Emprestimo> resultado = new ArrayList<Emprestimo>();
         List<Emprestimo> emprestimos = new EmprestimoDAO().getEmprestimos();
         for (Emprestimo emprestimo: emprestimos) {
-            if (emprestimo.getChave().getId() == chave.getId()) {
+            if (emprestimo.getChave().getId() == getChave().getId()) {
                 resultado.add(emprestimo);
             }
         }
         return resultado;
+    }
+    
+    public List<Chave> getSemEmprestimo() {
+        List<Chave> resultado = new ArrayList<Chave>();
+        List<Chave> chaves = new ChaveDAO().getChaves();
+        for (Chave chave : chaves) {
+            ChaveController cc = new ChaveController();
+            cc.setChave(chave);
+            boolean semEmprestimo = true;
+            List<Emprestimo> emprestimos = cc.getEmprestimos();
+            for (Emprestimo emprestimo: emprestimos) {
+                if (emprestimo.getData_devolucao() == null) {
+                    semEmprestimo = false;
+                    break;
+                }
+            }
+            
+            if (semEmprestimo) {
+                resultado.add(chave);
+            }
+        }
+        return resultado;
+    }
+
+    /**
+     * @return the chave
+     */
+    public Chave getChave() {
+        return chave;
+    }
+
+    /**
+     * @param chave the chave to set
+     */
+    public void setChave(Chave chave) {
+        this.chave = chave;
     }
     
 }
