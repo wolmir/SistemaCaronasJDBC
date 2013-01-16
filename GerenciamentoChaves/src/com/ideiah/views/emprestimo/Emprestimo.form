@@ -22,23 +22,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jPanel_menor2" min="-2" pref="519" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
-                      <Component id="jLabel_tituloJanela" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator_topo" min="-2" pref="624" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSeparator_topo" min="-2" pref="624" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="jPanel_menor" min="-2" pref="519" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel_tituloJanela" min="-2" pref="400" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,8 +47,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jSeparator_topo" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jPanel_menor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <Component id="jPanel_menor2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,14 +57,14 @@
     <Component class="javax.swing.JLabel" name="jLabel_tituloJanela">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="18" style="1"/>
+          <Font name="Arial" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Sistema de empr&#xe9;stimo de chaves"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator_topo">
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel_menor">
+    <Container class="javax.swing.JPanel" name="jPanel_menor2">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -83,58 +80,73 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="jLabel_matriculaBuscar" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_matriculaBuscar2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jTF_matriculaBuscar" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="jTF_matriculaBuscar2" min="-2" pref="100" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton_buscar" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton_buscar2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" pref="210" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel_horaAtual" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel_horaAtual2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel_horaBuscada2" min="-2" pref="53" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel_nome" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel_nome2" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel_curso" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel_curso2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel_dataAtual2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel_cursoBuscad" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel_nomeBuscado" min="-2" pref="177" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Component id="jLabel_matricula" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jLabel_dataBuscada2" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel_cursoBuscad2" alignment="0" pref="154" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel_nomeBuscado2" min="-2" pref="224" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel_matriculaBuscada" min="-2" pref="65" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel5" min="-2" pref="219" max="-2" attributes="0"/>
+                                          <Component id="jLabel_matricula2" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                                  <Component id="jLabel9" min="-2" pref="219" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="jLabel_matriculaBuscada2" min="-2" pref="91" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <Component id="jLabel_dataAtual" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel_numChave" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jComboBox_listaNumChaves" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel_numChave2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel_statusAluno2" min="-2" pref="210" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jComboBox_listaNumChaves2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jButton_realizarEmprestimo2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jSeparator2" min="-2" pref="499" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                          <Component id="jLabel_mensagemStatus" min="-2" pref="245" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
-                          <Component id="jButton_realizarEmprestimo" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSeparator_meio2" min="-2" pref="499" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -146,121 +158,159 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTF_matriculaBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton_buscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel_matriculaBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTF_matriculaBuscar2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_buscar2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel_matriculaBuscar2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+                  <Component id="jSeparator_meio2" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel_nomeBuscado" alignment="1" min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="jLabel_nomeBuscado2" alignment="1" min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel_nome" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel_matriculaBuscada" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel_matricula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_nome2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_matriculaBuscada2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_matricula2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel_curso" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel_cursoBuscad" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel_curso2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel_cursoBuscad2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel_dataAtual" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel_horaAtual" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel_mensagemStatus" min="-2" pref="41" max="-2" attributes="0"/>
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel_numChave" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox_listaNumChaves" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel_dataAtual2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel_dataBuscada2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton_realizarEmprestimo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel_horaAtual2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel_horaBuscada2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="jLabel_statusAluno2" min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButton_realizarEmprestimo2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel_numChave2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBox_listaNumChaves2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel_matriculaBuscar">
+        <Component class="javax.swing.JLabel" name="jLabel_matriculaBuscar2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Matr&#xed;cula:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTF_matriculaBuscar">
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton_buscar">
+        <Component class="javax.swing.JTextField" name="jTF_matriculaBuscar2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton_buscar2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSeparator" name="jSeparator2">
+        <Component class="javax.swing.JSeparator" name="jSeparator_meio2">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel_nome">
+        <Component class="javax.swing.JLabel" name="jLabel_nome2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Nome:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="jLabel8">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="jLabel9">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel_matricula">
+        <Component class="javax.swing.JLabel" name="jLabel_matricula2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Matr&#xed;cula:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel_curso">
+        <Component class="javax.swing.JLabel" name="jLabel_curso2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Curso:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel_dataAtual">
+        <Component class="javax.swing.JLabel" name="jLabel_dataAtual2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Data atual:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel_horaAtual">
+        <Component class="javax.swing.JLabel" name="jLabel_horaAtual2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Hora atual:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel_nomeBuscado">
+        <Component class="javax.swing.JLabel" name="jLabel_nomeBuscado2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Fulano de tal"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel_matriculaBuscada">
+        <Component class="javax.swing.JLabel" name="jLabel_matriculaBuscada2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="123456"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel_cursoBuscad">
+        <Component class="javax.swing.JLabel" name="jLabel_cursoBuscad2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Ci&#xea;ncia da Computa&#xe7;&#xe3;o"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel_mensagemStatus">
+        <Component class="javax.swing.JLabel" name="jLabel_numChave2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
+              <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Mensagem de status"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel_numChave">
-          <Properties>
             <Property name="text" type="java.lang.String" value="N&#xfa;mero da chave:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox_listaNumChaves">
+        <Component class="javax.swing.JComboBox" name="jComboBox_listaNumChaves2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="8">
                 <StringItem index="0" value="1"/>
@@ -275,9 +325,45 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton_realizarEmprestimo">
+        <Component class="javax.swing.JButton" name="jButton_realizarEmprestimo2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Realizar Empr&#xe9;stimo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel_statusAluno2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Status aluno"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel_dataBuscada2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="10/01/2013"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel_horaBuscada2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="15:37"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Aluno n&#xe3;o encontrado"/>
           </Properties>
         </Component>
       </SubComponents>
