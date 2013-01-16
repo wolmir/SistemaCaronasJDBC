@@ -96,7 +96,7 @@ public class AlunoController {
             controller.setAluno(aluno);
             List<Emprestimo> emprestimos = controller.getEmprestimos();
             for (Emprestimo emprestimo: emprestimos) {
-                if (emprestimo.getData_retirada().before(new Date()) && emprestimo.getData_devolucao() == null) {
+                if (this.testaDataRetirada(emprestimo.getData_retirada()) && emprestimo.getData_devolucao() == null) {
                     resultado.add(aluno);
                 }
             }
@@ -113,6 +113,16 @@ public class AlunoController {
             }
         }
         return null;
+    }
+    
+    private boolean testaDataRetirada(Calendar data) {
+        int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int month = Calendar.getInstance().get(Calendar.MONTH);
+        
+        if ((data.get(Calendar.DAY_OF_MONTH) < day) || (data.get(Calendar.MONTH) < month)) {
+            return true;
+        }
+        return false;
     }
    
 
