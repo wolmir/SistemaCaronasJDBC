@@ -38,7 +38,7 @@ public class AlunoDAO {
                 aluno.setEmail(rs.getString("email"));
                 aluno.setCurso(rs.getString("curso"));
                 aluno.setMatricula(rs.getInt("matricula"));
-                
+                aluno.setSenha(rs.getString("senha"));
                 alunos.add(aluno);
                 
             }

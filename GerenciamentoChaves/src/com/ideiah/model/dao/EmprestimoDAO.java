@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -29,13 +29,47 @@ public class EmprestimoDAO {
     }
     
     public void adiciona(Emprestimo emprestimo) {
-        String sql = "insert into emprestimo (id_aluno, id_chave, retirada, devolucao) values (?,?,?,?)";
+        String sql = "insert into emprestimo (id_aluno, id_chave, retirada,"
+                + "devolucao) values (?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setLong(1, emprestimo.getAluno().getId());
             stmt.setLong(2, emprestimo.getChave().getId());
             stmt.setDate(3, new Date(
                     emprestimo.getData_retirada().getTimeInMillis()));
+            stmt.setDate(4, new Date(
+                    emprestimo.getData_devolucao().getTimeInMillis()));
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    
+    public void altera(Emprestimo emprestimo) {
+        String sql = "update emprestimo set id_aluno=?, id_chave=?, retirada=?,"
+                + "devolucao=? where id=?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, emprestimo.getAluno().getId());
+            stmt.setLong(2, emprestimo.getChave().getId());
+            stmt.setDate(3, new Date(
+                    emprestimo.getData_retirada().getTimeInMillis()));
+            stmt.setDate(4, new Date(
+                    emprestimo.getData_devolucao().getTimeInMillis()));
+            stmt.setLong(5, emprestimo.getId());
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void remove(Emprestimo emprestimo) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("delete from emprestimo where id_emprestimo=?");
+            stmt.setLong(1, emprestimo.getId());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
@@ -46,7 +80,8 @@ public class EmprestimoDAO {
     public List<Emprestimo> getEmprestimos() {
         try {
             List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
-            PreparedStatement stmt = this.connection.prepareStatement("select * from emprestimo");
+            String sql = "select * from emprestimo";
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) {
@@ -59,8 +94,8 @@ public class EmprestimoDAO {
                 data.setTime(rs.getDate("devolucao"));
                 emprestimo.setData_devolucao(datad);
                 
-                String sql_aluno = "select * from aluno where id=?";
-                PreparedStatement st_aluno = connection.prepareStatement(sql_aluno);
+                String sql_al = "select * from aluno where id=?";
+                PreparedStatement st_aluno = connection.prepareStatement(sql_al);
                 st_aluno.setLong(1, rs.getLong("id_usuario"));
                 ResultSet rs_alunos = st_aluno.executeQuery();
                 rs_alunos.next();

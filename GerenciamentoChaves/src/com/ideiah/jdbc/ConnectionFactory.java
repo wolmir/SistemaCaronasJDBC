@@ -16,7 +16,7 @@ public class ConnectionFactory {
     
     public Connection getConnection() {
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost/chaves_bib", "root", "");
+            return DriverManager.getConnection("jdbc:mysql://localhost/gerenciamento_biblioteca", "root", "");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
