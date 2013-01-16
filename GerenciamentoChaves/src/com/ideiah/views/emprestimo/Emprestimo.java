@@ -44,224 +44,241 @@ public class Emprestimo extends javax.swing.JFrame {
 
         jLabel_tituloJanela = new javax.swing.JLabel();
         jSeparator_topo = new javax.swing.JSeparator();
-        jPanel_menor2 = new javax.swing.JPanel();
-        jLabel_matriculaBuscar2 = new javax.swing.JLabel();
-        jTF_matriculaBuscar2 = new javax.swing.JTextField();
-        jButton_buscar2 = new javax.swing.JButton();
-        jSeparator_meio2 = new javax.swing.JSeparator();
-        jLabel_nome2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel_matricula2 = new javax.swing.JLabel();
-        jLabel_curso2 = new javax.swing.JLabel();
-        jLabel_dataAtual2 = new javax.swing.JLabel();
-        jLabel_horaAtual2 = new javax.swing.JLabel();
-        jLabel_nomeBuscado2 = new javax.swing.JLabel();
-        jLabel_matriculaBuscada2 = new javax.swing.JLabel();
-        jLabel_cursoBuscad2 = new javax.swing.JLabel();
-        jLabel_numChave2 = new javax.swing.JLabel();
-        jComboBox_listaNumChaves2 = new javax.swing.JComboBox();
-        jButton_realizarEmprestimo2 = new javax.swing.JButton();
-        jLabel_statusAluno2 = new javax.swing.JLabel();
-        jLabel_dataBuscada2 = new javax.swing.JLabel();
-        jLabel_horaBuscada2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jPanel_menor = new javax.swing.JPanel();
+        jLabel_matriculaBuscar = new javax.swing.JLabel();
+        jTF_matriculaBuscar = new javax.swing.JTextField();
+        jButton_buscar = new javax.swing.JButton();
+        jSeparator_meio = new javax.swing.JSeparator();
+        jLabel_nome = new javax.swing.JLabel();
+        jLabel_matricula = new javax.swing.JLabel();
+        jLabel_curso = new javax.swing.JLabel();
+        jLabel_dataAtual = new javax.swing.JLabel();
+        jLabel_horaAtual = new javax.swing.JLabel();
+        jLabel_nomeBuscado = new javax.swing.JLabel();
+        jLabel_matriculaBuscada = new javax.swing.JLabel();
+        jLabel_cursoBuscad = new javax.swing.JLabel();
+        jLabel_numChave = new javax.swing.JLabel();
+        jComboBox_listaNumChaves = new javax.swing.JComboBox();
+        jButton_realizarEmprestimo = new javax.swing.JButton();
+        jLabel_statusAluno = new javax.swing.JLabel();
+        jLabel_dataBuscada = new javax.swing.JLabel();
+        jLabel_horaBuscada = new javax.swing.JLabel();
+        jLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel_tituloJanela.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel_tituloJanela.setText("Sistema de empréstimo de chaves");
 
-        jPanel_menor2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel_menor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel_matriculaBuscar2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_matriculaBuscar2.setText("Matrícula:");
+        jLabel_matriculaBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_matriculaBuscar.setText("Matrícula:");
 
-        jTF_matriculaBuscar2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTF_matriculaBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jButton_buscar2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton_buscar2.setText("Buscar");
+        jButton_buscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/Search.png"))); // NOI18N
+        jButton_buscar.setText("Buscar");
+        jButton_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_buscarActionPerformed(evt);
+            }
+        });
 
-        jLabel_nome2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_nome2.setText("Nome:");
+        jLabel_nome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_nome.setText("Nome:");
 
-        jLabel_matricula2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_matricula2.setText("Matrícula:");
+        jLabel_matricula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_matricula.setText("Matrícula:");
 
-        jLabel_curso2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_curso2.setText("Curso:");
+        jLabel_curso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_curso.setText("Curso:");
 
-        jLabel_dataAtual2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_dataAtual2.setText("Data atual:");
+        jLabel_dataAtual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_dataAtual.setText("Data atual:");
 
-        jLabel_horaAtual2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_horaAtual2.setText("Hora atual:");
+        jLabel_horaAtual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_horaAtual.setText("Hora atual:");
 
-        jLabel_nomeBuscado2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_nomeBuscado2.setText("Fulano de tal");
+        jLabel_nomeBuscado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_nomeBuscado.setText("Fulano de tal");
 
-        jLabel_matriculaBuscada2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_matriculaBuscada2.setText("123456");
+        jLabel_matriculaBuscada.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_matriculaBuscada.setText("123456");
 
-        jLabel_cursoBuscad2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_cursoBuscad2.setText("Ciência da Computação");
+        jLabel_cursoBuscad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_cursoBuscad.setText("Ciência da Computação");
 
-        jLabel_numChave2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_numChave2.setText("Número da chave:");
+        jLabel_numChave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_numChave.setText("Número da chave:");
 
-        jComboBox_listaNumChaves2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox_listaNumChaves2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        jComboBox_listaNumChaves.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBox_listaNumChaves.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
 
-        jButton_realizarEmprestimo2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton_realizarEmprestimo2.setText("Realizar Empréstimo");
+        jButton_realizarEmprestimo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_realizarEmprestimo.setText("Realizar Empréstimo");
 
-        jLabel_statusAluno2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel_statusAluno2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_statusAluno2.setText("Status aluno");
+        jLabel_statusAluno.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_statusAluno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_statusAluno.setText("Status aluno");
 
-        jLabel_dataBuscada2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_dataBuscada2.setText("10/01/2013");
+        jLabel_dataBuscada.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_dataBuscada.setText("10/01/2013");
 
-        jLabel_horaBuscada2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_horaBuscada2.setText("15:37");
+        jLabel_horaBuscada.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_horaBuscada.setText("15:37");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Aluno não encontrado");
+        jLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel.setText("Aluno não encontrado");
 
-        javax.swing.GroupLayout jPanel_menor2Layout = new javax.swing.GroupLayout(jPanel_menor2);
-        jPanel_menor2.setLayout(jPanel_menor2Layout);
-        jPanel_menor2Layout.setHorizontalGroup(
-            jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_menor2Layout.createSequentialGroup()
-                .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_menor2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel_menorLayout = new javax.swing.GroupLayout(jPanel_menor);
+        jPanel_menor.setLayout(jPanel_menorLayout);
+        jPanel_menorLayout.setHorizontalGroup(
+            jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_menorLayout.createSequentialGroup()
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_menorLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel_matriculaBuscar2)
+                        .addComponent(jLabel_matriculaBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTF_matriculaBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTF_matriculaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton_buscar2)
+                        .addComponent(jButton_buscar)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_menor2Layout.createSequentialGroup()
+                        .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_menorLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel_menor2Layout.createSequentialGroup()
-                                .addComponent(jLabel_horaAtual2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel_horaBuscada2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel_menor2Layout.createSequentialGroup()
-                                .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel_menor2Layout.createSequentialGroup()
-                                        .addComponent(jLabel_nome2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel8))
-                                    .addComponent(jLabel_curso2)
-                                    .addComponent(jLabel_dataAtual2))
-                                .addGap(19, 19, 19)
-                                .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel_dataBuscada2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel_cursoBuscad2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
-                                    .addGroup(jPanel_menor2Layout.createSequentialGroup()
-                                        .addComponent(jLabel_nomeBuscado2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel_matricula2)
-                                        .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel_menor2Layout.createSequentialGroup()
-                                                .addGap(51, 51, 51)
-                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_menor2Layout.createSequentialGroup()
-                                                .addComponent(jLabel_matriculaBuscada2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(173, 173, 173))))))
-                            .addGroup(jPanel_menor2Layout.createSequentialGroup()
-                                .addComponent(jLabel_numChave2)
+                        .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel_menorLayout.createSequentialGroup()
+                                .addComponent(jLabel_numChave)
                                 .addGap(29, 29, 29)
-                                .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel_statusAluno2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_menor2Layout.createSequentialGroup()
-                                        .addComponent(jComboBox_listaNumChaves2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel_statusAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_menorLayout.createSequentialGroup()
+                                        .addComponent(jComboBox_listaNumChaves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton_realizarEmprestimo2)
-                                        .addGap(199, 199, 199))))))
-                    .addGroup(jPanel_menor2Layout.createSequentialGroup()
+                                        .addComponent(jButton_realizarEmprestimo)
+                                        .addGap(199, 199, 199))))
+                            .addGroup(jPanel_menorLayout.createSequentialGroup()
+                                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel_menorLayout.createSequentialGroup()
+                                        .addComponent(jLabel_horaAtual)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel_horaBuscada, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel_menorLayout.createSequentialGroup()
+                                        .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel_nome)
+                                            .addComponent(jLabel_curso)
+                                            .addComponent(jLabel_dataAtual))
+                                        .addGap(19, 19, 19)
+                                        .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jLabel_dataBuscada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel_cursoBuscad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                                            .addGroup(jPanel_menorLayout.createSequentialGroup()
+                                                .addComponent(jLabel_nomeBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel_matricula)
+                                                .addGap(6, 6, 6)
+                                                .addComponent(jLabel_matriculaBuscada, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(173, 173, 173))))
+                    .addGroup(jPanel_menorLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jSeparator_meio2, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jSeparator_meio, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel_menor2Layout.setVerticalGroup(
-            jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_menor2Layout.createSequentialGroup()
+        jPanel_menorLayout.setVerticalGroup(
+            jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_menorLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTF_matriculaBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_buscar2)
-                    .addComponent(jLabel_matriculaBuscar2)
-                    .addComponent(jLabel3))
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTF_matriculaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_buscar)
+                    .addComponent(jLabel_matriculaBuscar)
+                    .addComponent(jLabel))
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator_meio2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator_meio, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel_nomeBuscado2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel_nome2)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel_matriculaBuscada2)
-                        .addComponent(jLabel_matricula2)))
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_nomeBuscado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel_nome)
+                        .addComponent(jLabel_matriculaBuscada)
+                        .addComponent(jLabel_matricula)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_curso2)
-                    .addComponent(jLabel_cursoBuscad2))
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_curso)
+                    .addComponent(jLabel_cursoBuscad))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_dataAtual2)
-                    .addComponent(jLabel_dataBuscada2))
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_dataAtual)
+                    .addComponent(jLabel_dataBuscada))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_horaAtual2)
-                    .addComponent(jLabel_horaBuscada2))
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_horaAtual)
+                    .addComponent(jLabel_horaBuscada))
                 .addGap(35, 35, 35)
-                .addComponent(jLabel_statusAluno2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_statusAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(jPanel_menor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_realizarEmprestimo2)
-                    .addComponent(jLabel_numChave2)
-                    .addComponent(jComboBox_listaNumChaves2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_realizarEmprestimo)
+                    .addComponent(jLabel_numChave)
+                    .addComponent(jComboBox_listaNumChaves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51))
         );
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/logo unipampa menor.jpg"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(448, 265));
+        jLabel1.setMinimumSize(new java.awt.Dimension(448, 265));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel_menor2, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator_topo, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel_tituloJanela, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator_topo, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel_tituloJanela, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(114, 114, 114))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel_menor, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel_tituloJanela)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel_tituloJanela)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jSeparator_topo, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel_menor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel_menor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarActionPerformed
+        // TODO add your handling code here:
+        //this.jButton_buscar.setBack
+    }//GEN-LAST:event_jButton_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,72 +316,27 @@ public class Emprestimo extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_buscar;
-    private javax.swing.JButton jButton_buscar1;
-    private javax.swing.JButton jButton_buscar2;
     private javax.swing.JButton jButton_realizarEmprestimo;
-    private javax.swing.JButton jButton_realizarEmprestimo1;
-    private javax.swing.JButton jButton_realizarEmprestimo2;
     private javax.swing.JComboBox jComboBox_listaNumChaves;
-    private javax.swing.JComboBox jComboBox_listaNumChaves1;
-    private javax.swing.JComboBox jComboBox_listaNumChaves2;
+    private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_curso;
-    private javax.swing.JLabel jLabel_curso1;
-    private javax.swing.JLabel jLabel_curso2;
     private javax.swing.JLabel jLabel_cursoBuscad;
-    private javax.swing.JLabel jLabel_cursoBuscad1;
-    private javax.swing.JLabel jLabel_cursoBuscad2;
     private javax.swing.JLabel jLabel_dataAtual;
-    private javax.swing.JLabel jLabel_dataAtual1;
-    private javax.swing.JLabel jLabel_dataAtual2;
     private javax.swing.JLabel jLabel_dataBuscada;
-    private javax.swing.JLabel jLabel_dataBuscada1;
-    private javax.swing.JLabel jLabel_dataBuscada2;
     private javax.swing.JLabel jLabel_horaAtual;
-    private javax.swing.JLabel jLabel_horaAtual1;
-    private javax.swing.JLabel jLabel_horaAtual2;
     private javax.swing.JLabel jLabel_horaBuscada;
-    private javax.swing.JLabel jLabel_horaBuscada1;
-    private javax.swing.JLabel jLabel_horaBuscada2;
     private javax.swing.JLabel jLabel_matricula;
-    private javax.swing.JLabel jLabel_matricula1;
-    private javax.swing.JLabel jLabel_matricula2;
     private javax.swing.JLabel jLabel_matriculaBuscada;
-    private javax.swing.JLabel jLabel_matriculaBuscada1;
-    private javax.swing.JLabel jLabel_matriculaBuscada2;
     private javax.swing.JLabel jLabel_matriculaBuscar;
-    private javax.swing.JLabel jLabel_matriculaBuscar1;
-    private javax.swing.JLabel jLabel_matriculaBuscar2;
     private javax.swing.JLabel jLabel_nome;
-    private javax.swing.JLabel jLabel_nome1;
-    private javax.swing.JLabel jLabel_nome2;
     private javax.swing.JLabel jLabel_nomeBuscado;
-    private javax.swing.JLabel jLabel_nomeBuscado1;
-    private javax.swing.JLabel jLabel_nomeBuscado2;
     private javax.swing.JLabel jLabel_numChave;
-    private javax.swing.JLabel jLabel_numChave1;
-    private javax.swing.JLabel jLabel_numChave2;
     private javax.swing.JLabel jLabel_statusAluno;
-    private javax.swing.JLabel jLabel_statusAluno1;
-    private javax.swing.JLabel jLabel_statusAluno2;
     private javax.swing.JLabel jLabel_tituloJanela;
     private javax.swing.JPanel jPanel_menor;
-    private javax.swing.JPanel jPanel_menor1;
-    private javax.swing.JPanel jPanel_menor2;
     private javax.swing.JSeparator jSeparator_meio;
-    private javax.swing.JSeparator jSeparator_meio1;
-    private javax.swing.JSeparator jSeparator_meio2;
     private javax.swing.JSeparator jSeparator_topo;
     private javax.swing.JTextField jTF_matriculaBuscar;
-    private javax.swing.JTextField jTF_matriculaBuscar1;
-    private javax.swing.JTextField jTF_matriculaBuscar2;
     // End of variables declaration//GEN-END:variables
 }
