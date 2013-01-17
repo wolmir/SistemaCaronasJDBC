@@ -37,7 +37,7 @@ public class Chave {
      * @param id the id to set
      */
     public void setId(Long id) {
-        this.setId(id);
+        this.id=id;
     }
 
 
