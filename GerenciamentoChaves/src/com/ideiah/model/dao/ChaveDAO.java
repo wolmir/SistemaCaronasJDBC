@@ -31,11 +31,12 @@ public class ChaveDAO {
     public void adiciona(Chave chave) {
         LOGGER.setLevel(Level.SEVERE);
         String sql = "insert into chave " +
-                "(numero) values (?)";
+                "(numero, tipo) values (?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
             stmt.setInt(1, chave.getNumero());
+            stmt.setString(2, chave.getTipo());
             stmt.execute();
             stmt.close();
             
@@ -56,7 +57,7 @@ public class ChaveDAO {
                 Chave chave = new Chave();
                 chave.setId(rs.getLong("id_chave"));
                 chave.setNumero(rs.getInt("numero"));
-                
+                chave.setTipo(rs.getString("tipo"));
                 chaves.add(chave);
                 
             }
@@ -73,12 +74,13 @@ public class ChaveDAO {
     
     public void altera(Chave chave) {
         LOGGER.setLevel(Level.SEVERE);
-        String sql = "update chave set numero=? where id_chave=?";
+        String sql = "update chave set numero=?, tipo=? where id_chave=?";
         
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, chave.getNumero());
-            stmt.setLong(2, chave.getId());
+            stmt.setString(2, chave.getTipo());
+            stmt.setLong(3, chave.getId());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
