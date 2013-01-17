@@ -4,11 +4,14 @@
  */
 package com.ideiah.maildaemon.main;
 
+import com.ideiah.controller.AlunoController;
 import com.ideiah.maildaemon.controller.MailController;
+import com.ideiah.model.entity.Aluno;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -25,11 +28,13 @@ public class MailDaemon {
         controller.setUsername(elmts[2]);
         controller.setPassword(elmts[3]);
         
+        List<Aluno> alunos = new AlunoController().getAtrasados();
+        controller.sendMails(alunos);
         
     }
     
     private String getConf() throws FileNotFoundException, IOException {
-            BufferedReader br = new BufferedReader(new FileReader("file.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("email_config.txt"));
             String everything = "";
             try {
                 StringBuilder sb = new StringBuilder();
