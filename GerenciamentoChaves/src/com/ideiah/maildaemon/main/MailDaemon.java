@@ -6,6 +6,7 @@ package com.ideiah.maildaemon.main;
 
 import com.ideiah.controller.AlunoController;
 import com.ideiah.maildaemon.controller.MailController;
+import com.ideiah.maildaemon.logger.MailLogger;
 import com.ideiah.model.entity.Aluno;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,18 +19,23 @@ import java.util.List;
  * @author Usuario
  */
 public class MailDaemon {
-    public static void main() throws FileNotFoundException, IOException {
+
+    public void run() {
+        try {
+            MailLogger.setup();
+            String conf = new MailDaemon().getConf();
+            String[] elmts = conf.split("\\n");
+            MailController controller = new MailController();
+            controller.setFrom(elmts[0]);
+            controller.setHost(elmts[1]);
+            controller.setUsername(elmts[2]);
+            controller.setPassword(elmts[3]);
         
-        String conf = new MailDaemon().getConf();
-        String[] elmts = conf.split("\\n");
-        MailController controller = new MailController();
-        controller.setFrom(elmts[0]);
-        controller.setHost(elmts[1]);
-        controller.setUsername(elmts[2]);
-        controller.setPassword(elmts[3]);
-        
-        List<Aluno> alunos = new AlunoController().getAtrasados();
-        controller.sendMails(alunos);
+            List<Aluno> alunos = new AlunoController().getAtrasados();
+            controller.sendMails(alunos);
+        } catch (Exception e) {
+            
+        }
         
     }
     
