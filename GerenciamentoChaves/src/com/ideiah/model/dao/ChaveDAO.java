@@ -12,12 +12,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Usuario
  */
 public class ChaveDAO {
+    private static final Logger LOGGER = Logger.getLogger(ChaveDAO.class.getName());
     
     private Connection connection;
     
@@ -26,6 +29,7 @@ public class ChaveDAO {
     }
     
     public void adiciona(Chave chave) {
+        LOGGER.setLevel(Level.SEVERE);
         String sql = "insert into chave " +
                 "(numero) values (?)";
         try {
@@ -36,11 +40,13 @@ public class ChaveDAO {
             stmt.close();
             
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.severe("Erro ao inserir uma Chave no banco.");
+            LOGGER.severe(e.getMessage());
         }
     }
     
     public List<Chave> getChaves() {
+        LOGGER.setLevel(Level.SEVERE);
         try {
             List<Chave> chaves = new ArrayList<Chave>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from chave");
@@ -59,11 +65,14 @@ public class ChaveDAO {
             return chaves;
             
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.severe("Erro ao listar as chaves.");
+            LOGGER.severe(e.getMessage());
         }
+        return null;
     }
     
     public void altera(Chave chave) {
+        LOGGER.setLevel(Level.SEVERE);
         String sql = "update chave set numero=? where id_chave=?";
         
         try {
@@ -73,19 +82,22 @@ public class ChaveDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.severe("Erro ao alterar uma Chave no banco.");
+            LOGGER.severe(e.getMessage());
         } 
     }
     
     
     public void remove(Chave chave) {
+        LOGGER.setLevel(Level.SEVERE);
         try {
             PreparedStatement stmt = connection.prepareStatement("delete from chave where id_chave=?");
             stmt.setLong(1, chave.getId());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.severe("Erro ao deletar uma Chave no banco.");
+            LOGGER.severe(e.getMessage());
         }
     }
     

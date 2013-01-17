@@ -12,13 +12,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Usuario
  */
 public class AlunoDAO {
-    
+    private static final Logger LOGGER = Logger.getLogger(AlunoDAO.class.getName());
     private Connection connection;
     
     public AlunoDAO() {
@@ -26,6 +28,7 @@ public class AlunoDAO {
     }
     
     public List<Aluno> getAlunos() {
+        LOGGER.setLevel(Level.SEVERE);
         try {
             List<Aluno> alunos = new ArrayList<Aluno>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from aluno");
@@ -47,8 +50,10 @@ public class AlunoDAO {
             return alunos;
             
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.severe("Erro ao listar alunos no banco.");
+            LOGGER.severe(e.getMessage());
         }
+        return null;
     }
     
     

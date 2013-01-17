@@ -16,12 +16,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.sql.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Usuario
  */
 public class EmprestimoDAO {
+    private static final Logger LOGGER = Logger.getLogger(EmprestimoDAO.class.getName());
     private Connection connection;
     
     public EmprestimoDAO() {
@@ -29,6 +32,7 @@ public class EmprestimoDAO {
     }
     
     public void adiciona(Emprestimo emprestimo) {
+        LOGGER.setLevel(Level.ALL);
         String sql = "insert into emprestimo (id_aluno, id_chave, retirada,"
                 + "devolucao) values (?,?,?,?)";
         try {
@@ -42,12 +46,14 @@ public class EmprestimoDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.severe("Erro ao adicionar um emprestimo no banco");
+            LOGGER.severe(e.getMessage());
         }
     }
     
     
     public void altera(Emprestimo emprestimo) {
+        LOGGER.setLevel(Level.ALL);
         String sql = "update emprestimo set id_aluno=?, id_chave=?, retirada=?,"
                 + "devolucao=? where id=?";
         try {
@@ -62,22 +68,26 @@ public class EmprestimoDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.severe("Erro ao alterar um emprestimo no banco");
+            LOGGER.severe(e.getMessage());
         }
     }
     
     public void remove(Emprestimo emprestimo) {
+        LOGGER.setLevel(Level.ALL);
         try {
             PreparedStatement stmt = connection.prepareStatement("delete from emprestimo where id_emprestimo=?");
             stmt.setLong(1, emprestimo.getId());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.severe("Erro ao remover um emprestimo no banco");
+            LOGGER.severe(e.getMessage());
         }
     }
     
     public List<Emprestimo> getEmprestimos() {
+        LOGGER.setLevel(Level.ALL);
         try {
             List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
             String sql = "select * from emprestimo";
@@ -124,7 +134,9 @@ public class EmprestimoDAO {
             return emprestimos;
             
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.severe("Erro ao deletar um emprestimo no banco");
+            LOGGER.severe(e.getMessage());
         }
+        return null;
     }
 }
