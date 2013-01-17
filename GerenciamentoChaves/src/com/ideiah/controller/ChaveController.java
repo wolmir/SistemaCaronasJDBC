@@ -71,6 +71,28 @@ public class ChaveController {
         }
         return resultado;
     }
+    
+    public List<Chave> getPequenas() {
+        List<Chave> resultado = new ArrayList<Chave>();
+        List<Chave> chaves = new ChaveDAO().getChaves();
+        for (Chave chave : chaves) {
+            if (chave.getTipo().equals("pequena")) {
+                resultado.add(chave);
+            }
+        }
+        return resultado;
+    }
+    
+    public List<Chave> getGrandes() {
+        List<Chave> resultado = new ArrayList<Chave>();
+        List<Chave> chaves = new ChaveDAO().getChaves();
+        for (Chave chave : chaves) {
+            if (chave.getTipo().equals("grande")) {
+                resultado.add(chave);
+            }
+        }
+        return resultado;
+    }
 
     /**
      * @return the chave
