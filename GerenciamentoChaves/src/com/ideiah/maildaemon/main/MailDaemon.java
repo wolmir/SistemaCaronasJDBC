@@ -19,8 +19,12 @@ import java.util.List;
  * @author Usuario
  */
 public class MailDaemon {
+    
+    public static void main(String[] args) {
+        MailDaemon.run();
+    }
 
-    public void run() {
+    public static void run() {
         try {
             MailLogger.setup();
             String conf = new MailDaemon().getConf();

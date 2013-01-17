@@ -24,7 +24,7 @@ public class MailLogger {
         Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
         logger.setLevel(Level.INFO);
-        fileTxt = new FileHandler("Logging.txt");
+        fileTxt = new FileHandler("MailLogging.txt");
 
         // Create txt Formatter
         formatterTxt = new SimpleFormatter();
