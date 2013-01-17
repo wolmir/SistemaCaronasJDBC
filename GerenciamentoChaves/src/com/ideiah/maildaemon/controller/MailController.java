@@ -8,19 +8,26 @@ import com.ideiah.model.entity.Aluno;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Authenticator;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Usuario
  */
 public class MailController {
+    
+    private final static Logger LOGGER = Logger.getLogger(MailController.class.getName());
+    
     private String from;
     private String host;
     private String username;
@@ -40,6 +47,7 @@ public class MailController {
     
     
     private void sendMail(String to, Session session, String message) {
+        LOGGER.setLevel(Level.SEVERE);
         try {
             Message msg = new MimeMessage(session);
               // -- Set the FROM and TO fields --
@@ -53,9 +61,15 @@ public class MailController {
               // -- Send the message --
             Transport.send(msg);
             System.out.println("Message sent to"+to+" OK." );
-        } catch (Exception e) {
-            
+        } catch (javax.mail.AuthenticationFailedException e) {
+            LOGGER.severe("Falha na autenticação ao enviar email.");
+            LOGGER.severe(e.getMessage());
         }
+        catch (javax.mail.MessagingException m) {
+            LOGGER.severe("Erro ao criar mensagem de email.");
+            LOGGER.severe(m.getMessage());
+        }
+        
     }
     
     

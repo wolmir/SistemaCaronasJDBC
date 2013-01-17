@@ -11,6 +11,7 @@ package com.ideiah.model.entity;
 public class Chave {
     private Long id;
     private Integer numero;
+    private String tipo;
 
     /**
      * @return the numero
@@ -38,6 +39,20 @@ public class Chave {
      */
     public void setId(Long id) {
         this.id=id;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 

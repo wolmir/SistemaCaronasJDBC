@@ -24,6 +24,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `gerenciamento_biblioteca`.`chave` (
   `id_chave` INT NOT NULL AUTO_INCREMENT ,
+  `tipo` ENUM('pequena', 'grande'),
   `numero` INT NULL ,
   PRIMARY KEY (`id_chave`) )
 ENGINE = InnoDB;
