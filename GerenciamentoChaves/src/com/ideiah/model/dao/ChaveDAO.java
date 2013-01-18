@@ -25,7 +25,13 @@ public class ChaveDAO {
     private Connection connection;
     
     public ChaveDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+        try {
+            this.connection = new ConnectionFactory().getConnection();
+        } catch (SQLException e) {
+            LOGGER.severe("Erro na conexão do banco de dados.");
+            LOGGER.severe(e.getMessage());
+            e.printStackTrace();
+        }
     }
     
     public void adiciona(Chave chave) {

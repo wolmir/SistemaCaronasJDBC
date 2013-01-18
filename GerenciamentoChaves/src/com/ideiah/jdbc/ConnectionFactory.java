@@ -29,14 +29,15 @@ public class ConnectionFactory {
         }
     }
     
-    public Connection getConnection() {
+    public Connection getConnection() throws SQLException {
         LOGGER.setLevel(Level.ALL);
         try {
             return DriverManager.getConnection("jdbc:mysql://localhost/gerenciamento_biblioteca", "root", "");
         } catch (SQLException e) {
             LOGGER.severe("Erro na conexão do banco de dados.");
             LOGGER.severe(e.getMessage());
+            e.printStackTrace();
+            throw new SQLException(e);
         }
-        return null;
     }
 }
