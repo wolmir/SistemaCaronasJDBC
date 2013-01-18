@@ -6,12 +6,14 @@ package com.ideiah.model.dao;
 
 import com.ideiah.jdbc.ConnectionFactory;
 import com.ideiah.model.entity.Aluno;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,10 +27,16 @@ public class AlunoDAO {
     
     public AlunoDAO() {
         this.connection = new ConnectionFactory().getConnection();
+        try {
+        FileHandler fh = new FileHandler(this.getClass().getName() + "log.txt");
+        LOGGER.addHandler(fh);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     public List<Aluno> getAlunos() {
-        LOGGER.setLevel(Level.SEVERE);
+        LOGGER.setLevel(Level.ALL);
         try {
             List<Aluno> alunos = new ArrayList<Aluno>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from aluno");
@@ -52,6 +60,7 @@ public class AlunoDAO {
         } catch (SQLException e) {
             LOGGER.severe("Erro ao listar alunos no banco.");
             LOGGER.severe(e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
