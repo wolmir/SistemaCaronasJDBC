@@ -5,9 +5,11 @@
 package com.ideiah.maildaemon.controller;
 
 import com.ideiah.model.entity.Aluno;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Authenticator;
@@ -33,6 +35,15 @@ public class MailController {
     private String username;
     private String password;
     
+    
+    public MailController() {
+        try {
+        FileHandler fh = new FileHandler(this.getClass().getName() + "log.txt");
+        LOGGER.addHandler(fh);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
     private Session getSession() {
         Properties props = System.getProperties();
@@ -64,10 +75,12 @@ public class MailController {
         } catch (javax.mail.AuthenticationFailedException e) {
             LOGGER.severe("Falha na autenticação ao enviar email.");
             LOGGER.severe(e.getMessage());
+            e.printStackTrace();
         }
         catch (javax.mail.MessagingException m) {
             LOGGER.severe("Erro ao criar mensagem de email.");
             LOGGER.severe(m.getMessage());
+            m.printStackTrace();
         }
         
     }

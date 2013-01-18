@@ -80,7 +80,8 @@ public class Emprestimo {
         return data_devolucao;
     }
 
-    /**
+    /*
+     *
      * @param data_devolucao the data_devolucao to set
      */
     public void setData_devolucao(Calendar data_devolucao) {
