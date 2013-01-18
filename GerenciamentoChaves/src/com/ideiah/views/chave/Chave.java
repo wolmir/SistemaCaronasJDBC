@@ -4,6 +4,11 @@
  */
 package com.ideiah.views.chave;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
 /**
  *
  * @author Bruna
@@ -15,6 +20,16 @@ public class Chave extends javax.swing.JFrame {
      */
     public Chave() {
         initComponents();
+        this.setResizable(false);
+        this.getContentPane().setBackground(Color.WHITE);
+        this.setLocationRelativeTo(null);
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            SwingUtilities.updateComponentTreeUI(this);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro);
+        }
+         
     }
 
     /**
@@ -27,27 +42,22 @@ public class Chave extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel_subtitulo = new javax.swing.JLabel();
-        jLabel_titulo = new javax.swing.JLabel();
-        jLabel_logoUnipampa = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        jPanel_menor = new javax.swing.JPanel();
         jButton_CadNovaChave = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_ListaChaves = new javax.swing.JTable();
         jButton_Excluir = new javax.swing.JButton();
+        jLabel_subtitulo = new javax.swing.JLabel();
+        jLabel_titulo = new javax.swing.JLabel();
+        jLabel_logoUnipampa = new javax.swing.JLabel();
+        jSeparator_topo = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel_subtitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel_subtitulo.setText("Armários da Biblioteca");
+        jPanel_menor.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel_menor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel_titulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel_titulo.setText("Sistema de empréstimo de chaves");
-
-        jLabel_logoUnipampa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/logo unipampa menor.jpg"))); // NOI18N
-        jLabel_logoUnipampa.setMaximumSize(new java.awt.Dimension(448, 265));
-        jLabel_logoUnipampa.setMinimumSize(new java.awt.Dimension(448, 265));
-
+        jButton_CadNovaChave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/add.png"))); // NOI18N
         jButton_CadNovaChave.setText("Cadastrar Nova Chave");
 
         jTable_ListaChaves.setModel(new javax.swing.table.DefaultTableModel(
@@ -63,6 +73,7 @@ public class Chave extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable_ListaChaves);
 
+        jButton_Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/delete.png"))); // NOI18N
         jButton_Excluir.setText("Excluir Chave");
         jButton_Excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,14 +81,51 @@ public class Chave extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel_menorLayout = new javax.swing.GroupLayout(jPanel_menor);
+        jPanel_menor.setLayout(jPanel_menorLayout);
+        jPanel_menorLayout.setHorizontalGroup(
+            jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_menorLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_menorLayout.createSequentialGroup()
+                        .addComponent(jButton_CadNovaChave)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_Excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(137, Short.MAX_VALUE))
+        );
+        jPanel_menorLayout.setVerticalGroup(
+            jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_menorLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_CadNovaChave)
+                    .addComponent(jButton_Excluir))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+
+        jLabel_subtitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_subtitulo.setText("Armários da Biblioteca");
+
+        jLabel_titulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel_titulo.setText("Sistema de empréstimo de chaves");
+
+        jLabel_logoUnipampa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/logo unipampa menor.jpg"))); // NOI18N
+        jLabel_logoUnipampa.setMaximumSize(new java.awt.Dimension(448, 265));
+        jLabel_logoUnipampa.setMinimumSize(new java.awt.Dimension(448, 265));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator_topo, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -85,19 +133,13 @@ public class Chave extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel_subtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(118, 118, 118)))
-                        .addComponent(jLabel_logoUnipampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton_CadNovaChave)
-                                .addGap(36, 36, 36)
-                                .addComponent(jButton_Excluir))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel_logoUnipampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(46, 46, 46)
+                    .addComponent(jPanel_menor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(44, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,15 +152,14 @@ public class Chave extends javax.swing.JFrame {
                         .addComponent(jLabel_titulo)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel_subtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_CadNovaChave)
-                    .addComponent(jButton_Excluir))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator_topo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(492, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(151, 151, 151)
+                    .addComponent(jPanel_menor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(61, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,8 +228,9 @@ public class Chave extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_subtitulo;
     private javax.swing.JLabel jLabel_titulo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel_menor;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator_topo;
     private javax.swing.JTable jTable_ListaChaves;
     // End of variables declaration//GEN-END:variables
 }
