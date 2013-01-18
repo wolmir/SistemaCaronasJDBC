@@ -33,7 +33,7 @@ public class AlunoDAOTest {
     
     @BeforeClass
     public static void setUpClass() throws SQLException {
-         dao = new AlunoDAO();
+        dao = new AlunoDAO();
         alunosL1 = (List<Aluno>) new  ArrayList<Aluno>();
         Aluno a1 = new Aluno();
         Aluno a2 = new Aluno();
@@ -90,13 +90,15 @@ public class AlunoDAOTest {
      */
     @Test
     public void testGetAlunos() {
-        System.out.println("getAlunos");
+        System.out.println("testgetAlunos");
         List<Aluno> alunos = dao.getAlunos();
         for (Aluno a : alunosL1) {
             boolean flag = false;
             for (Aluno aluno : alunos){
-                if (a.getId() == aluno.getId());
+                if (a.getId().equals(aluno.getId())){
+                    System.out.println(a.getId()+"\t"+aluno.getId());
                     flag = true;
+                }
             }
             assertEquals(true, flag);
         }
