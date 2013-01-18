@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-01-18T09:31:49</date>
+  <millis>1358508709298</millis>
+  <sequence>0</sequence>
+  <logger>com.ideiah.maildaemon.main.MailDaemon</logger>
+  <level>FINE</level>
+  <class>com.ideiah.maildaemon.main.MailDaemon</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>Tamanho: 1</message>
+</record>
+</log>
