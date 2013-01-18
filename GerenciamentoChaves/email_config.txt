@@ -1,4 +1,5 @@
-neocorrupt@gmail.com
-smtp.gmail.com
+gerenciamento_chaves@unipampa.edu.br
+127.0.0.1
+6767
 neocorrupt
 pauNoCuDoHacker
