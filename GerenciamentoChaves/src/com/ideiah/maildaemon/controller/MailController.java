@@ -5,6 +5,8 @@
 package com.ideiah.maildaemon.controller;
 
 import com.ideiah.model.entity.Aluno;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -35,12 +37,22 @@ public class MailController {
     private String port;
     private String username;
     private String password;
+    private String html_template;
     
     
     public MailController() {
         try {
         FileHandler fh = new FileHandler(this.getClass().getName() + "log.txt");
         LOGGER.addHandler(fh);
+        BufferedReader br = new BufferedReader(new FileReader("email_template.html"));
+        StringBuilder sb = new StringBuilder();
+        String line = br.readLine();
+        while (line != null) {
+            sb.append(line);
+            sb.append("\n");
+            line = br.readLine();
+        }
+        this.html_template = sb.toString();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,7 +79,7 @@ public class MailController {
             msg.setFrom(new InternetAddress(from));
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
             msg.setSubject(to);
-            msg.setText(message);
+            msg.setContent(message, "text/html; charset=utf-8");
               // -- Set some other header information --
             msg.setHeader("Biblioteca Unipampa", "Gerenciamento Chaves" );
             msg.setSentDate(new Date());
@@ -90,11 +102,14 @@ public class MailController {
     
     public void sendMails(List<Aluno> alunos) {
         for (Aluno aluno: alunos) {
-            String message = "Olá, " + aluno.getNome()
-                    + ", esta mensagem está sendo enviada porque " +
-                    "você pegou uma chave não devolveu.";
+            String message = getHtml(aluno);
             this.sendMail(aluno.getEmail(), this.getSession(), message);
         }
+    }
+    
+    
+    public String getHtml(Aluno aluno) {
+        String nhtml = this.html_template.replace("{{aluno_nome}}", aluno.getNome());
     }
 
     /**

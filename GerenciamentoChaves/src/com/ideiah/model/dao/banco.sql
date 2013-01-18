@@ -24,8 +24,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `gerenciamento_biblioteca`.`chave` (
   `id_chave` INT NOT NULL AUTO_INCREMENT ,
-  `tipo` ENUM('pequena', 'grande'),
   `numero` INT NULL ,
+  `tipo` ENUM('pequena', 'grande') NULL ,
   PRIMARY KEY (`id_chave`) )
 ENGINE = InnoDB;
 
@@ -35,15 +35,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `gerenciamento_biblioteca`.`emprestimo` (
   `id_emprestimo` INT NOT NULL AUTO_INCREMENT ,
-  `id_alun0` INT NOT NULL ,
+  `id_aluno` INT NOT NULL ,
   `id_chave` INT NOT NULL ,
   `retirada` DATETIME NULL ,
   `devolucao` DATETIME NULL ,
   PRIMARY KEY (`id_emprestimo`) ,
   INDEX `fk_usuario_has_chave_chave1_idx` (`id_chave` ASC) ,
-  INDEX `fk_usuario_has_chave_usuario_idx` (`id_alun0` ASC) ,
+  INDEX `fk_usuario_has_chave_usuario_idx` (`id_aluno` ASC) ,
   CONSTRAINT `fk_usuario_has_chave_usuario`
-    FOREIGN KEY (`id_alun0` )
+    FOREIGN KEY (`id_aluno` )
     REFERENCES `gerenciamento_biblioteca`.`aluno` (`id_aluno` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
