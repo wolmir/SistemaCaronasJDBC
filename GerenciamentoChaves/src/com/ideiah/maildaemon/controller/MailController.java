@@ -32,6 +32,7 @@ public class MailController {
     
     private String from;
     private String host;
+    private String port;
     private String username;
     private String password;
     
@@ -50,6 +51,7 @@ public class MailController {
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.starttls.enable","true" );
         props.put("mail.smtp.host",host);
+        props.put("mail.smtp.port", getPort());
         props.put("mail.smtp.auth", "true" );
         Authenticator auth = new SMTPAuthenticator(this.username, this.password);
         Session session = Session.getInstance(props, auth);
@@ -149,6 +151,20 @@ public class MailController {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the port
+     */
+    public String getPort() {
+        return port;
+    }
+
+    /**
+     * @param port the port to set
+     */
+    public void setPort(String port) {
+        this.port = port;
     }
     
     private class SMTPAuthenticator extends javax.mail.Authenticator {
