@@ -37,6 +37,8 @@ public class EmprestimoDAOTest {
     private static List<Aluno> alunosL1;
     private static List<Chave> chaveL1;
     private static List<Emprestimo> empL1;
+    static Calendar c = new GregorianCalendar();
+    Calendar c2 = new GregorianCalendar();
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -96,6 +98,11 @@ public class EmprestimoDAOTest {
         c4.setNumero(new Integer(35));
         c4.setId(new Long (4));
         
+        c1.setTipo(null);
+        c2.setTipo(null);
+        c3.setTipo(null);
+        c4.setTipo(null);
+        
         chaveL1.add(c1);
         chaveL1.add(c2);
         chaveL1.add(c3);
@@ -104,7 +111,9 @@ public class EmprestimoDAOTest {
         connection = new ConnectionFactory().getConnection();
         for(Chave chave : chaveL1) {
             PreparedStatement stmtChave = connection.prepareStatement(
-                    "insert into chave values ("+chave.getId()+", "+chave.getNumero()+");");
+                    "insert into chave values ("+chave.getId()+", "
+                    + ""+chave.getNumero()+", "
+                    + ""+chave.getTipo()+");");
             stmtChave.execute();
             stmtChave.close();
         }
@@ -129,10 +138,9 @@ public class EmprestimoDAOTest {
         
         //empDAO.getEmprestimos();
         PreparedStatement stmtEmp = connection.prepareStatement("insert into emprestimo"
-                +"(id_alun0, id_chave, retirada, devolucao) values (?,?,?,?)");
+                +"(id_aluno, id_chave, retirada, devolucao) values (?,?,?,?)");
             stmtEmp.setLong(1, 1);
             stmtEmp.setLong(2, 1);
-            Calendar c = new GregorianCalendar();
             c.set(2013, 1, 17);
             stmtEmp.setDate(3, new Date(c.getTimeInMillis()));
             stmtEmp.setDate(4, new Date(c.getTimeInMillis()));
@@ -156,7 +164,7 @@ public class EmprestimoDAOTest {
         
         
             PreparedStatement stmt = connection.prepareStatement(
-                    "delete from emprestimo where id_alun0 = 1;");
+                    "delete from emprestimo where id_aluno = 1;");
             stmt.execute();
             stmt.close();
         
@@ -189,9 +197,11 @@ public class EmprestimoDAOTest {
         connectionS = new ConnectionFactory().getConnection();
         try{
         PreparedStatement stmt = connectionS.prepareStatement(
-                "select from emprestimos where id_alun0 = "+idAluno);
+                "select * from emprestimos where id_aluno = "+idAluno);
         ResultSet rs = stmt.executeQuery();
-        if (idAluno.equals(rs.getInt("id_alun0"))){
+        System.out.println("Testando método getSelect");
+        System.out.println(idAluno+"\t"+rs.getInt("id_aluno"));
+        if (idAluno.equals(rs.getInt("id_aluno"))){
             return true;
         }else{
             return false;
@@ -210,7 +220,7 @@ public class EmprestimoDAOTest {
         Emprestimo emprestimo = new Emprestimo();
         Aluno aluno = new Aluno();
         
-        aluno.setId(new Long (3));
+        aluno.setId(new Long (6));
         aluno.setNome("Carlos");
         aluno.setEmail("carlos@unipampa.edu.br");
         aluno.setMatricula(new Integer(111252349));
@@ -220,17 +230,22 @@ public class EmprestimoDAOTest {
         
         chave.setId(new Long(5));
         chave.setNumero(new Integer(69));
+        chave.setTipo(null);
         
         EmprestimoDAO instance = new EmprestimoDAO();
         
         emprestimo.setAluno(aluno);
         emprestimo.setChave(chave);
-        emprestimo.setData_retirada(null);
-        emprestimo.setData_devolucao(null);
+        c2.set(2013, 1, 17);
+        emprestimo.setData_retirada(c2);
+        emprestimo.setData_devolucao(c2);
         
         instance.adiciona(emprestimo);
-        
-        assert(getSelect(emprestimo.getAluno().getId()));
+        boolean flag=true;
+        System.out.println(flag);
+        flag=getSelect(emprestimo.getAluno().getId());
+        System.out.println(flag);
+        assertEquals(true,flag);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }

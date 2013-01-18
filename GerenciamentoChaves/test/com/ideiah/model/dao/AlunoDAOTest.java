@@ -90,7 +90,7 @@ public class AlunoDAOTest {
      */
     @Test
     public void testGetAlunos() {
-        System.out.println("testgetAlunos");
+        System.out.println("getAlunos");
         List<Aluno> alunos = dao.getAlunos();
         for (Aluno a : alunosL1) {
             boolean flag = false;
