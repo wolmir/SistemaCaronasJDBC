@@ -26,12 +26,17 @@ public class AlunoDAO {
     private Connection connection;
     
     public AlunoDAO() {
-        this.connection = new ConnectionFactory().getConnection();
         try {
-        FileHandler fh = new FileHandler(this.getClass().getName() + "log.txt");
-        LOGGER.addHandler(fh);
+            this.connection = new ConnectionFactory().getConnection();
+            FileHandler fh = new FileHandler(this.getClass().getName() + "log.txt");
+            LOGGER.addHandler(fh);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        catch (SQLException m) {
+            LOGGER.severe("Erro na conexão do banco de dados.");
+            LOGGER.severe(m.getMessage());
+            m.printStackTrace();
         }
     }
     

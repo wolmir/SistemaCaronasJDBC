@@ -5,13 +5,20 @@
 package com.ideiah.maildaemon.main;
 
 import com.ideiah.controller.AlunoController;
+import com.ideiah.controller.ChaveController;
+import com.ideiah.controller.EmprestimoController;
 import com.ideiah.maildaemon.controller.MailController;
 import com.ideiah.maildaemon.logger.MailLogger;
 import com.ideiah.model.entity.Aluno;
+import com.ideiah.model.entity.Chave;
+import com.ideiah.model.entity.Emprestimo;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -43,7 +50,23 @@ public class MailDaemon {
             controller.setUsername(elmts[2]);
             controller.setPassword(elmts[3]);
         
-            
+            ChaveController cc = new ChaveController();
+            Chave chave = new Chave();
+            chave.setNumero(01);
+            chave.setTipo("pequena");
+            cc.setChave(chave);
+            cc.salvar();
+            chave = cc.getTodas().get(0);
+            Emprestimo emp = new Emprestimo();
+            AlunoController ac = new AlunoController();
+            emp.setAluno(ac.getTodos().get(0));
+            emp.setChave(chave);
+            Calendar datar = new GregorianCalendar();
+            datar.set(2013, 01, 17);
+            emp.setData_retirada(datar);
+            EmprestimoController ec = new EmprestimoController();
+            ec.setEmprestimo(emp);
+            ec.salvar();
             List<Aluno> alunos = new AlunoController().getAtrasados();
             LOGGER.fine("Tamanho: " + alunos.size());
             controller.sendMails(alunos);
