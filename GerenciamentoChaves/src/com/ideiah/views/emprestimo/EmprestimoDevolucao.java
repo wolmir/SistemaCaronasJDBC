@@ -4,6 +4,11 @@
  */
 package com.ideiah.views.emprestimo;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
 /**
  *
  * @author Bruna
@@ -15,6 +20,16 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
      */
     public EmprestimoDevolucao() {
         initComponents();
+        //this.jButton_EmprestimoDevolucao.setVisible(false);
+        this.jTF_matriculaBuscar.grabFocus();
+        this.getContentPane().setBackground(Color.WHITE);
+        this.setLocationRelativeTo(null);
+          try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            SwingUtilities.updateComponentTreeUI(this);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro);
+        }
     }
 
     /**
@@ -30,12 +45,14 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
         jPanel_menor1 = new javax.swing.JPanel();
         jButton_CadastrarChave = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField_NomeUser = new javax.swing.JTextField();
         jButton_ListaAluno = new javax.swing.JButton();
         jLabel_dataAtual = new javax.swing.JLabel();
         jLabel_dataBuscada = new javax.swing.JLabel();
         jLabel_horaBuscada = new javax.swing.JLabel();
         jLabel_horaAtual = new javax.swing.JLabel();
+        jLabel_NomeUser = new javax.swing.JLabel();
+        jButton_EmprestimoDevolucao = new javax.swing.JButton();
+        jButton_Logout = new javax.swing.JButton();
         jLabel_logoUnipampa = new javax.swing.JLabel();
         jPanel_menor = new javax.swing.JPanel();
         jLabel_matriculaBuscar = new javax.swing.JLabel();
@@ -70,19 +87,25 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
         jSeparator_topo = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(876, 712));
+        setResizable(false);
 
-        jLabel_titulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel_titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_titulo.setText("Sistema de empréstimo de chaves");
 
         jPanel_menor1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel_menor1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton_CadastrarChave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_CadastrarChave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/key.png"))); // NOI18N
         jButton_CadastrarChave.setText("Cadastrar Chave");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Bem vindo (a) ");
 
         jButton_ListaAluno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_ListaAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/ui-list-box-blue.png"))); // NOI18N
         jButton_ListaAluno.setText("Lista Aluno");
         jButton_ListaAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +125,18 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
         jLabel_horaAtual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel_horaAtual.setText("Hora atual:");
 
+        jLabel_NomeUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_NomeUser.setText("Nome do Usuario");
+
+        jButton_EmprestimoDevolucao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_EmprestimoDevolucao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/exchange.png"))); // NOI18N
+        jButton_EmprestimoDevolucao.setText("Emprestimo e Devolução");
+        jButton_EmprestimoDevolucao.setOpaque(false);
+
+        jButton_Logout.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/gnome-logout.png"))); // NOI18N
+        jButton_Logout.setText("Sair");
+
         javax.swing.GroupLayout jPanel_menor1Layout = new javax.swing.GroupLayout(jPanel_menor1);
         jPanel_menor1.setLayout(jPanel_menor1Layout);
         jPanel_menor1Layout.setHorizontalGroup(
@@ -112,32 +147,44 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
                     .addGroup(jPanel_menor1Layout.createSequentialGroup()
                         .addComponent(jLabel_dataAtual)
                         .addGap(19, 19, 19)
-                        .addComponent(jLabel_dataBuscada, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                        .addComponent(jLabel_dataBuscada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel_menor1Layout.createSequentialGroup()
                         .addGroup(jPanel_menor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel_menor1Layout.createSequentialGroup()
                                 .addComponent(jLabel_horaAtual)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel_horaBuscada, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton_ListaAluno)
                             .addGroup(jPanel_menor1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField_NomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton_CadastrarChave))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel_NomeUser)))
+                        .addGap(0, 4, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_menor1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel_menor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_menor1Layout.createSequentialGroup()
+                        .addComponent(jButton_Logout)
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_menor1Layout.createSequentialGroup()
+                        .addGroup(jPanel_menor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton_ListaAluno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_CadastrarChave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_EmprestimoDevolucao, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addContainerGap())))
         );
         jPanel_menor1Layout.setVerticalGroup(
             jPanel_menor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_menor1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel_menor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField_NomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                    .addComponent(jLabel_NomeUser))
+                .addGap(77, 77, 77)
+                .addComponent(jButton_EmprestimoDevolucao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_CadastrarChave)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_ListaAluno)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel_menor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -147,7 +194,9 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
                 .addGroup(jPanel_menor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_horaAtual)
                     .addComponent(jLabel_horaBuscada))
-                .addGap(31, 31, 31))
+                .addGap(27, 27, 27)
+                .addComponent(jButton_Logout)
+                .addGap(19, 19, 19))
         );
 
         jLabel_logoUnipampa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/logo unipampa menor.jpg"))); // NOI18N
@@ -164,6 +213,11 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
         jTF_matriculaBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTF_matriculaBuscarActionPerformed(evt);
+            }
+        });
+        jTF_matriculaBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTF_matriculaBuscarKeyPressed(evt);
             }
         });
 
@@ -297,107 +351,104 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
         jPanel_menor.setLayout(jPanel_menorLayout);
         jPanel_menorLayout.setHorizontalGroup(
             jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel_alerta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel_menorLayout.createSequentialGroup()
                 .addGap(171, 171, 171)
                 .addComponent(jButton_Devolver)
                 .addContainerGap())
             .addGroup(jPanel_menorLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_menorLayout.createSequentialGroup()
-                        .addGap(346, 346, 346)
-                        .addComponent(jLabel_cursoBuscad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(336, 336, 336)
+                        .addComponent(jLabel_cursoBuscadD, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
                     .addGroup(jPanel_menorLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel_menorLayout.createSequentialGroup()
-                                .addComponent(jLabel_nome)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel_nomeBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel_curso)
-                                .addGap(199, 199, 199))
-                            .addGroup(jPanel_menorLayout.createSequentialGroup()
-                                .addComponent(jLabel_matriculaBuscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTF_matriculaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton_buscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel_alerta1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel_matriculaBuscarD)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTF_matriculaBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_buscarD)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel_alertaD, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_menorLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator_meio3)
-                            .addGroup(jPanel_menorLayout.createSequentialGroup()
-                                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel_menorLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel_menorLayout.createSequentialGroup()
-                                                .addComponent(jRadioButton_armarioMenor)
-                                                .addGap(18, 18, 18))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_menorLayout.createSequentialGroup()
-                                                .addComponent(jRadioButton_armarioMaior)
-                                                .addGap(24, 24, 24)))
-                                        .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBox_listaNumChavesMaiores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox_listaNumChavesMenores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(51, 51, 51)
-                                        .addComponent(jButton_realizarEmprestimo))
-                                    .addComponent(jLabel_numChave))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jLabel_nomeD)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_nomeBuscadoD, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel_cursoD))
                     .addGroup(jPanel_menorLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_menorLayout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel_matriculaBuscarD)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTF_matriculaBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton_buscarD)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel_alertaD, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21))
-                            .addGroup(jPanel_menorLayout.createSequentialGroup()
-                                .addGap(336, 336, 336)
-                                .addComponent(jLabel_cursoBuscadD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel_menorLayout.createSequentialGroup()
-                                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel_menorLayout.createSequentialGroup()
-                                        .addComponent(jLabel_nomeD)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel_nomeBuscadoD, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(22, 22, 22)
-                                        .addComponent(jLabel_cursoD))
-                                    .addGroup(jPanel_menorLayout.createSequentialGroup()
-                                        .addComponent(jLabel_numChaveD)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel_ChaveBuscadaD, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(jLabel_numChaveD)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_ChaveBuscadaD, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanel_menorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_menorLayout.createSequentialGroup()
+                        .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_menorLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel_menorLayout.createSequentialGroup()
+                                        .addComponent(jRadioButton_armarioMenor)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_menorLayout.createSequentialGroup()
+                                        .addComponent(jRadioButton_armarioMaior)
+                                        .addGap(24, 24, 24)))
+                                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBox_listaNumChavesMenores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel_menorLayout.createSequentialGroup()
+                                        .addComponent(jComboBox_listaNumChavesMaiores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton_realizarEmprestimo))))
+                            .addComponent(jLabel_numChave))
+                        .addGap(61, 61, 61))
+                    .addGroup(jPanel_menorLayout.createSequentialGroup()
+                        .addComponent(jLabel_nome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_nomeBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_menorLayout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel_cursoBuscad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel_menorLayout.createSequentialGroup()
+                                .addComponent(jLabel_curso)
+                                .addContainerGap(47, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel_menorLayout.createSequentialGroup()
+                        .addComponent(jLabel_matriculaBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTF_matriculaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_buscar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel_alerta1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_menorLayout.createSequentialGroup()
+                        .addComponent(jSeparator_meio3)
+                        .addContainerGap())
+                    .addGroup(jPanel_menorLayout.createSequentialGroup()
+                        .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_alerta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel_menorLayout.setVerticalGroup(
             jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_menorLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
                 .addComponent(jLabel_alerta)
-                .addGap(15, 15, 15)
-                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel_alerta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTF_matriculaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton_buscar)
-                        .addComponent(jLabel_matriculaBuscar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTF_matriculaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_buscar)
+                    .addComponent(jLabel_matriculaBuscar)
+                    .addComponent(jLabel_alerta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_nome)
                     .addComponent(jLabel_nomeBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_curso)
                     .addComponent(jLabel_cursoBuscad))
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel_numChave)
                 .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_menorLayout.createSequentialGroup()
@@ -410,19 +461,18 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
                             .addComponent(jComboBox_listaNumChavesMaiores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jRadioButton_armarioMaior)))
                     .addGroup(jPanel_menorLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                        .addGap(34, 34, 34)
                         .addComponent(jButton_realizarEmprestimo)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(43, 43, 43)
                 .addComponent(jSeparator_meio3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel_alertaD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTF_matriculaBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton_buscarD)
-                        .addComponent(jLabel_matriculaBuscarD)))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTF_matriculaBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_buscarD)
+                    .addComponent(jLabel_matriculaBuscarD)
+                    .addComponent(jLabel_alertaD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_nomeD)
@@ -433,38 +483,33 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
                 .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_numChaveD)
                     .addComponent(jLabel_ChaveBuscadaD, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(37, 37, 37)
                 .addComponent(jButton_Devolver)
                 .addGap(33, 33, 33))
         );
 
         jLabel_subtitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_subtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_subtitulo.setText("Armários da Biblioteca");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel_subtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(118, 118, 118)))
-                .addComponent(jLabel_logoUnipampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(236, 236, 236)
-                .addComponent(jSeparator_topo, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel_menor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel_menor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_subtitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel_logoUnipampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel_menor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel_menor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jSeparator_topo, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -485,7 +530,7 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel_menor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel_menor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(536, 536, 536))
+                .addGap(519, 519, 519))
         );
 
         pack();
@@ -516,7 +561,8 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox_listaNumChavesMaioresActionPerformed
 
     private void jButton_realizarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_realizarEmprestimoActionPerformed
-        // TODO add your handling code here:
+          Senha senha =new Senha();
+          senha.setVisible(true);
     }//GEN-LAST:event_jButton_realizarEmprestimoActionPerformed
 
     private void jComboBox_listaNumChavesMenoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_listaNumChavesMenoresActionPerformed
@@ -532,6 +578,13 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_jTF_matriculaBuscarActionPerformed
+
+    private void jTF_matriculaBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTF_matriculaBuscarKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            //Add o metodo
+        }
+    }//GEN-LAST:event_jTF_matriculaBuscarKeyPressed
 
     /**
      * @param args the command line arguments
@@ -570,7 +623,9 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_CadastrarChave;
     private javax.swing.JButton jButton_Devolver;
+    private javax.swing.JButton jButton_EmprestimoDevolucao;
     private javax.swing.JButton jButton_ListaAluno;
+    private javax.swing.JButton jButton_Logout;
     private javax.swing.JButton jButton_buscar;
     private javax.swing.JButton jButton_buscarD;
     private javax.swing.JButton jButton_realizarEmprestimo;
@@ -579,6 +634,7 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_ChaveBuscadaD;
+    private javax.swing.JLabel jLabel_NomeUser;
     private javax.swing.JLabel jLabel_alerta;
     private javax.swing.JLabel jLabel_alerta1;
     private javax.swing.JLabel jLabel_alertaD;
@@ -609,6 +665,5 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator_topo;
     private javax.swing.JTextField jTF_matriculaBuscar;
     private javax.swing.JTextField jTF_matriculaBuscarD;
-    private javax.swing.JTextField jTextField_NomeUser;
     // End of variables declaration//GEN-END:variables
 }
