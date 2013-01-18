@@ -11,9 +11,11 @@ import com.ideiah.model.entity.Emprestimo;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -42,7 +44,6 @@ public class EmprestimoDAOTest {
         *   setUp de alunos na tabela Alunos
         * 
         */
-        aluDao = new AlunoDAO();
         alunosL1 = (List<Aluno>) new  ArrayList<Aluno>();
         Aluno a1 = new Aluno();
         Aluno a2 = new Aluno();
@@ -80,7 +81,6 @@ public class EmprestimoDAOTest {
          * 
          */
         
-        chaDao = new ChaveDAO();
         chaveL1 = (List<Chave>) new  ArrayList<Chave>();
         Chave c1 = new Chave();
         Chave c2 = new Chave();
@@ -88,13 +88,13 @@ public class EmprestimoDAOTest {
         Chave c4 = new Chave();
         
         c1.setNumero(new Integer(21));
-        c1.setId(new Long(0));
+        c1.setId(new Long(1));
         c2.setNumero(new Integer(26));
-        c2.setId(new Long(1));
+        c2.setId(new Long(2));
         c3.setNumero(new Integer(31));
-        c3.setId(new Long(2));
+        c3.setId(new Long(3));
         c4.setNumero(new Integer(35));
-        c4.setId(new Long (3));
+        c4.setId(new Long (4));
         
         chaveL1.add(c1);
         chaveL1.add(c2);
@@ -114,10 +114,10 @@ public class EmprestimoDAOTest {
          * 
          */
         
-        EmprestimoDAO empDAO = new EmprestimoDAO();
+
         //empL1= (List<Emprestimo>) new ArrayList<Emprestimo>();
         Emprestimo e1 = new Emprestimo();
-        e1.setId(new Long(0));
+        /*e1.setId(new Long(0));
         e1.setAluno(a2);
         e1.setChave(c4);
         Calendar c = Calendar.getInstance();
@@ -125,46 +125,55 @@ public class EmprestimoDAOTest {
         e1.setData_retirada(c);
         e1.setData_devolucao(c);
         empDAO.adiciona(e1);
+        */
         
-        empDAO.getEmprestimos();
+        //empDAO.getEmprestimos();
         PreparedStatement stmtEmp = connection.prepareStatement("insert into emprestimo"
-                +"(id_emprestimo,id_alun0, id_chave, retirada, devolucao) values (?,?,?,?,?)");
-            stmtEmp.setLong(1, e1.getId());
-            stmtEmp.setLong(2, e1.getAluno().getId());
-            stmtEmp.setLong(3, e1.getChave().getId());
-            stmtEmp.setDate(4, new Date(e1.getData_retirada().getTimeInMillis()));
-            stmtEmp.setDate(5, new Date(e1.getData_devolucao().getTimeInMillis()));
+                +"(id_alun0, id_chave, retirada, devolucao) values (?,?,?,?)");
+            stmtEmp.setLong(1, 1);
+            stmtEmp.setLong(2, 1);
+            Calendar c = new GregorianCalendar();
+            c.set(2013, 1, 17);
+            stmtEmp.setDate(3, new Date(c.getTimeInMillis()));
+            stmtEmp.setDate(4, new Date(c.getTimeInMillis()));
         
         stmtEmp.execute();
         stmtEmp.close();
-        
-        
-        
-        
-        
+        /*
+         * declarando um emprestimo para testar o método adicionar, remover.
+         * 
+         */
         
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-       /* connection = new ConnectionFactory().getConnection();
+        connection = new ConnectionFactory().getConnection();
+        /*
+         * Emprestimo deve ser a primeira a ser excluida por conter chave estrangeira
+         * 
+         */
+        
+        
+            PreparedStatement stmt = connection.prepareStatement(
+                    "delete from emprestimo where id_alun0 = 1;");
+            stmt.execute();
+            stmt.close();
+        
         
         for(Aluno aluno : alunosL1) {
-            PreparedStatement stmt = connection.prepareStatement(
+            stmt = connection.prepareStatement(
                     "delete from aluno where id_aluno = "+aluno.getId()+";");
             stmt.execute();
         }
+        
         for(Chave chave : chaveL1) {
-            PreparedStatement stmt = connection.prepareStatement(
+            stmt = connection.prepareStatement(
                     "delete from chave where id_chave = "+chave.getId()+";");
             stmt.execute();
         }
-        for(Emprestimo emp : empL1) {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "delete from emprestimo where id_emprestimo = "+aluno.getId()+";");
-            stmt.execute();
-        }
-    */
+        stmt.close();
+    
     }
 
     @Before
@@ -174,18 +183,56 @@ public class EmprestimoDAOTest {
     @After
     public void tearDown() throws Exception {
     }
+    
+    public boolean getSelect(Long idAluno) throws SQLException{
+        Connection connectionS;
+        connectionS = new ConnectionFactory().getConnection();
+        try{
+        PreparedStatement stmt = connectionS.prepareStatement(
+                "select from emprestimos where id_alun0 = "+idAluno);
+        ResultSet rs = stmt.executeQuery();
+        if (idAluno.equals(rs.getInt("id_alun0"))){
+            return true;
+        }else{
+            return false;
+        }
+        }catch(SQLException e){
+            return false;
+        }
+    }
 
     /**
      * Test of adiciona method, of class EmprestimoDAO.
      */
     @Test
-    public void testAdiciona() {
+    public void testAdiciona() throws SQLException {
         System.out.println("adiciona");
-        Emprestimo emprestimo = null;
+        Emprestimo emprestimo = new Emprestimo();
+        Aluno aluno = new Aluno();
+        
+        aluno.setId(new Long (3));
+        aluno.setNome("Carlos");
+        aluno.setEmail("carlos@unipampa.edu.br");
+        aluno.setMatricula(new Integer(111252349));
+        aluno.setCurso("EM");
+        
+        Chave chave = new Chave();
+        
+        chave.setId(new Long(5));
+        chave.setNumero(new Integer(69));
+        
         EmprestimoDAO instance = new EmprestimoDAO();
+        
+        emprestimo.setAluno(aluno);
+        emprestimo.setChave(chave);
+        emprestimo.setData_retirada(null);
+        emprestimo.setData_devolucao(null);
+        
         instance.adiciona(emprestimo);
+        
+        assert(getSelect(emprestimo.getAluno().getId()));
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -197,6 +244,7 @@ public class EmprestimoDAOTest {
         Emprestimo emprestimo = null;
         EmprestimoDAO instance = new EmprestimoDAO();
         instance.altera(emprestimo);
+        
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

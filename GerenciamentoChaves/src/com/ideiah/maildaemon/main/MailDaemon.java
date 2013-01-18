@@ -47,8 +47,9 @@ public class MailDaemon {
             MailController controller = new MailController();
             controller.setFrom(elmts[0]);
             controller.setHost(elmts[1]);
-            controller.setUsername(elmts[2]);
-            controller.setPassword(elmts[3]);
+            controller.setPort(elmts[2]);
+            controller.setUsername(elmts[3]);
+            controller.setPassword(elmts[4]);
         
             ChaveController cc = new ChaveController();
             Chave chave = new Chave();
@@ -59,7 +60,7 @@ public class MailDaemon {
             chave = cc.getTodas().get(0);
             Emprestimo emp = new Emprestimo();
             AlunoController ac = new AlunoController();
-            emp.setAluno(ac.getTodos().get(0));
+            emp.setAluno(ac.getTodos().get(1));
             emp.setChave(chave);
             Calendar datar = new GregorianCalendar();
             datar.set(2013, 01, 17);

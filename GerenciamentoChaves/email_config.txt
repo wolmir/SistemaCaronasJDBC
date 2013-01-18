@@ -1,4 +1,5 @@
 neocorrupt@gmail.com
 smtp.gmail.com
-neocorrupt
-pauNoCuDoHacker
+587
+neocorrupt@gmail.com
+78rupert##&&scooby56
