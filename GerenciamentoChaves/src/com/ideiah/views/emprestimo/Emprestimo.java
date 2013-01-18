@@ -73,6 +73,7 @@ public class Emprestimo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 204));
+        setResizable(false);
 
         jLabel_titulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel_titulo.setText("Sistema de empréstimo de chaves");
