@@ -28,7 +28,13 @@ public class EmprestimoDAO {
     private Connection connection;
     
     public EmprestimoDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+        try {
+            this.connection = new ConnectionFactory().getConnection();
+        } catch (SQLException e) {
+            LOGGER.severe("Erro na conexão do banco de dados.");
+            LOGGER.severe(e.getMessage());
+            e.printStackTrace();
+        }
     }
     
     public void adiciona(Emprestimo emprestimo) {
@@ -41,13 +47,19 @@ public class EmprestimoDAO {
             stmt.setLong(2, emprestimo.getChave().getId());
             stmt.setDate(3, new Date(
                     emprestimo.getData_retirada().getTimeInMillis()));
-            stmt.setDate(4, new Date(
-                    emprestimo.getData_devolucao().getTimeInMillis()));
+            if (emprestimo.getData_devolucao() != null) {
+                stmt.setDate(4, new Date(
+                        emprestimo.getData_devolucao().getTimeInMillis()));
+            }
+            else {
+                stmt.setNull(4, java.sql.Types.NULL);
+            }
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
             LOGGER.severe("Erro ao adicionar um emprestimo no banco");
             LOGGER.severe(e.getMessage());
+            e.printStackTrace();
         }
     }
     
@@ -96,17 +108,20 @@ public class EmprestimoDAO {
             
             while (rs.next()) {
                 Emprestimo emprestimo = new Emprestimo();
-                emprestimo.setId(rs.getLong("id"));
+                emprestimo.setId(rs.getLong("id_emprestimo"));
                 Calendar data = Calendar.getInstance();
                 data.setTime(rs.getDate("retirada"));
                 emprestimo.setData_retirada(data);
-                Calendar datad = Calendar.getInstance();
-                data.setTime(rs.getDate("devolucao"));
-                emprestimo.setData_devolucao(datad);
+                Date datard = rs.getDate("devolucao");
+                if (datard != null) {
+                    Calendar datad = Calendar.getInstance();
+                    data.setTime(rs.getDate("devolucao"));
+                    emprestimo.setData_devolucao(datad);
+                }
                 
-                String sql_al = "select * from aluno where id=?";
+                String sql_al = "select * from aluno where id_aluno=?";
                 PreparedStatement st_aluno = connection.prepareStatement(sql_al);
-                st_aluno.setLong(1, rs.getLong("id_usuario"));
+                st_aluno.setLong(1, rs.getLong("id_aluno"));
                 ResultSet rs_alunos = st_aluno.executeQuery();
                 rs_alunos.next();
                 Aluno aluno = new Aluno();
@@ -117,14 +132,15 @@ public class EmprestimoDAO {
                 aluno.setMatricula(rs_alunos.getInt("matricula"));
                 emprestimo.setAluno(aluno);
                 
-                String sql_chave = "select * from chave where id=?";
+                String sql_chave = "select * from chave where id_chave=?";
                 PreparedStatement st_chave = connection.prepareStatement(sql_chave);
-                st_aluno.setLong(1, rs.getLong("id_chave"));
+                st_chave.setLong(1, rs.getLong("id_chave"));
                 ResultSet rs_chaves = st_chave.executeQuery();
                 rs_chaves.next();
                 Chave chave = new Chave();
-                chave.setId(rs.getLong("id_chave"));
-                chave.setNumero(rs.getInt("numero"));
+                chave.setId(rs_chaves.getLong("id_chave"));
+                chave.setNumero(rs_chaves.getInt("numero"));
+                chave.setTipo(rs_chaves.getString("tipo"));
                 emprestimo.setChave(chave);
                 
                 emprestimos.add(emprestimo);
@@ -134,8 +150,9 @@ public class EmprestimoDAO {
             return emprestimos;
             
         } catch (SQLException e) {
-            LOGGER.severe("Erro ao deletar um emprestimo no banco");
+            LOGGER.severe("Erro ao listar empréstimos no banco");
             LOGGER.severe(e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
