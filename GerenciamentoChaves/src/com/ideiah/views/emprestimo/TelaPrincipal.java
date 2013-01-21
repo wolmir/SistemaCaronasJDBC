@@ -10,6 +10,7 @@ import com.ideiah.model.entity.Aluno;
 import com.ideiah.model.entity.Emprestimo;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -86,6 +87,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton_CadastrarChave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton_CadastrarChave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/key.png"))); // NOI18N
         jButton_CadastrarChave.setText("Cadastrar Chave");
+        jButton_CadastrarChave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CadastrarChaveActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Bem vindo (a) ");
@@ -263,9 +269,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
         PainelEmprestimoDevolucao painelEmprestimoDevolucao = new PainelEmprestimoDevolucao();
         this.jPanel_conteudo.setLayout(new BorderLayout());
         this.jPanel_conteudo.add(painelEmprestimoDevolucao);
+//        List<Component> listaComponentes;
+//        listaComponentes = this.jPanel_conteudo.getComponents();
+//        System.out.println(listaComponentes.length);
+//        System.out.println(listaComponentes.);
         this.jPanel_conteudo.updateUI();
         this.jButton_EmprestimoDevolucao.setEnabled(false);
+        this.jButton_CadastrarChave.setEnabled(true);
+        this.jButton_ListaAluno.setEnabled(true);
     }//GEN-LAST:event_jButton_EmprestimoDevolucaoActionPerformed
+
+    private void jButton_CadastrarChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CadastrarChaveActionPerformed
+        PainelCadastroChave painelCadastroChave = new PainelCadastroChave();
+        this.jPanel_conteudo.setLayout(new BorderLayout());
+        this.jPanel_conteudo.add(painelCadastroChave);
+        this.jPanel_conteudo.updateUI();
+        this.jButton_EmprestimoDevolucao.setEnabled(true);
+        this.jButton_CadastrarChave.setEnabled(false);
+        this.jButton_ListaAluno.setEnabled(true);
+    }//GEN-LAST:event_jButton_CadastrarChaveActionPerformed
 
     /**
      * @param args the command line arguments
