@@ -5,7 +5,9 @@
 package com.ideiah.views.emprestimo;
 
 import com.ideiah.controller.AlunoController;
+import com.ideiah.controller.EmprestimoController;
 import com.ideiah.model.entity.Aluno;
+import com.ideiah.model.entity.Emprestimo;
 import java.util.List;
 
 /**
@@ -37,11 +39,16 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         this.matricula = matricula;
     }
     
+    public void teste(){
+    
+    }
     private Aluno buscarAluno(){
        alunoController = new AlunoController();
        aluno  = alunoController.pesquisarPorMatricula(this.getMatricula());
        return aluno;
     }
+    
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -379,6 +386,8 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         if(evt.getKeyCode() == evt.VK_ENTER){
            this.setMatricula(this.jTF_matriculaBuscarE.getText());
            aluno = this.buscarAluno();
+           this.jLabel_nomeBuscadoE.setText(aluno.getNome());
+           this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
         }
 
     }//GEN-LAST:event_jTF_matriculaBuscarEKeyPressed
@@ -393,8 +402,13 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox_listaNumChavesMenoresActionPerformed
 
     private void jButton_realizarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_realizarEmprestimoActionPerformed
-        Senha senha =new Senha();
-        senha.setVisible(false);
+        Aluno aluno;
+        AlunoController alunoController = new AlunoController();
+        aluno = alunoController.pesquisarPorMatricula(matricula);
+        
+        Senha senha =new Senha(this.jTF_matriculaBuscarE.getText(),aluno);
+        senha.setVisible(true);
+        
     }//GEN-LAST:event_jButton_realizarEmprestimoActionPerformed
 
     private void jComboBox_listaNumChavesMaioresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_listaNumChavesMaioresActionPerformed
