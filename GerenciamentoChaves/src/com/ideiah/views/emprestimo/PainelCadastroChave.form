@@ -42,17 +42,16 @@
                           <Component id="jLabel_cadTamanhoChave" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTF_cadNumChave" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jComboBox_listaTamChaves" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton_cadastrar" min="-2" pref="167" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTF_cadNumChave" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jComboBox_listaTamChaves" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
-                      <Component id="jButton_cadastrar" min="-2" pref="167" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,9 +70,9 @@
                   <Component id="jLabel_cadTamanhoChave" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBox_listaTamChaves" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+              <EmptySpace pref="233" max="32767" attributes="0"/>
               <Component id="jButton_cadastrar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="188" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

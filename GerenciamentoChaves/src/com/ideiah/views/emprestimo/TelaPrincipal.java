@@ -68,6 +68,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel_NomeUser = new javax.swing.JLabel();
         jButton_EmprestimoDevolucao = new javax.swing.JButton();
         jButton_Logout = new javax.swing.JButton();
+        jButton_CadastroChaveLote = new javax.swing.JButton();
         jLabel_logoUnipampa = new javax.swing.JLabel();
         jPanel_conteudo = new javax.swing.JPanel();
         jLabel_subtitulo = new javax.swing.JLabel();
@@ -134,6 +135,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton_Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/gnome-logout.png"))); // NOI18N
         jButton_Logout.setText("Sair");
 
+        jButton_CadastroChaveLote.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_CadastroChaveLote.setText("Cadastrar Chave em Lote");
+
         javax.swing.GroupLayout jPanel_menor1Layout = new javax.swing.GroupLayout(jPanel_menor1);
         jPanel_menor1.setLayout(jPanel_menor1Layout);
         jPanel_menor1Layout.setHorizontalGroup(
@@ -155,7 +159,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel_NomeUser)))
-                        .addGap(0, 4, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_menor1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,7 +171,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel_menor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton_ListaAluno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton_CadastrarChave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_EmprestimoDevolucao, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jButton_EmprestimoDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_CadastroChaveLote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         jPanel_menor1Layout.setVerticalGroup(
@@ -181,7 +186,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jButton_EmprestimoDevolucao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_CadastrarChave)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_CadastroChaveLote)
+                .addGap(18, 18, 18)
                 .addComponent(jButton_ListaAluno)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel_menor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -325,6 +332,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_CadastrarChave;
+    private javax.swing.JButton jButton_CadastroChaveLote;
     private javax.swing.JButton jButton_EmprestimoDevolucao;
     private javax.swing.JButton jButton_ListaAluno;
     private javax.swing.JButton jButton_Logout;
