@@ -312,9 +312,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ListaAlunos listaAlunos = new ListaAlunos();
         this.jPanel_conteudo.setLayout(new BorderLayout());
         this.jPanel_conteudo.removeAll();
-        this.jPanel_conteudo.updateUI();
         this.jPanel_conteudo.add(listaAlunos);
-        this.jPanel_conteudo.updateUI();
         
         verificaBotoes(evt);
     }//GEN-LAST:event_jButton_ListaAlunoActionPerformed
@@ -323,13 +321,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         PainelEmprestimoDevolucao painelEmprestimoDevolucao = new PainelEmprestimoDevolucao();
         this.jPanel_conteudo.setLayout(new BorderLayout());
         this.jPanel_conteudo.removeAll();
-        this.jPanel_conteudo.updateUI();
         this.jPanel_conteudo.add(painelEmprestimoDevolucao);
 //        List<Component> listaComponentes;
 //        listaComponentes = this.jPanel_conteudo.getComponents();
 //        System.out.println(listaComponentes.length);
 //        System.out.println(listaComponentes.);
-        this.jPanel_conteudo.updateUI();
         
         verificaBotoes(evt);
     }//GEN-LAST:event_jButton_EmprestimoDevolucaoActionPerformed
@@ -338,9 +334,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         PainelCadastroChave painelCadastroChave = new PainelCadastroChave();
         this.jPanel_conteudo.setLayout(new BorderLayout());
         this.jPanel_conteudo.removeAll();
-        this.jPanel_conteudo.updateUI();
         this.jPanel_conteudo.add(painelCadastroChave);
-        this.jPanel_conteudo.updateUI();
        
         verificaBotoes(evt);
     }//GEN-LAST:event_jButton_CadastrarChaveActionPerformed
@@ -350,9 +344,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         CadastroChaveLote painelCadastroChaveLote = new CadastroChaveLote();
         this.jPanel_conteudo.setLayout(new BorderLayout());
         this.jPanel_conteudo.removeAll();
-        this.jPanel_conteudo.updateUI();
         this.jPanel_conteudo.add(painelCadastroChaveLote);
-        this.jPanel_conteudo.updateUI();
                       
          verificaBotoes(evt);
     }//GEN-LAST:event_jButton_CadastroChaveLoteActionPerformed
@@ -362,9 +354,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ListaChaves listaChave = new ListaChaves();
         this.jPanel_conteudo.setLayout(new BorderLayout());
         this.jPanel_conteudo.removeAll();
-        this.jPanel_conteudo.updateUI();
         this.jPanel_conteudo.add(listaChave);
-        this.jPanel_conteudo.updateUI();
         
         verificaBotoes(evt);
         
