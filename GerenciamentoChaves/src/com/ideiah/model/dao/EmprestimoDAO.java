@@ -67,7 +67,7 @@ public class EmprestimoDAO {
     public void altera(Emprestimo emprestimo) {
         LOGGER.setLevel(Level.ALL);
         String sql = "update emprestimo set id_aluno=?, id_chave=?, retirada=?,"
-                + "devolucao=? where id=?";
+                + "devolucao=? where id_emprestimo=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setLong(1, emprestimo.getAluno().getId());
