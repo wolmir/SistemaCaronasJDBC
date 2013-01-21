@@ -29,7 +29,7 @@ public class ListaAlunos extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel_tituloLista = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable_ListaAlunos = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -39,21 +39,31 @@ public class ListaAlunos extends javax.swing.JPanel {
         jLabel_tituloLista.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_tituloLista.setText("Lista de alunos com chaves emprestadas");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_ListaAlunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Chave", "Aluno", "Matrícula", "Curso"
+                "Chave", "Tamanho", "Aluno", "Matrícula", "Curso"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setResizable(false);
-        jTable1.getColumnModel().getColumn(1).setResizable(false);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable_ListaAlunos);
+        jTable_ListaAlunos.getColumnModel().getColumn(0).setResizable(false);
+        jTable_ListaAlunos.getColumnModel().getColumn(1).setResizable(false);
+        jTable_ListaAlunos.getColumnModel().getColumn(2).setResizable(false);
+        jTable_ListaAlunos.getColumnModel().getColumn(3).setResizable(false);
+        jTable_ListaAlunos.getColumnModel().getColumn(4).setResizable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,6 +115,6 @@ public class ListaAlunos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_tituloLista;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable_ListaAlunos;
     // End of variables declaration//GEN-END:variables
 }

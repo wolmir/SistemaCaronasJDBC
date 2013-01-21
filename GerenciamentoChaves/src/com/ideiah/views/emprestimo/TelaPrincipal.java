@@ -8,6 +8,7 @@ import com.ideiah.controller.AlunoController;
 import com.ideiah.controller.EmprestimoController;
 import com.ideiah.model.entity.Aluno;
 import com.ideiah.model.entity.Emprestimo;
+import com.ideiah.views.login.Login;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -45,6 +46,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         //this.jButton_EmprestimoDevolucao.setVisible(false);
     }
+    
+    public void verificaBotoes(java.awt.event.ActionEvent evt){
+        
+        for(int i = 0; i < this.jPanel_menor1.getComponentCount();i++){
+
+            if(this.jPanel_menor1.getComponent(i) instanceof JButton){
+                if(((JButton) this.jPanel_menor1.getComponent(i)).getText().equals(evt.getActionCommand()))
+                     this.jPanel_menor1.getComponent(i).setEnabled(false);
+                else
+                    this.jPanel_menor1.getComponent(i).setEnabled(true);  
+            }
+        }
+        
+        this.jPanel_conteudo.updateUI();
+    }
         
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +84,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton_EmprestimoDevolucao = new javax.swing.JButton();
         jButton_Logout = new javax.swing.JButton();
         jButton_CadastroChaveLote = new javax.swing.JButton();
+        jButton_ListaChave = new javax.swing.JButton();
         jLabel_logoUnipampa = new javax.swing.JLabel();
         jPanel_conteudo = new javax.swing.JPanel();
         jLabel_subtitulo = new javax.swing.JLabel();
@@ -133,6 +150,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton_Logout.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton_Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/gnome-logout.png"))); // NOI18N
         jButton_Logout.setText("Sair");
+        jButton_Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_LogoutActionPerformed(evt);
+            }
+        });
 
         jButton_CadastroChaveLote.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton_CadastroChaveLote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/keys.png"))); // NOI18N
@@ -140,6 +162,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton_CadastroChaveLote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_CadastroChaveLoteActionPerformed(evt);
+            }
+        });
+
+        jButton_ListaChave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_ListaChave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/ui-menu-blue.png"))); // NOI18N
+        jButton_ListaChave.setText("Lista Chave");
+        jButton_ListaChave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ListaChaveActionPerformed(evt);
             }
         });
 
@@ -177,7 +208,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             .addComponent(jButton_ListaAluno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton_CadastrarChave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton_EmprestimoDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_CadastroChaveLote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton_CadastroChaveLote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_ListaChave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         jPanel_menor1Layout.setVerticalGroup(
@@ -195,6 +227,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jButton_CadastroChaveLote)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_ListaAluno)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_ListaChave)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel_menor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_dataAtual)
@@ -282,15 +316,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.jPanel_conteudo.add(listaAlunos);
         this.jPanel_conteudo.updateUI();
         
-        for(int i = 0; i < this.jPanel_menor1.getComponentCount();i++){
-
-            if(this.jPanel_menor1.getComponent(i) instanceof JButton){
-                if(((JButton) this.jPanel_menor1.getComponent(i)).getText().equals(evt.getActionCommand()))
-                     this.jPanel_menor1.getComponent(i).setEnabled(false);
-                else
-                    this.jPanel_menor1.getComponent(i).setEnabled(true);  
-            }
-        }
+        verificaBotoes(evt);
     }//GEN-LAST:event_jButton_ListaAlunoActionPerformed
 
     private void jButton_EmprestimoDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EmprestimoDevolucaoActionPerformed
@@ -304,15 +330,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //        System.out.println(listaComponentes.length);
 //        System.out.println(listaComponentes.);
         this.jPanel_conteudo.updateUI();
-       for(int i = 0; i < this.jPanel_menor1.getComponentCount();i++){
-
-            if(this.jPanel_menor1.getComponent(i) instanceof JButton){
-                if(((JButton) this.jPanel_menor1.getComponent(i)).getText().equals(evt.getActionCommand()))
-                     this.jPanel_menor1.getComponent(i).setEnabled(false); 
-                else
-                    this.jPanel_menor1.getComponent(i).setEnabled(true);  
-            }
-        }
+        
+        verificaBotoes(evt);
     }//GEN-LAST:event_jButton_EmprestimoDevolucaoActionPerformed
 
     private void jButton_CadastrarChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CadastrarChaveActionPerformed
@@ -322,15 +341,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.jPanel_conteudo.updateUI();
         this.jPanel_conteudo.add(painelCadastroChave);
         this.jPanel_conteudo.updateUI();
-        for(int i = 0; i < this.jPanel_menor1.getComponentCount();i++){
-
-            if(this.jPanel_menor1.getComponent(i) instanceof JButton){
-                if(((JButton) this.jPanel_menor1.getComponent(i)).getText().equals(evt.getActionCommand()))
-                     this.jPanel_menor1.getComponent(i).setEnabled(false);  
-                else
-                    this.jPanel_menor1.getComponent(i).setEnabled(true);  
-            }
-        }
+       
+        verificaBotoes(evt);
     }//GEN-LAST:event_jButton_CadastrarChaveActionPerformed
 
     private void jButton_CadastroChaveLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CadastroChaveLoteActionPerformed
@@ -342,16 +354,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.jPanel_conteudo.add(painelCadastroChaveLote);
         this.jPanel_conteudo.updateUI();
                       
-         for(int i = 0; i < this.jPanel_menor1.getComponentCount();i++){
-            
-           if(this.jPanel_menor1.getComponent(i) instanceof JButton){
-               if(((JButton) this.jPanel_menor1.getComponent(i)).getText().equals(evt.getActionCommand()))
-                    this.jPanel_menor1.getComponent(i).setEnabled(false);  
-               else
-                    this.jPanel_menor1.getComponent(i).setEnabled(true);  
-           }
-        }
+         verificaBotoes(evt);
     }//GEN-LAST:event_jButton_CadastroChaveLoteActionPerformed
+
+    private void jButton_ListaChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ListaChaveActionPerformed
+       
+        ListaChaves listaChave = new ListaChaves();
+        this.jPanel_conteudo.setLayout(new BorderLayout());
+        this.jPanel_conteudo.removeAll();
+        this.jPanel_conteudo.updateUI();
+        this.jPanel_conteudo.add(listaChave);
+        this.jPanel_conteudo.updateUI();
+        
+        verificaBotoes(evt);
+        
+    }//GEN-LAST:event_jButton_ListaChaveActionPerformed
+
+    private void jButton_LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LogoutActionPerformed
+        
+       
+    }//GEN-LAST:event_jButton_LogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,6 +414,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton_CadastroChaveLote;
     private javax.swing.JButton jButton_EmprestimoDevolucao;
     private javax.swing.JButton jButton_ListaAluno;
+    private javax.swing.JButton jButton_ListaChave;
     private javax.swing.JButton jButton_Logout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_NomeUser;
