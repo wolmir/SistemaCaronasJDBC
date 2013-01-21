@@ -24,29 +24,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      */
-    private Aluno aluno;
-    private Emprestimo emprestimo;
-    private EmprestimoController emprestimoController;
-    private AlunoController alunoController;
-   
+    
     PainelEmprestimoDevolucao painelEmprestimoDevolucao;
     
-    private Integer matricula;
-
-    public Integer getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(Integer matricula) {
-        this.matricula = matricula;
-    }
-    
-    private void buscarAluno(){
-       alunoController = new AlunoController();
-       List<Aluno> lista;
-       lista= alunoController.pesquisarPorMatricula(this.getMatricula());
-       System.out.println(lista.size());
-    }
+   
     
     public TelaPrincipal() {
         initComponents();
