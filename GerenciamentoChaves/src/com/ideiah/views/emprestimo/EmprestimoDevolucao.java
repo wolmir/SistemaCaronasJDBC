@@ -4,7 +4,12 @@
  */
 package com.ideiah.views.emprestimo;
 
+import com.ideiah.controller.AlunoController;
+import com.ideiah.controller.EmprestimoController;
+import com.ideiah.model.entity.Aluno;
+import com.ideiah.model.entity.Emprestimo;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -18,6 +23,29 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
     /**
      * Creates new form EmprestimoDevolucao
      */
+    private Aluno aluno;
+    private Emprestimo emprestimo;
+    private EmprestimoController emprestimoController;
+    private AlunoController alunoController;
+   
+    
+    private Integer matricula;
+
+    public Integer getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(Integer matricula) {
+        this.matricula = matricula;
+    }
+    
+    private void buscarAluno(){
+       alunoController = new AlunoController();
+       List<Aluno> lista;
+       lista= alunoController.pesquisarPorMatricula(this.getMatricula());
+       System.out.println(lista.size());
+    }
+    
     public EmprestimoDevolucao() {
         initComponents();
         //this.jButton_EmprestimoDevolucao.setVisible(false);
@@ -32,6 +60,7 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
         }
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -583,8 +612,11 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
     private void jTF_matriculaBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTF_matriculaBuscarKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == evt.VK_ENTER){
-            //Add o metodo
+           this.setMatricula(Integer.parseInt(jTF_matriculaBuscar.getText()));
+           this.buscarAluno();
+           
         }
+        
     }//GEN-LAST:event_jTF_matriculaBuscarKeyPressed
 
     /**

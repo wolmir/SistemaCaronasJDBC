@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
-</log>
+<record>
+  <date>2013-01-21T09:10:02</date>
+  <millis>1358759402842</millis>
+  <sequence>0</sequence>
+  <logger>com.ideiah.model.dao.AlunoDAO</logger>
+  <level>SEVERE</level>
+  <class>com.ideiah.model.dao.AlunoDAO</class>
+  <method>getAlunos</method>
+  <thread>13</thread>
+  <message>Erro ao listar alunos no banco.</message>
+</record>
+<record>
+  <date>2013-01-21T09:10:02</date>
+  <millis>1358759402858</millis>
+  <sequence>1</sequence>
+  <logger>com.ideiah.model.dao.AlunoDAO</logger>
+  <level>SEVERE</level>
+  <class>com.ideiah.model.dao.AlunoDAO</class>
+  <method>getAlunos</method>
+  <thread>13</thread>
+  <message>'1.2114121231E10' in column '4' is outside valid range for the datatype INTEGER.</message>
+</record>

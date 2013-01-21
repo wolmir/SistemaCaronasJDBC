@@ -70,7 +70,7 @@ public class MailDaemon {
             ec.salvar();
             List<Aluno> alunos = new AlunoController().getAtrasados();
             LOGGER.fine("Tamanho: " + alunos.size());
-            controller.sendMails(alunos);
+           // controller.sendMails(alunos);
         } catch (FileNotFoundException e) {
             LOGGER.severe("Arquivo não encontrado");
             LOGGER.severe(e.getMessage());
