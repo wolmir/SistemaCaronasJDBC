@@ -402,8 +402,13 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox_listaNumChavesMenoresActionPerformed
 
     private void jButton_realizarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_realizarEmprestimoActionPerformed
-        Senha senha =new Senha();
-        senha.setVisible(false);
+        Aluno aluno;
+        AlunoController alunoController = new AlunoController();
+        aluno = alunoController.pesquisarPorMatricula(matricula);
+        
+        Senha senha =new Senha(this.jTF_matriculaBuscarE.getText(),aluno);
+        senha.setVisible(true);
+        
     }//GEN-LAST:event_jButton_realizarEmprestimoActionPerformed
 
     private void jComboBox_listaNumChavesMaioresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_listaNumChavesMaioresActionPerformed
