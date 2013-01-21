@@ -4,6 +4,9 @@
  */
 package com.ideiah.views.emprestimo;
 
+import com.ideiah.model.entity.Aluno;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Kooler
@@ -13,11 +16,26 @@ public class Senha extends javax.swing.JFrame {
     /**
      * Creates new form Senha
      */
-    public Senha() {
+    private Aluno aluno;
+    
+    
+    public Senha(String matricula, Aluno aluno) {
         initComponents();
         
+        
         this.setLocationRelativeTo(null);
+        this.setAluno(aluno);
     }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -135,7 +153,9 @@ public class Senha extends javax.swing.JFrame {
 
     private void jPasswordField_senhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField_senhaKeyPressed
         if(evt.getKeyCode() == evt.VK_ENTER){
-            //Adicionar método que confirma o empréstimo do objeto jButton_ok
+            if(getAluno().getSenha().equals(jPasswordField_senha.getText())){
+            JOptionPane.showInputDialog("Senha correta");
+            }
         } 
     }//GEN-LAST:event_jPasswordField_senhaKeyPressed
 
