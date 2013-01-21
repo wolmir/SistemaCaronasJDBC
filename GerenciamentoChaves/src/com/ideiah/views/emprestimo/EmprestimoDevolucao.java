@@ -4,7 +4,12 @@
  */
 package com.ideiah.views.emprestimo;
 
+import com.ideiah.controller.AlunoController;
+import com.ideiah.controller.EmprestimoController;
+import com.ideiah.model.entity.Aluno;
+import com.ideiah.model.entity.Emprestimo;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -18,6 +23,29 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
     /**
      * Creates new form EmprestimoDevolucao
      */
+    private Aluno aluno;
+    private Emprestimo emprestimo;
+    private EmprestimoController emprestimoController;
+    private AlunoController alunoController;
+   
+    
+    private Integer matricula;
+
+    public Integer getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(Integer matricula) {
+        this.matricula = matricula;
+    }
+    
+    private void buscarAluno(){
+       alunoController = new AlunoController();
+       List<Aluno> lista;
+       lista= alunoController.pesquisarPorMatricula(this.getMatricula());
+       System.out.println(lista.size());
+    }
+    
     public EmprestimoDevolucao() {
         initComponents();
         //this.jButton_EmprestimoDevolucao.setVisible(false);
@@ -32,6 +60,7 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
         }
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -437,11 +466,12 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(jLabel_alerta)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTF_matriculaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_buscar)
-                    .addComponent(jLabel_matriculaBuscar)
-                    .addComponent(jLabel_alerta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTF_matriculaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel_matriculaBuscar)
+                        .addComponent(jLabel_alerta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_nome)
@@ -468,11 +498,12 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(30, 30, 30)
-                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTF_matriculaBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_buscarD)
-                    .addComponent(jLabel_matriculaBuscarD)
-                    .addComponent(jLabel_alertaD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTF_matriculaBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel_matriculaBuscarD)
+                        .addComponent(jLabel_alertaD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_menorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_nomeD)
@@ -582,8 +613,11 @@ public class EmprestimoDevolucao extends javax.swing.JFrame {
     private void jTF_matriculaBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTF_matriculaBuscarKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == evt.VK_ENTER){
-            //Add o metodo
+           this.setMatricula(Integer.parseInt(jTF_matriculaBuscar.getText()));
+           this.buscarAluno();
+           
         }
+        
     }//GEN-LAST:event_jTF_matriculaBuscarKeyPressed
 
     /**
