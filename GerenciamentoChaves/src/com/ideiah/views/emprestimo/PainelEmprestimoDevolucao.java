@@ -4,6 +4,10 @@
  */
 package com.ideiah.views.emprestimo;
 
+import com.ideiah.controller.AlunoController;
+import com.ideiah.model.entity.Aluno;
+import java.util.List;
+
 /**
  *
  * @author Kooler
@@ -13,9 +17,30 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     /**
      * Creates new form PainelEmprestimoDevoolucao
      */
+    private String matricula;
+    private AlunoController alunoController;
+    private Aluno aluno;
+     
     public PainelEmprestimoDevolucao() {
         initComponents();
         this.jTF_matriculaBuscar.grabFocus();
+    }
+
+ 
+
+    
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+    
+    private Aluno buscarAluno(){
+       alunoController = new AlunoController();
+       aluno  = alunoController.pesquisarPorMatricula(this.getMatricula());
+       return aluno;
     }
 
     /**
@@ -352,8 +377,9 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private void jTF_matriculaBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTF_matriculaBuscarKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == evt.VK_ENTER){
-           
-
+           this.setMatricula(this.jTF_matriculaBuscar.getText());
+           aluno = this.buscarAluno();
+            
         }
 
     }//GEN-LAST:event_jTF_matriculaBuscarKeyPressed
