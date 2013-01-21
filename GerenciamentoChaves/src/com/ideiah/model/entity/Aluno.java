@@ -12,7 +12,7 @@ public class Aluno {
     private Long id;
     private String nome;
     private String email;
-    private Integer matricula;
+    private String matricula;
     private String senha;
     private String curso;
 
@@ -47,14 +47,14 @@ public class Aluno {
     /**
      * @return the matricula
      */
-    public Integer getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
     /**
      * @param matricula the matricula to set
      */
-    public void setMatricula(Integer matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

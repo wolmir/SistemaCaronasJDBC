@@ -52,7 +52,7 @@ public class AlunoDAO {
                 aluno.setNome(rs.getString("nome"));
                 aluno.setEmail(rs.getString("email"));
                 aluno.setCurso(rs.getString("curso"));
-                aluno.setMatricula(rs.getInt("matricula"));
+                aluno.setMatricula(rs.getString("matricula"));
                 aluno.setSenha(rs.getString("senha"));
                 alunos.add(aluno);
                 
