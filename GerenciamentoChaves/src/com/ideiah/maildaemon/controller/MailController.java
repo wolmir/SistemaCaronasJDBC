@@ -100,17 +100,18 @@ public class MailController {
     }
     
     
-    /*public void sendMails(List<Aluno> alunos) {
+    public void sendMails(List<Aluno> alunos) {
         for (Aluno aluno: alunos) {
             String message = getHtml(aluno);
             this.sendMail(aluno.getEmail(), this.getSession(), message);
         }
-    }*/
+    }
     
     
-    /*public String getHtml(Aluno aluno) {
+    public String getHtml(Aluno aluno) {
         String nhtml = this.html_template.replace("{{aluno_nome}}", aluno.getNome());
-    }*/
+        return nhtml;
+    }
 
     /**
      * @return the from

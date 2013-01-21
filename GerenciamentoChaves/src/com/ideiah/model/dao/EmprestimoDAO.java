@@ -67,7 +67,7 @@ public class EmprestimoDAO {
     public void altera(Emprestimo emprestimo) {
         LOGGER.setLevel(Level.ALL);
         String sql = "update emprestimo set id_aluno=?, id_chave=?, retirada=?,"
-                + "devolucao=? where id=?";
+                + "devolucao=? where id_emprestimo=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setLong(1, emprestimo.getAluno().getId());
@@ -129,7 +129,7 @@ public class EmprestimoDAO {
                 aluno.setNome(rs_alunos.getString("nome"));
                 aluno.setEmail(rs_alunos.getString("email"));
                 aluno.setCurso(rs_alunos.getString("curso"));
-                aluno.setMatricula(rs_alunos.getInt("matricula"));
+                aluno.setMatricula(rs_alunos.getString("matricula"));
                 emprestimo.setAluno(aluno);
                 
                 String sql_chave = "select * from chave where id_chave=?";

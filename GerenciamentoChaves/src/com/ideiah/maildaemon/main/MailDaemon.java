@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -42,14 +43,13 @@ public class MailDaemon {
             //MailLogger.setup();
             FileHandler fh = new FileHandler("MailDaemon.txt");
             LOGGER.addHandler(fh);
-            String conf = new MailDaemon().getConf();
-            String[] elmts = conf.split("\\n");
+            HashMap<String, String> conf = new MailDaemon().getConf();
             MailController controller = new MailController();
-            controller.setFrom(elmts[0]);
-            controller.setHost(elmts[1]);
-            controller.setPort(elmts[2]);
-            controller.setUsername(elmts[3]);
-            controller.setPassword(elmts[4]);
+            controller.setFrom(conf.get("Email"));
+            controller.setHost(conf.get("Servidor"));
+            controller.setPort(conf.get("Porta"));
+            controller.setUsername(conf.get("Usuario"));
+            controller.setPassword(conf.get("Senha"));
         
             ChaveController cc = new ChaveController();
             Chave chave = new Chave();
@@ -70,7 +70,7 @@ public class MailDaemon {
             ec.salvar();
             List<Aluno> alunos = new AlunoController().getAtrasados();
             LOGGER.fine("Tamanho: " + alunos.size());
-            controller.sendMails(alunos);
+           // controller.sendMails(alunos);
         } catch (FileNotFoundException e) {
             LOGGER.severe("Arquivo não encontrado");
             LOGGER.severe(e.getMessage());
@@ -82,12 +82,13 @@ public class MailDaemon {
         
     }
     
-    private String getConf() throws FileNotFoundException, IOException {
+    private HashMap<String, String> getConf() throws FileNotFoundException, IOException {
             BufferedReader br = new BufferedReader(new FileReader("email_config.txt"));
             String everything = "";
             try {
                 StringBuilder sb = new StringBuilder();
                 String line = br.readLine();
+                
 
                 while (line != null) {
                     sb.append(line);
@@ -95,10 +96,16 @@ public class MailDaemon {
                     line = br.readLine();
                 }
                 everything = sb.toString();
+                HashMap<String, String> map = new HashMap<String, String>();
+                String[] elmts = everything.split("\\n");
+                for (String elmt: elmts) {
+                    String[] pair = elmt.split(" ");
+                    map.put(pair[0], pair[1]);
+                }
+                return map;
             } finally {
                 br.close();
             }
-            return everything;
     }
     
 }

@@ -46,14 +46,13 @@ public class AlunoDAO {
             List<Aluno> alunos = new ArrayList<Aluno>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from aluno");
             ResultSet rs = stmt.executeQuery();
-            
             while (rs.next()) {
                 Aluno aluno = new Aluno();
                 aluno.setId(rs.getLong("id_aluno"));
                 aluno.setNome(rs.getString("nome"));
                 aluno.setEmail(rs.getString("email"));
                 aluno.setCurso(rs.getString("curso"));
-                aluno.setMatricula(rs.getInt("matricula"));
+                aluno.setMatricula(rs.getString("matricula"));
                 aluno.setSenha(rs.getString("senha"));
                 alunos.add(aluno);
                 
