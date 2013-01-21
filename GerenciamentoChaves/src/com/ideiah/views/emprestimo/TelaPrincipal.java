@@ -92,7 +92,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jSeparator_topo = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(876, 800));
+        setPreferredSize(new java.awt.Dimension(876, 710));
         setResizable(false);
 
         jLabel_titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -213,6 +213,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel_logoUnipampa.setMaximumSize(new java.awt.Dimension(448, 265));
         jLabel_logoUnipampa.setMinimumSize(new java.awt.Dimension(448, 265));
 
+        jPanel_conteudo.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel_conteudoLayout = new javax.swing.GroupLayout(jPanel_conteudo);
         jPanel_conteudo.setLayout(jPanel_conteudoLayout);
         jPanel_conteudoLayout.setHorizontalGroup(
@@ -260,7 +262,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel_titulo)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel_subtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator_topo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
