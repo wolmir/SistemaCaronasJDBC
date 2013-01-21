@@ -8,14 +8,9 @@ import com.ideiah.model.dao.AlunoDAO;
 import com.ideiah.model.dao.EmprestimoDAO;
 import com.ideiah.model.entity.Aluno;
 import com.ideiah.model.entity.Emprestimo;
-import java.sql.Array;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -69,16 +64,16 @@ public class AlunoController {
         return resultado;
     }
     
-    public List<Aluno> pesquisarPorMatricula(Integer matricula) {
+    public Aluno pesquisarPorMatricula(String matricula) {
         List<Aluno> alunos = new AlunoDAO().getAlunos();
         List<Aluno> resultado = new ArrayList<Aluno>();
         for (Aluno alunoi: alunos) {
-            if (alunoi.getMatricula() == matricula) {
+            if (alunoi.getMatricula().equals(matricula)) {
                 resultado.add(alunoi);
             }
         }
         
-        return resultado;
+        return resultado.get(0);
     }
     
     public List<Emprestimo> getEmprestimos() {

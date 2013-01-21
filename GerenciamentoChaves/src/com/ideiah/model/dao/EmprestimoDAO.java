@@ -129,7 +129,7 @@ public class EmprestimoDAO {
                 aluno.setNome(rs_alunos.getString("nome"));
                 aluno.setEmail(rs_alunos.getString("email"));
                 aluno.setCurso(rs_alunos.getString("curso"));
-                aluno.setMatricula(rs_alunos.getInt("matricula"));
+                aluno.setMatricula(rs_alunos.getString("matricula"));
                 emprestimo.setAluno(aluno);
                 
                 String sql_chave = "select * from chave where id_chave=?";
