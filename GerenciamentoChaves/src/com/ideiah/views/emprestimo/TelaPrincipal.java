@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -28,8 +29,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     PainelEmprestimoDevolucao painelEmprestimoDevolucao;
     
-   
-    
+  
     public TelaPrincipal() {
         initComponents();
 //        this.setResizable(true);
@@ -45,8 +45,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         //this.jButton_EmprestimoDevolucao.setVisible(false);
     }
-
-    
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -138,6 +137,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton_CadastroChaveLote.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton_CadastroChaveLote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/keys.png"))); // NOI18N
         jButton_CadastroChaveLote.setText("Cadastrar Chave em Lote");
+        jButton_CadastroChaveLote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CadastroChaveLoteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_menor1Layout = new javax.swing.GroupLayout(jPanel_menor1);
         jPanel_menor1.setLayout(jPanel_menor1Layout);
@@ -270,32 +274,84 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_ListaAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ListaAlunoActionPerformed
-        // TODO add your handling code here:
+        
+        ListaAlunos listaAlunos = new ListaAlunos();
+        this.jPanel_conteudo.setLayout(new BorderLayout());
+        this.jPanel_conteudo.removeAll();
+        this.jPanel_conteudo.updateUI();
+        this.jPanel_conteudo.add(listaAlunos);
+        this.jPanel_conteudo.updateUI();
+        
+        for(int i = 0; i < this.jPanel_menor1.getComponentCount();i++){
+
+            if(this.jPanel_menor1.getComponent(i) instanceof JButton){
+                if(((JButton) this.jPanel_menor1.getComponent(i)).getText().equals(evt.getActionCommand()))
+                     this.jPanel_menor1.getComponent(i).setEnabled(false);
+                else
+                    this.jPanel_menor1.getComponent(i).setEnabled(true);  
+            }
+        }
     }//GEN-LAST:event_jButton_ListaAlunoActionPerformed
 
     private void jButton_EmprestimoDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EmprestimoDevolucaoActionPerformed
         PainelEmprestimoDevolucao painelEmprestimoDevolucao = new PainelEmprestimoDevolucao();
         this.jPanel_conteudo.setLayout(new BorderLayout());
+        this.jPanel_conteudo.removeAll();
+        this.jPanel_conteudo.updateUI();
         this.jPanel_conteudo.add(painelEmprestimoDevolucao);
 //        List<Component> listaComponentes;
 //        listaComponentes = this.jPanel_conteudo.getComponents();
 //        System.out.println(listaComponentes.length);
 //        System.out.println(listaComponentes.);
         this.jPanel_conteudo.updateUI();
-        this.jButton_EmprestimoDevolucao.setEnabled(false);
-        this.jButton_CadastrarChave.setEnabled(true);
-        this.jButton_ListaAluno.setEnabled(true);
+       for(int i = 0; i < this.jPanel_menor1.getComponentCount();i++){
+
+            if(this.jPanel_menor1.getComponent(i) instanceof JButton){
+                if(((JButton) this.jPanel_menor1.getComponent(i)).getText().equals(evt.getActionCommand()))
+                     this.jPanel_menor1.getComponent(i).setEnabled(false); 
+                else
+                    this.jPanel_menor1.getComponent(i).setEnabled(true);  
+            }
+        }
     }//GEN-LAST:event_jButton_EmprestimoDevolucaoActionPerformed
 
     private void jButton_CadastrarChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CadastrarChaveActionPerformed
         PainelCadastroChave painelCadastroChave = new PainelCadastroChave();
         this.jPanel_conteudo.setLayout(new BorderLayout());
+        this.jPanel_conteudo.removeAll();
+        this.jPanel_conteudo.updateUI();
         this.jPanel_conteudo.add(painelCadastroChave);
         this.jPanel_conteudo.updateUI();
-        this.jButton_EmprestimoDevolucao.setEnabled(true);
-        this.jButton_CadastrarChave.setEnabled(false);
-        this.jButton_ListaAluno.setEnabled(true);
+        for(int i = 0; i < this.jPanel_menor1.getComponentCount();i++){
+
+            if(this.jPanel_menor1.getComponent(i) instanceof JButton){
+                if(((JButton) this.jPanel_menor1.getComponent(i)).getText().equals(evt.getActionCommand()))
+                     this.jPanel_menor1.getComponent(i).setEnabled(false);  
+                else
+                    this.jPanel_menor1.getComponent(i).setEnabled(true);  
+            }
+        }
     }//GEN-LAST:event_jButton_CadastrarChaveActionPerformed
+
+    private void jButton_CadastroChaveLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CadastroChaveLoteActionPerformed
+        
+        CadastroChaveLote painelCadastroChaveLote = new CadastroChaveLote();
+        this.jPanel_conteudo.setLayout(new BorderLayout());
+        this.jPanel_conteudo.removeAll();
+        this.jPanel_conteudo.updateUI();
+        this.jPanel_conteudo.add(painelCadastroChaveLote);
+        this.jPanel_conteudo.updateUI();
+                      
+         for(int i = 0; i < this.jPanel_menor1.getComponentCount();i++){
+            
+           if(this.jPanel_menor1.getComponent(i) instanceof JButton){
+               if(((JButton) this.jPanel_menor1.getComponent(i)).getText().equals(evt.getActionCommand()))
+                    this.jPanel_menor1.getComponent(i).setEnabled(false);  
+               else
+                    this.jPanel_menor1.getComponent(i).setEnabled(true);  
+           }
+        }
+    }//GEN-LAST:event_jButton_CadastroChaveLoteActionPerformed
 
     /**
      * @param args the command line arguments

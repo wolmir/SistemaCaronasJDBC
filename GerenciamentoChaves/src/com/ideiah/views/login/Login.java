@@ -356,10 +356,13 @@ public class Login extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setPreferredSize(new java.awt.Dimension(609, 527));
 
+        jLabel_Login.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel_Login.setText("Login:");
 
+        jLabel_Senha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel_Senha.setText("Senha: ");
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/login.png"))); // NOI18N
         jButton1.setText("Logar");
 
@@ -379,7 +382,7 @@ public class Login extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPasswordField1))
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,6 +489,8 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_nomeE;
     private javax.swing.JLabel jLabel_numChaveD;
     private javax.swing.JLabel jLabel_numChaveE;
+    private javax.swing.JLabel jLabel_tituloCadastro;
+    private javax.swing.JLabel jLabel_tituloCadastro1;
     private javax.swing.JLabel jLabel_tituloEmprestimo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
