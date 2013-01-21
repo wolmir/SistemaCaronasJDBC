@@ -377,9 +377,8 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private void jTF_matriculaBuscarEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTF_matriculaBuscarEKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == evt.VK_ENTER){
-           this.setMatricula(this.jTF_matriculaBuscar.getText());
+           this.setMatricula(this.jTF_matriculaBuscarE.getText());
            aluno = this.buscarAluno();
-            
         }
 
     }//GEN-LAST:event_jTF_matriculaBuscarEKeyPressed
