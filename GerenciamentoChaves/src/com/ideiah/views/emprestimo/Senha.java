@@ -149,8 +149,25 @@ public class Senha extends javax.swing.JFrame {
 
     private void jButton_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_okActionPerformed
         // TODO add your handling code here:
+        System.out.println(this.aluno.getSenha());
+        if (this.comparePass(jPasswordField_senha.getPassword(), this.aluno.getSenha())) {
+            JOptionPane.showInputDialog("Senha correta");
+        }
     }//GEN-LAST:event_jButton_okActionPerformed
 
+    private boolean comparePass(char[] a, String b) {
+        if (a.length != b.length()) {
+            return false;
+        }
+        
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != b.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     private void jPasswordField_senhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField_senhaKeyPressed
         if(evt.getKeyCode() == evt.VK_ENTER){
             if(getAluno().getSenha().equals(jPasswordField_senha.getText())){
