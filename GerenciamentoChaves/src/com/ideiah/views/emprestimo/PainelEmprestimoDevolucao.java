@@ -26,6 +26,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private Aluno aluno;
      
     public PainelEmprestimoDevolucao() {
+        System.out.println("Bunda");
         initComponents();
         carregarAsCoisasQuePrecisamSerCarregadas();
         this.jTF_matriculaBuscarE.grabFocus();
@@ -413,8 +414,18 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         Aluno aluno;
         AlunoController alunoController = new AlunoController();
         aluno = alunoController.pesquisarPorMatricula(matricula);
-        
-        Senha senha =new Senha(this.jTF_matriculaBuscarE.getText(),aluno);
+        Chave chave;
+        if (this.jRadioButton_armarioMaior.getSelectedObjects() != null) {
+            chave = new ChaveController().getByNumero((Integer)
+                    this.jComboBox_listaNumChavesMaiores.getItemAt(
+                    this.jComboBox_listaNumChavesMaiores.getSelectedIndex()));
+        }
+        else {
+            chave = new ChaveController().getByNumero((Integer)
+                    this.jComboBox_listaNumChavesMenores.getItemAt(
+                    this.jComboBox_listaNumChavesMenores.getSelectedIndex()));
+        }
+        Senha senha =new Senha(this.jTF_matriculaBuscarE.getText(),aluno, chave);
         senha.setVisible(true);
         
     }//GEN-LAST:event_jButton_realizarEmprestimoActionPerformed

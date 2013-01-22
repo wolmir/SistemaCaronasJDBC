@@ -6,6 +6,7 @@ package com.ideiah.controller;
 
 import com.ideiah.model.dao.EmprestimoDAO;
 import com.ideiah.model.entity.Emprestimo;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,8 +16,16 @@ import java.util.List;
 public class EmprestimoController {
     private Emprestimo emprestimo;
     
-    public void salvar() {
+    public String salvar() {
+        List<Emprestimo> emprestimos = this.getAbertos();
+        for (Emprestimo emprestimoi: emprestimos) {
+            if (emprestimoi.getAluno().getId() == this.emprestimo.getAluno().getId()) {
+                
+                return "Este aluno já possui uma chave.";
+            }
+        }
         new EmprestimoDAO().adiciona(emprestimo);
+        return null;
     }
     
     public void alterar() {
@@ -29,6 +38,17 @@ public class EmprestimoController {
     
     public List<Emprestimo> getEmprestimos() {
         return new EmprestimoDAO().getEmprestimos();
+    }
+    
+    public List<Emprestimo> getAbertos() {
+        List<Emprestimo> abertos = new ArrayList<Emprestimo>();
+        List<Emprestimo> emprestimos = this.getEmprestimos();
+        for (Emprestimo emprestimo: emprestimos) {
+            if (emprestimo.getData_devolucao() == null) {
+                abertos.add(emprestimo);
+            }
+        }
+        return abertos;
     }
 
     /**

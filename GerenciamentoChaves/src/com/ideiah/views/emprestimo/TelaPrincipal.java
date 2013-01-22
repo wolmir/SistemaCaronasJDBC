@@ -91,7 +91,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jSeparator_topo = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(876, 710));
         setResizable(false);
 
         jLabel_titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
