@@ -4,6 +4,11 @@
  */
 package com.ideiah.views.emprestimo;
 
+import com.ideiah.controller.ChaveController;
+import com.ideiah.model.entity.Chave;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Bruna
@@ -35,6 +40,8 @@ public class CadastroChaveLote extends javax.swing.JPanel {
         jLabel_tituloCadastro = new javax.swing.JLabel();
         jTF_cadNumChaveFinal = new javax.swing.JTextField();
         jLabel_cadNumeroFinal = new javax.swing.JLabel();
+        jLabel_alertaInicial = new javax.swing.JLabel();
+        jLabel_alertaFinal = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -74,6 +81,16 @@ public class CadastroChaveLote extends javax.swing.JPanel {
         jLabel_cadNumeroFinal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel_cadNumeroFinal.setText("Número da chave final:");
 
+        jLabel_alertaInicial.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_alertaInicial.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel_alertaInicial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_alertaInicial.setText("Número de chave inválido");
+
+        jLabel_alertaFinal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_alertaFinal.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel_alertaFinal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_alertaFinal.setText("Número de chave inválido");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -86,42 +103,42 @@ public class CadastroChaveLote extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_cadTamanhoChaveLote)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel_cadTamanhoChaveLote)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel_cadNumeroFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(75, 75, 75)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTF_cadNumChaveFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox_listaTamChaveLote, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(216, 216, 216))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel_cadNumeroInicial)
-                                .addGap(75, 75, 75)
-                                .addComponent(jTF_cadNumChaveInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67)))))
+                                .addComponent(jLabel_cadNumeroFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(391, 391, 391))
+                            .addComponent(jLabel_cadNumeroInicial))))
                 .addContainerGap(25, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton_cadastrarLote, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(203, 203, 203))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_cadastrarLote, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTF_cadNumChaveFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_alertaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_listaTamChaveLote, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTF_cadNumChaveInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_alertaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel_tituloCadastro)
-                .addGap(90, 90, 90)
+                .addGap(89, 89, 89)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTF_cadNumChaveInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_cadNumeroInicial))
-                .addGap(21, 21, 21)
+                    .addComponent(jLabel_cadNumeroInicial)
+                    .addComponent(jLabel_alertaInicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTF_cadNumChaveFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_cadNumeroFinal))
+                    .addComponent(jLabel_cadNumeroFinal)
+                    .addComponent(jLabel_alertaFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_cadTamanhoChaveLote)
@@ -135,21 +152,17 @@ public class CadastroChaveLote extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 527, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -159,12 +172,28 @@ public class CadastroChaveLote extends javax.swing.JPanel {
 
     private void jButton_cadastrarLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cadastrarLoteActionPerformed
         // TODO add your handling code here:
-        //this.jButton_buscar.setBack
+        List<Chave> chaves = new ArrayList<Chave>();
+        Integer start = Integer.decode(this.jTF_cadNumChaveInicial.getText());
+        Integer end = Integer.decode(this.jTF_cadNumChaveFinal.getText());
+        
+        for (int i = start; i <= end; i++) {
+            Chave chave = new Chave();
+            chave.setNumero(i);
+            String tamanho = (String)this.jComboBox_listaTamChaveLote.getItemAt(
+                    this.jComboBox_listaTamChaveLote.getSelectedIndex());
+            tamanho = tamanho.toLowerCase();
+            chave.setTipo(tamanho);
+            chave.setDisponivel(true);
+            chaves.add(chave);
+        }
+        new ChaveController().salvarLote(chaves);
     }//GEN-LAST:event_jButton_cadastrarLoteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_cadastrarLote;
     private javax.swing.JComboBox jComboBox_listaTamChaveLote;
+    private javax.swing.JLabel jLabel_alertaFinal;
+    private javax.swing.JLabel jLabel_alertaInicial;
     private javax.swing.JLabel jLabel_cadNumeroFinal;
     private javax.swing.JLabel jLabel_cadNumeroInicial;
     private javax.swing.JLabel jLabel_cadTamanhoChaveLote;

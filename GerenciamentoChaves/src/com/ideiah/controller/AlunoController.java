@@ -127,6 +127,18 @@ public class AlunoController {
         return resultados;            
     }
     
+    public List<Emprestimo> getEmprestimoAbertoMatricula(String matricula) {
+        List<Emprestimo> abertos = new ArrayList<Emprestimo>();
+        Aluno aluno = new AlunoDAO().getByMatricula(matricula);
+        List<Emprestimo> todos = new EmprestimoDAO().getByAluno(aluno);
+        for (Emprestimo emprestimo: todos) {
+            if (emprestimo.getData_devolucao() == null) {
+                abertos.add(emprestimo);
+            }
+        }
+        return abertos;
+    }
+    
     private boolean testaDataRetirada(Calendar data) {
         int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         int month = Calendar.getInstance().get(Calendar.MONTH);

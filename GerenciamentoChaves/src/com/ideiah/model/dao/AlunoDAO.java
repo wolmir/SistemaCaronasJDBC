@@ -69,6 +69,37 @@ public class AlunoDAO {
         return null;
     }
     
+    public Aluno getByMatricula(String matricula) {
+        LOGGER.setLevel(Level.ALL);
+        try {
+            List<Aluno> alunos = new ArrayList<Aluno>();
+            PreparedStatement stmt = this.connection.prepareStatement("select * "
+                    + "from aluno where matricula = ?");
+            stmt.setString(1, matricula);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Aluno aluno = new Aluno();
+                aluno.setId(rs.getLong("id_aluno"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setEmail(rs.getString("email"));
+                aluno.setCurso(rs.getString("curso"));
+                aluno.setMatricula(rs.getString("matricula"));
+                aluno.setSenha(rs.getString("senha"));
+                alunos.add(aluno);
+                
+            }
+            rs.close();
+            stmt.close();
+            return alunos.get(0);
+            
+        } catch (SQLException e) {
+            LOGGER.severe("Erro ao listar alunos no banco.");
+            LOGGER.severe(e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     
     
     /*public void adiciona(Aluno aluno) {

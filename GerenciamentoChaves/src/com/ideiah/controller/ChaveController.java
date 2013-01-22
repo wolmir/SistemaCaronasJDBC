@@ -39,6 +39,13 @@ public class ChaveController {
         return new ChaveDAO().getChaves();
     }
     
+    public void salvarLote(List<Chave> chaves) {
+        ChaveDAO cd = new ChaveDAO();
+        for (Chave chavei: chaves) {
+            cd.adiciona(chavei);
+        }
+    }
+    
     public List<Emprestimo> getEmprestimos() {
         List<Emprestimo> resultado = new ArrayList<Emprestimo>();
         List<Emprestimo> emprestimos = new EmprestimoDAO().getEmprestimos();
@@ -92,6 +99,17 @@ public class ChaveController {
             }
         }
         return resultado;
+    }
+    
+    public List<Chave> getDisponiveis() {
+        List<Chave> disponiveis = new ArrayList<Chave>();
+        List<Chave> chaves = new ChaveDAO().getChaves();
+        for (Chave chave: chaves) {
+            if (chave.getDisponivel()) {
+                disponiveis.add(chave);
+            }
+        }
+        return disponiveis;
     }
 
     /**

@@ -4,6 +4,13 @@
  */
 package com.ideiah.views.emprestimo;
 
+import java.awt.Component;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 /**
  *
  * @author Bruna
@@ -15,8 +22,28 @@ public class ListaChaves extends javax.swing.JPanel {
      */
     public ListaChaves() {
         initComponents();
+        
+        
+        // RECEBE OS DADOS DO BANCO
+        //
+        String[] tamanho = {"Maior","Menor"};
+        formaraValoresCombo(tamanho, 1);
+        
+        String[] status = {"Ativo","Inativo"};
+        formaraValoresCombo(status, 2);
+        
     }
 
+    public void formaraValoresCombo(String[] valores, int index){
+       
+        DefaultTableModel model = (DefaultTableModel) this.jTable_ListaChaves.getModel();        // Adiciona algumas colunas
+        int vColIndex = 0;
+        TableColumn col = this.jTable_ListaChaves.getColumnModel().getColumn(index);
+        col.setCellEditor(new ComboBoxEditor(valores));
+        col.setCellRenderer(new ComboBoxRenderer(valores));    
+
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,6 +59,7 @@ public class ListaChaves extends javax.swing.JPanel {
         jTable_ListaChaves = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel_alertaFinal = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -44,15 +72,20 @@ public class ListaChaves extends javax.swing.JPanel {
         jTable_ListaChaves.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable_ListaChaves.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Chave", "Tamanho"
+                "Chave", "Tamanho", "Status"
             }
         ));
+        jTable_ListaChaves.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jTable_ListaChavesComponentAdded(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable_ListaChaves);
         jTable_ListaChaves.getColumnModel().getColumn(0).setResizable(false);
         jTable_ListaChaves.getColumnModel().getColumn(1).setResizable(false);
@@ -65,23 +98,30 @@ public class ListaChaves extends javax.swing.JPanel {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/delete.png"))); // NOI18N
         jButton2.setText("Excluir Chave");
 
+        jLabel_alertaFinal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_alertaFinal.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel_alertaFinal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_alertaFinal.setText("Valores Incorretos");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(jLabel_tituloListaC, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(121, 121, 121))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel_alertaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(36, 36, 36)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(106, 106, 106))
+                    .addComponent(jLabel_tituloListaC, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,9 +132,11 @@ public class ListaChaves extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(34, 34, 34)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel_alertaFinal)
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -118,9 +160,15 @@ public class ListaChaves extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable_ListaChavesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jTable_ListaChavesComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_ListaChavesComponentAdded
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel_alertaFinal;
     private javax.swing.JLabel jLabel_tituloListaC;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

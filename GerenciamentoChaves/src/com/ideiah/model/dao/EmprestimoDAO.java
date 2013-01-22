@@ -156,4 +156,64 @@ public class EmprestimoDAO {
         }
         return null;
     }
+    
+    public List<Emprestimo> getByAluno(Aluno alunop) {
+        LOGGER.setLevel(Level.ALL);
+        try {
+            List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
+            String sql = "select * from emprestimo where id_aluno=?";
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setLong(1, alunop.getId());
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                Emprestimo emprestimo = new Emprestimo();
+                emprestimo.setId(rs.getLong("id_emprestimo"));
+                Calendar data = Calendar.getInstance();
+                data.setTime(rs.getDate("retirada"));
+                emprestimo.setData_retirada(data);
+                Date datard = rs.getDate("devolucao");
+                if (datard != null) {
+                    Calendar datad = Calendar.getInstance();
+                    data.setTime(rs.getDate("devolucao"));
+                    emprestimo.setData_devolucao(datad);
+                }
+                
+                String sql_al = "select * from aluno where id_aluno=?";
+                PreparedStatement st_aluno = connection.prepareStatement(sql_al);
+                st_aluno.setLong(1, rs.getLong("id_aluno"));
+                ResultSet rs_alunos = st_aluno.executeQuery();
+                rs_alunos.next();
+                Aluno aluno = new Aluno();
+                aluno.setId(rs_alunos.getLong("id_aluno"));
+                aluno.setNome(rs_alunos.getString("nome"));
+                aluno.setEmail(rs_alunos.getString("email"));
+                aluno.setCurso(rs_alunos.getString("curso"));
+                aluno.setMatricula(rs_alunos.getString("matricula"));
+                emprestimo.setAluno(aluno);
+                
+                String sql_chave = "select * from chave where id_chave=?";
+                PreparedStatement st_chave = connection.prepareStatement(sql_chave);
+                st_chave.setLong(1, rs.getLong("id_chave"));
+                ResultSet rs_chaves = st_chave.executeQuery();
+                rs_chaves.next();
+                Chave chave = new Chave();
+                chave.setId(rs_chaves.getLong("id_chave"));
+                chave.setNumero(rs_chaves.getInt("numero"));
+                chave.setTipo(rs_chaves.getString("tipo"));
+                emprestimo.setChave(chave);
+                
+                emprestimos.add(emprestimo);
+            }
+            rs.close();
+            stmt.close();
+            return emprestimos;
+            
+        } catch (SQLException e) {
+            LOGGER.severe("Erro ao listar empréstimos no banco");
+            LOGGER.severe(e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

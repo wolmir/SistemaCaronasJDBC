@@ -70,7 +70,7 @@
                   <Component id="jPanel_conteudo" max="32767" attributes="0"/>
                   <Component id="jPanel_menor1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="428" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="575" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
