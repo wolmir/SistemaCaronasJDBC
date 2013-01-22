@@ -40,7 +40,7 @@ public class AlunoDAOTest {
         a1.setId(new Long(1));
         a1.setNome("Joao");
         a1.setEmail("joao@unipampa.edu.br");
-        a1.setMatricula(new Integer(548697236));
+        a1.setMatricula("548697236");
         a1.setSenha("12345");
         a1.setCurso("CC");
         alunosL1.add(a1);
@@ -48,7 +48,7 @@ public class AlunoDAOTest {
         a2.setId(new Long(2));
         a2.setNome("Maria");
         a2.setEmail("maria@unipampa.edu.br");
-        a2.setMatricula(new Integer(367254694));
+        a2.setMatricula("367254694");
         a2.setSenha("12345");
         a2.setCurso("ES");
         alunosL1.add(a2);

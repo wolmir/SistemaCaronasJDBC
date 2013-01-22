@@ -52,7 +52,7 @@ public class EmprestimoDAOTest {
         a1.setId(new Long(1));
         a1.setNome("Joao");
         a1.setEmail("joao@unipampa.edu.br");
-        a1.setMatricula(new Integer(548697236));
+        a1.setMatricula("548697236");
         a1.setSenha("12345");
         a1.setCurso("CC");
         alunosL1.add(a1);
@@ -60,7 +60,7 @@ public class EmprestimoDAOTest {
         a2.setId(new Long(2));
         a2.setNome("Maria");
         a2.setEmail("maria@unipampa.edu.br");
-        a2.setMatricula(new Integer(367254694));
+        a2.setMatricula("367254694");
         a2.setSenha("12345");
         a2.setCurso("ES");
         alunosL1.add(a2);
@@ -192,23 +192,25 @@ public class EmprestimoDAOTest {
     public void tearDown() throws Exception {
     }
     
-    public boolean getSelect(Long idAluno) throws SQLException{
-        Connection connectionS;
-        connectionS = new ConnectionFactory().getConnection();
-        try{
-        PreparedStatement stmt = connectionS.prepareStatement(
-                "select * from emprestimos where id_aluno = "+idAluno);
-        ResultSet rs = stmt.executeQuery();
-        System.out.println("Testando método getSelect");
-        System.out.println(idAluno+"\t"+rs.getInt("id_aluno"));
-        if (idAluno.equals(rs.getInt("id_aluno"))){
-            return true;
-        }else{
-            return false;
+    private boolean getCompEmprestimo(Emprestimo emprestimo){
+        EmprestimoDAO instance = new EmprestimoDAO();
+        List<Emprestimo> listEmprestimo = instance.getEmprestimos();
+        boolean flag=false;
+        
+        for (Emprestimo emprestimoI : listEmprestimo){
+            if (emprestimoI.getAluno().getId().equals(emprestimo.getAluno().getId())){
+                flag = true;
+//                System.out para printar o valor do emprestimo.aluno.ID com os valores retirados
+//                da tabela emprestimos e adicionados a lista listEmprestimos
+//                System.out.println(emprestimoI.getAluno().getId()+"\t"+emprestimo.getAluno().getId());
+                break;
+            }
+            else {
+                flag = false;
+            }
         }
-        }catch(SQLException e){
-            return false;
-        }
+        
+        return flag;
     }
 
     /**
@@ -223,8 +225,21 @@ public class EmprestimoDAOTest {
         aluno.setId(new Long (6));
         aluno.setNome("Carlos");
         aluno.setEmail("carlos@unipampa.edu.br");
-        aluno.setMatricula(new Integer(111252349));
+        aluno.setMatricula("111252349");
         aluno.setCurso("EM");
+        
+        PreparedStatement stmtAluno = connection.prepareStatement(
+                    "insert into aluno values ("+aluno.getId()+
+                    ", '"+aluno.getNome()+
+                    "','"+aluno.getEmail()+
+                    "','"+aluno.getMatricula()+
+                    "','"+aluno.getSenha()+
+                    "','"+aluno.getCurso()+"');");
+            stmtAluno.execute();
+            stmtAluno.close();
+//        
+//         adicionando uma nova chave para a tabela chave
+//            
         
         Chave chave = new Chave();
         
@@ -232,24 +247,34 @@ public class EmprestimoDAOTest {
         chave.setNumero(new Integer(69));
         chave.setTipo(null);
         
+        PreparedStatement stmtChave = connection.prepareStatement(
+                    "insert into chave values ("
+            +chave.getId()+", "+chave.getNumero()+", "+chave.getTipo()+");");
+            stmtChave.execute();
+            stmtChave.close();
+//
+//            
+//            adicionando um emprestimo a tabela emprestimo
+        
         EmprestimoDAO instance = new EmprestimoDAO();
         
         emprestimo.setAluno(aluno);
         emprestimo.setChave(chave);
-        c2.set(2013, 1, 17);
+        c2.set(2013, 1, 21);
         emprestimo.setData_retirada(c2);
         emprestimo.setData_devolucao(c2);
         
         instance.adiciona(emprestimo);
-        boolean flag=true;
-        System.out.println(flag);
-        flag=getSelect(emprestimo.getAluno().getId());
-        System.out.println(flag);
-        assertEquals(true,flag);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+//              
+//        comparando o elemento adicionado com a tabela emprestimos após uma inserção
+//        OBS: Integrando o método getEmprestimos (já testado e funcionando corretamente)
+//        
+        boolean flag=false;
+        
+        flag=getCompEmprestimo(emprestimo);
+        
+        assertEquals(true, flag);
     }
-
     /**
      * Test of altera method, of class EmprestimoDAO.
      */
@@ -284,11 +309,15 @@ public class EmprestimoDAOTest {
     public void testGetEmprestimos() {
         System.out.println("getEmprestimos");
         EmprestimoDAO instance = new EmprestimoDAO();
-        List expResult = null;
-        List result = instance.getEmprestimos();
-        assertEquals(expResult, result);
+        List<Emprestimo> expResult = instance.getEmprestimos();
+        List<Emprestimo> result = instance.getEmprestimos();
+        
+        for (Emprestimo emprestimo : result){
+            System.out.println(emprestimo.getAluno().getNome());
+        }
+        assertEquals(expResult.size(), result.size());
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
     
 }
