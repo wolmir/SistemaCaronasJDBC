@@ -183,6 +183,7 @@ public class CadastroChaveLote extends javax.swing.JPanel {
                     this.jComboBox_listaTamChaveLote.getSelectedIndex());
             tamanho = tamanho.toLowerCase();
             chave.setTipo(tamanho);
+            chave.setDisponivel(true);
             chaves.add(chave);
         }
         new ChaveController().salvarLote(chaves);

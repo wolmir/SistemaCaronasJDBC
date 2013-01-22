@@ -100,6 +100,17 @@ public class ChaveController {
         }
         return resultado;
     }
+    
+    public List<Chave> getDisponiveis() {
+        List<Chave> disponiveis = new ArrayList<Chave>();
+        List<Chave> chaves = new ChaveDAO().getChaves();
+        for (Chave chave: chaves) {
+            if (chave.getDisponivel()) {
+                disponiveis.add(chave);
+            }
+        }
+        return disponiveis;
+    }
 
     /**
      * @return the chave
