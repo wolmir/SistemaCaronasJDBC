@@ -301,7 +301,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel_conteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel_menor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(428, 428, 428))
+                .addGap(575, 575, 575))
         );
 
         pack();
@@ -350,8 +350,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         Login login = new Login();
         
-        criaPanel(login, evt);
-       
+        criaPainel(login, evt);
+        
+        this.jPanel_menor1.setVisible(false);
+        this.jPanel_menor1.updateUI();
+        
     }//GEN-LAST:event_jButton_LogoutActionPerformed
 
     /**
