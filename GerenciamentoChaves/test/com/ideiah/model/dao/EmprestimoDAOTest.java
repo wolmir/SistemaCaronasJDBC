@@ -123,20 +123,8 @@ public class EmprestimoDAOTest {
          * 
          */
         
-
-        //empL1= (List<Emprestimo>) new ArrayList<Emprestimo>();
         Emprestimo e1 = new Emprestimo();
-        /*e1.setId(new Long(0));
-        e1.setAluno(a2);
-        e1.setChave(c4);
-        Calendar c = Calendar.getInstance();
-        c.set(2013, 1, 17);
-        e1.setData_retirada(c);
-        e1.setData_devolucao(c);
-        empDAO.adiciona(e1);
-        */
         
-        //empDAO.getEmprestimos();
         PreparedStatement stmtEmp = connection.prepareStatement("insert into emprestimo"
                 +"(id_aluno, id_chave, retirada, devolucao) values (?,?,?,?)");
             stmtEmp.setLong(1, 1);
@@ -156,14 +144,15 @@ public class EmprestimoDAOTest {
 
     @AfterClass
     public static void tearDownClass() throws Exception {
+        
+        
         connection = new ConnectionFactory().getConnection();
+        
         /*
          * Emprestimo deve ser a primeira a ser excluida por conter chave estrangeira
          * 
-         */
-        
-        
-            PreparedStatement stmt = connection.prepareStatement(
+         */ 
+        PreparedStatement stmt = connection.prepareStatement(
                     "delete from emprestimo where id_aluno = 1;");
             stmt.execute();
             stmt.close();
@@ -181,7 +170,6 @@ public class EmprestimoDAOTest {
             stmt.execute();
         }
         stmt.close();
-    
     }
 
     @Before
@@ -200,9 +188,6 @@ public class EmprestimoDAOTest {
         for (Emprestimo emprestimoI : listEmprestimo){
             if (emprestimoI.getAluno().getId().equals(emprestimo.getAluno().getId())){
                 flag = true;
-//                System.out para printar o valor do emprestimo.aluno.ID com os valores retirados
-//                da tabela emprestimos e adicionados a lista listEmprestimos
-//                System.out.println(emprestimoI.getAluno().getId()+"\t"+emprestimo.getAluno().getId());
                 break;
             }
             else {
@@ -268,25 +253,52 @@ public class EmprestimoDAOTest {
 //              
 //        comparando o elemento adicionado com a tabela emprestimos após uma inserção
 //        OBS: Integrando o método getEmprestimos (já testado e funcionando corretamente)
+//        através do método private declarado nesta classe de teste getCompEmprestimo
 //        
         boolean flag=false;
-        
         flag=getCompEmprestimo(emprestimo);
-        
         assertEquals(true, flag);
     }
+    
     /**
      * Test of altera method, of class EmprestimoDAO.
      */
     @Test
     public void testAltera() {
         System.out.println("altera");
-        Emprestimo emprestimo = null;
+        boolean flag=false;
+        Calendar c3=new GregorianCalendar();
+        c3.set(2013,01,22);
         EmprestimoDAO instance = new EmprestimoDAO();
-        instance.altera(emprestimo);
+        List<Emprestimo> listEmprestimo=instance.getEmprestimos();
+        for (Emprestimo empr : listEmprestimo){
+            flag=getCompEmprestimo(empr);
+        }
+        if (flag == true){   
+            for (Emprestimo empr : listEmprestimo){
+            empr.setData_retirada(c3);
+            empr.setData_devolucao(c3);
+            instance.altera(empr);
+            }
+        }
+        else{
+            fail ("elementos na lista criada não conferem com a tabela");
+        }
+        Calendar c4=new GregorianCalendar();
+
+        List<Emprestimo> listEmprestimoAfAlt=instance.getEmprestimos();
         
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        for(Emprestimo empr : listEmprestimoAfAlt){
+            c4=empr.getData_devolucao();
+            if (c4.get(Calendar.DAY_OF_MONTH)==(c3.get(Calendar.DAY_OF_MONTH))){
+            flag=true;
+            }
+            else{
+                flag=false;
+            }
+        }
+        
+        assertEquals(true, flag);
     }
 
     /**
@@ -295,11 +307,24 @@ public class EmprestimoDAOTest {
     @Test
     public void testRemove() {
         System.out.println("remove");
-        Emprestimo emprestimo = null;
+        boolean flag = false;
         EmprestimoDAO instance = new EmprestimoDAO();
-        instance.remove(emprestimo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<Emprestimo> listEmprestimo=instance.getEmprestimos();
+        for (Emprestimo empr : listEmprestimo){
+            instance.remove(empr);
+        }
+        List<Emprestimo> listEmprestimoEmpty = instance.getEmprestimos();
+        for (Emprestimo empr : listEmprestimo){
+                if (listEmprestimoEmpty.contains(empr)){
+                    flag=false;
+                    System.out.println(empr);
+                    break;
+                }
+                else{
+                    flag=true;
+                }
+        }
+        assertEquals(true, flag);
     }
 
     /**
@@ -316,7 +341,6 @@ public class EmprestimoDAOTest {
             System.out.println(emprestimo.getAluno().getNome());
         }
         assertEquals(expResult.size(), result.size());
-        // TODO review the generated test code and remove the default call to fail.
 
     }
     
