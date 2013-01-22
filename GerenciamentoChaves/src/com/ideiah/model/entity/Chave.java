@@ -12,6 +12,7 @@ public class Chave {
     private Long id;
     private Integer numero;
     private String tipo;
+    private Boolean disponivel;
 
     /**
      * @return the numero
@@ -53,6 +54,20 @@ public class Chave {
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    /**
+     * @return the disponivel
+     */
+    public Boolean getDisponivel() {
+        return disponivel;
+    }
+
+    /**
+     * @param disponivel the disponivel to set
+     */
+    public void setDisponivel(Boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
 
