@@ -4,6 +4,11 @@
  */
 package com.ideiah.views.emprestimo;
 
+import com.ideiah.controller.ChaveController;
+import com.ideiah.model.entity.Chave;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Bruna
@@ -167,7 +172,20 @@ public class CadastroChaveLote extends javax.swing.JPanel {
 
     private void jButton_cadastrarLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cadastrarLoteActionPerformed
         // TODO add your handling code here:
-        //this.jButton_buscar.setBack
+        List<Chave> chaves = new ArrayList<Chave>();
+        Integer start = Integer.decode(this.jTF_cadNumChaveInicial.getText());
+        Integer end = Integer.decode(this.jTF_cadNumChaveFinal.getText());
+        
+        for (int i = start; i <= end; i++) {
+            Chave chave = new Chave();
+            chave.setNumero(i);
+            String tamanho = (String)this.jComboBox_listaTamChaveLote.getItemAt(
+                    this.jComboBox_listaTamChaveLote.getSelectedIndex());
+            tamanho = tamanho.toLowerCase();
+            chave.setTipo(tamanho);
+            chaves.add(chave);
+        }
+        new ChaveController().salvarLote(chaves);
     }//GEN-LAST:event_jButton_cadastrarLoteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
