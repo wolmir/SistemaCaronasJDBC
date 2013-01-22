@@ -6,10 +6,8 @@ package com.ideiah.views.emprestimo;
 
 import com.ideiah.controller.AlunoController;
 import com.ideiah.controller.ChaveController;
-import com.ideiah.controller.EmprestimoController;
 import com.ideiah.model.entity.Aluno;
 import com.ideiah.model.entity.Chave;
-import com.ideiah.model.entity.Emprestimo;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;

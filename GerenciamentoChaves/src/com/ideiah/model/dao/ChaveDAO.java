@@ -38,6 +38,7 @@ public class ChaveDAO {
         LOGGER.setLevel(Level.SEVERE);
         String sql = "insert into chave " +
                 "(numero, tipo, status) values (?, ?, ?)";
+        System.out.println(chave.getTipo());
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
@@ -48,6 +49,7 @@ public class ChaveDAO {
             stmt.close();
             
         } catch (SQLException e) {
+            e.printStackTrace();
             LOGGER.severe("Erro ao inserir uma Chave no banco.");
             LOGGER.severe(e.getMessage());
         }
