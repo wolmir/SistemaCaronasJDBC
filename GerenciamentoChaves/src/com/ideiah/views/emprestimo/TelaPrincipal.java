@@ -308,58 +308,44 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_ListaAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ListaAlunoActionPerformed
-        
         ListaAlunos listaAlunos = new ListaAlunos();
-        this.jPanel_conteudo.setLayout(new BorderLayout());
-        this.jPanel_conteudo.removeAll();
-        this.jPanel_conteudo.add(listaAlunos);
         
-        verificaBotoes(evt);
+        criaPainel(listaAlunos, evt);
     }//GEN-LAST:event_jButton_ListaAlunoActionPerformed
 
     private void jButton_EmprestimoDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EmprestimoDevolucaoActionPerformed
         PainelEmprestimoDevolucao painelEmprestimoDevolucao = new PainelEmprestimoDevolucao();
-        this.jPanel_conteudo.setLayout(new BorderLayout());
-        this.jPanel_conteudo.removeAll();
-        this.jPanel_conteudo.add(painelEmprestimoDevolucao);
-//        List<Component> listaComponentes;
-//        listaComponentes = this.jPanel_conteudo.getComponents();
-//        System.out.println(listaComponentes.length);
-//        System.out.println(listaComponentes.);
         
-        verificaBotoes(evt);
+        criaPainel(painelEmprestimoDevolucao, evt);
     }//GEN-LAST:event_jButton_EmprestimoDevolucaoActionPerformed
 
     private void jButton_CadastrarChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CadastrarChaveActionPerformed
         PainelCadastroChave painelCadastroChave = new PainelCadastroChave();
-        this.jPanel_conteudo.setLayout(new BorderLayout());
-        this.jPanel_conteudo.removeAll();
-        this.jPanel_conteudo.add(painelCadastroChave);
-       
-        verificaBotoes(evt);
+        
+        criaPainel(painelCadastroChave, evt);
     }//GEN-LAST:event_jButton_CadastrarChaveActionPerformed
 
     private void jButton_CadastroChaveLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CadastroChaveLoteActionPerformed
-        
         CadastroChaveLote painelCadastroChaveLote = new CadastroChaveLote();
-        this.jPanel_conteudo.setLayout(new BorderLayout());
-        this.jPanel_conteudo.removeAll();
-        this.jPanel_conteudo.add(painelCadastroChaveLote);
-                      
-         verificaBotoes(evt);
+        
+        criaPainel(painelCadastroChaveLote, evt);
     }//GEN-LAST:event_jButton_CadastroChaveLoteActionPerformed
 
     private void jButton_ListaChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ListaChaveActionPerformed
-       
         ListaChaves listaChave = new ListaChaves();
-        this.jPanel_conteudo.setLayout(new BorderLayout());
-        this.jPanel_conteudo.removeAll();
-        this.jPanel_conteudo.add(listaChave);
         
-        verificaBotoes(evt);
+        criaPainel(listaChave, evt);
         
     }//GEN-LAST:event_jButton_ListaChaveActionPerformed
 
+    private void criaPainel(Component painel, java.awt.event.ActionEvent evt){
+        this.jPanel_conteudo.setLayout(new BorderLayout());
+        this.jPanel_conteudo.removeAll();
+        this.jPanel_conteudo.add(painel);
+        
+        verificaBotoes(evt);
+    }
+    
     private void jButton_LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LogoutActionPerformed
         
        
