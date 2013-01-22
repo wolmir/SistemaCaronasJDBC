@@ -55,12 +55,15 @@ public class Login extends javax.swing.JPanel {
         jLabel_numChaveD = new javax.swing.JLabel();
         jLabel_ChaveBuscadaD = new javax.swing.JLabel();
         jButton_realizarDevolucao = new javax.swing.JButton();
+        jLabel_tituloCadastro = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel_Login = new javax.swing.JLabel();
         jLabel_Senha = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jTextField_Login = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel_tituloCadastro1 = new javax.swing.JLabel();
+        jLabel_alertaLogin = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -350,6 +353,10 @@ public class Login extends javax.swing.JPanel {
                 .addGap(33, 33, 33))
         );
 
+        jLabel_tituloCadastro.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel_tituloCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_tituloCadastro.setText("Cadastro de novo número de chave");
+
         setPreferredSize(new java.awt.Dimension(609, 527));
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
@@ -366,28 +373,51 @@ public class Login extends javax.swing.JPanel {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/login.png"))); // NOI18N
         jButton1.setText("Logar");
 
+        jTextField_Login.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel_tituloCadastro1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel_tituloCadastro1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_tituloCadastro1.setText("Identifique-se para acessar o sistema");
+
+        jLabel_alertaLogin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_alertaLogin.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel_alertaLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_alertaLogin.setText("Dados incorretos");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(187, 187, 187)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel_Login)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel_tituloCadastro1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel_Senha)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPasswordField1))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(250, Short.MAX_VALUE))
+                        .addGap(187, 187, 187)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel_Login)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel_Senha)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPasswordField1))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(jLabel_alertaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(139, 139, 139)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel_tituloCadastro1)
+                .addGap(86, 86, 86)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_Login)
                     .addComponent(jTextField_Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -395,9 +425,11 @@ public class Login extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_Senha)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel_alertaLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(jButton1)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -477,6 +509,7 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_Senha;
     private javax.swing.JLabel jLabel_alertaDevolucao;
     private javax.swing.JLabel jLabel_alertaEmprestimo;
+    private javax.swing.JLabel jLabel_alertaLogin;
     private javax.swing.JLabel jLabel_cursoBuscadoD;
     private javax.swing.JLabel jLabel_cursoBuscadoE;
     private javax.swing.JLabel jLabel_cursoD;
