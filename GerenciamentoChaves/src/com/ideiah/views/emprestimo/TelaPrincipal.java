@@ -362,6 +362,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButton_LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LogoutActionPerformed
         
+        Login login = new Login();
+        
+        criaPanel(login, evt);
        
     }//GEN-LAST:event_jButton_LogoutActionPerformed
 
