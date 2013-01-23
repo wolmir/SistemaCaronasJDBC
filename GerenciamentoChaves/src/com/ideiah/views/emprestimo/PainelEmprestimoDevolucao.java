@@ -26,7 +26,6 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private Aluno aluno;
      
     public PainelEmprestimoDevolucao() {
-        System.out.println("Bunda");
         initComponents();
         carregarAsCoisasQuePrecisamSerCarregadas();
         this.jTF_matriculaBuscarE.grabFocus();
@@ -63,6 +62,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup_tamanhosArmarios = new javax.swing.ButtonGroup();
         jLabel_matriculaBuscarE = new javax.swing.JLabel();
         jTF_matriculaBuscarE = new javax.swing.JTextField();
         jButton_buscarE = new javax.swing.JButton();
@@ -161,6 +161,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         });
 
         jRadioButton_armarioMaior.setBackground(new java.awt.Color(204, 255, 204));
+        buttonGroup_tamanhosArmarios.add(jRadioButton_armarioMaior);
         jRadioButton_armarioMaior.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton_armarioMaior.setText("Armario maior:");
         jRadioButton_armarioMaior.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +171,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         });
 
         jRadioButton_armarioMenor.setBackground(new java.awt.Color(204, 255, 204));
+        buttonGroup_tamanhosArmarios.add(jRadioButton_armarioMenor);
         jRadioButton_armarioMenor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton_armarioMenor.setText("Armário menor:");
         jRadioButton_armarioMenor.addActionListener(new java.awt.event.ActionListener() {
@@ -452,6 +454,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_buscarDActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup_tamanhosArmarios;
     private javax.swing.JButton jButton_buscarD;
     private javax.swing.JButton jButton_buscarE;
     private javax.swing.JButton jButton_realizarDevolucao;
