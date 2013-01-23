@@ -559,6 +559,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Realizar Devolu&#xe7;&#xe3;o"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_realizarDevolucaoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

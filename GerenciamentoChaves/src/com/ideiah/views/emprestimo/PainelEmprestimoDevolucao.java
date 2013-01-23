@@ -236,6 +236,11 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         jButton_realizarDevolucao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton_realizarDevolucao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/ok.png"))); // NOI18N
         jButton_realizarDevolucao.setText("Realizar Devolução");
+        jButton_realizarDevolucao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_realizarDevolucaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -451,10 +456,30 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private void jTF_matriculaBuscarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_matriculaBuscarDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTF_matriculaBuscarDActionPerformed
+    
+    private void jTF_matriculaBuscarDKeyPressed(java.awt.event.KeyEvent evt) {                                                
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == evt.VK_ENTER){
+           this.setMatricula(this.jTF_matriculaBuscarD.getText());
+           aluno = this.buscarAluno();
+           
+           EmprestimoController emprestimo = new EmprestimoController();
+        
+           if(emprestimo.getEmprestimoPorAluno(aluno)){
+            this.jLabel_nomeBuscadoE.setText(aluno.getNome());
+            this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
+           }
+        }
 
+    }        
+    
     private void jButton_buscarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_buscarDActionPerformed
+
+    private void jButton_realizarDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_realizarDevolucaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_realizarDevolucaoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup_tamanhosArmarios;
@@ -500,7 +525,6 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         List<Chave> chaves3 = new ChaveController().getGrandes();
         Vector<Integer> chaves4 = new Vector<Integer>();
         for (Chave chave: chaves3) {
-            System.out.println("aqui "+chave.getNumero());
             chaves4.add(chave.getNumero());
         }
         DefaultComboBoxModel dcm2 = new DefaultComboBoxModel(chaves4);
