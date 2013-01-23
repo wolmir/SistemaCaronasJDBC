@@ -496,9 +496,9 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         
         List<Chave> chaves3 = new ChaveController().getGrandes();
         Vector<Integer> chaves4 = new Vector<Integer>();
-        for (Chave chave: chaves) {
+        for (Chave chave: chaves3) {
             System.out.println("aqui "+chave.getNumero());
-            chaves2.add(chave.getNumero());
+            chaves4.add(chave.getNumero());
         }
         DefaultComboBoxModel dcm2 = new DefaultComboBoxModel(chaves4);
         this.jComboBox_listaNumChavesMaiores.setModel(dcm2);
