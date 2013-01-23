@@ -88,6 +88,8 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
             this.jLabel_alertaEmprestimo.setVisible(false);
            }else{
                this.jButton_realizarEmprestimo.setEnabled(false);
+               this.jLabel_nomeBuscadoE.setText(aluno.getNome());
+               this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
                this.jLabel_alertaEmprestimo.setText("Aluno já possui empréstimo");
                this.jLabel_alertaEmprestimo.setVisible(true);
            }
