@@ -19,14 +19,14 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header" ><h:outputText value="Tipo de Usuário" /></f:facet>
-                    <h:outputText value="#{usuario.tipoUsuarioId.tipoUsuario}" />
+                    <h:outputText value="#{usuario.tipo.tipoUsuario}" />
                 </h:column>
                 <h:column>
                     <f:facet name="header" ><h:outputText value="Comandos" /></f:facet>
-                    <h:commandButton value="Editar" action="#{usuarioController.editar()}">
+                    <h:commandButton value="Editar" action="#{usuarioController.editar(usuario.id)}">
                         <f:param name="id" value="#{usuario.id}" />
                     </h:commandButton>
-                    <h:commandButton value="Deletar" action="#{usuarioController.deletar()}">
+                    <h:commandButton value="Deletar" action="#{usuarioController.deletar(usuario.id)}">
                         <f:param name="id" value="#{usuario.id}" />
                     </h:commandButton>
                 </h:column>

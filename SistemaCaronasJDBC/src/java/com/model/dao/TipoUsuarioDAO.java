@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -45,6 +47,25 @@ public class TipoUsuarioDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public List<TipoUsuario> getTiposUsuarios() {
+        String sql = "select * from tipo_usuario";
+        List<TipoUsuario> usuarios = new ArrayList<TipoUsuario>();
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                TipoUsuario usuario = new TipoUsuario();
+                usuario.setId(rs.getInt("id_tipo_usuario"));
+                usuario.setTipoUsuario(rs.getString("tipo_usuario"));
+                
+                usuarios.add(usuario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usuarios;
     }
     
 }

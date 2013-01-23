@@ -8,12 +8,12 @@
     <ui:define name="content">
         <h:form>
             Id: <div><h:inputText id="id" value="#{usuarioController.usuario.id}" disabled="true"/></div>
-            <h:inputHidden value="#{usuarioController.usuario.id}" />
+            <h:inputHidden id="idh" value="#{usuarioController.usuario.id}" />
             Nome: <div><h:inputText id="nome" value="#{usuarioController.usuario.nome}" /></div>
             RG: <div><h:inputText id="rg" value="#{usuarioController.usuario.rg}" /></div>
-            Nome de Usuário: <div><h:inputText id="nomeUsuario" value="#{usuarioController.usuario.nomeUsuario}" /></div>
-            Tipo de Usuário: <div><h:selectOneMenu required="true" id="tipo" value="#{usuarioController.tipoUsuarioSelect}" converter="TipoUsuarioConverter" >
-                    <f:selectItems value="#{tipoUsuarioController.tipoUsuarios}" var="tipoUsuario" itemLabel="#{tipoUsuario.tipoUsuario}" />
+            Nome de Usuário: <div><h:inputText id="nomeUsuario" value="#{usuarioController.usuario.username}" /></div>
+            Tipo de Usuário: <div><h:selectOneMenu required="true" id="tipo" value="#{usuarioController.tipoUsuarioSelect}"> <!--   converter="TipoUsuarioConverter"-->
+                    <f:selectItems value="#{usuarioController.tiposUsuarios}" var="tipoUsuario" itemLabel="#{tipoUsuario}" />
                 </h:selectOneMenu></div>
             Número do Servidor: <div><h:inputText id="numeroServidor" value="#{usuarioController.usuario.numeroServidor}" /></div>
             Senha: <div><h:inputText id="senha" value="#{usuarioController.usuario.senha}" /></div>

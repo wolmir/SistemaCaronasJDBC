@@ -10,15 +10,15 @@
     <ui:define name="content">
         Solicitação de Reserva
         <h:form id="srfo">
-            Id: <div><h:inputText id="id" value="#{solicitacaoViagemController.solicitacaoviagem.idSolicitacaoViagem}" disabled="true" /></div>
-            <div><h:inputHidden value="#{solicitacaoViagemController.solicitacaoviagem.idSolicitacaoViagem}" /></div>
+            Id: <div><h:inputText id="id" value="#{solicitacaoViagemController.solicitacaoviagem.id}" disabled="true" /></div>
+            <div><h:inputHidden value="#{solicitacaoViagemController.solicitacaoviagem.id}" /></div>
             Número de pessoas: 
             <div>
                 <h:inputText id="numero" value="#{solicitPog.numero}" required="true">
                     <f:ajax event="valueChange" execute="@this" render="PassData" />
                 </h:inputText>
             </div>
-            Os passageiros são servidores da Unipampa?: <div><h:selectBooleanCheckbox id="servidores" value="#{solicitacaoViagemController.saoServidores}" /></div>
+            Os passageiros são servidores da Unipampa?: <div><h:selectBooleanCheckbox id="servidores" value="#{solicitacaoViagemController.solicitacaoviagem.servidores}" /></div>
             Data de Saída: 
             <div>
                 <h:inputText id="dataSaida" value="#{solicitacaoViagemController.solicitacaoviagem.dataSaida}" size="20" required="true">
@@ -46,17 +46,17 @@
             </div>
             Local de Retorno: <div><h:inputText id="localRetorno" value="#{solicitacaoViagemController.solicitacaoviagem.localRetorno}" required="true"/></div>
             Percurso: <div><h:inputTextarea id="percurso" value="#{solicitacaoViagemController.solicitacaoviagem.percurso}" rows="15" cols="30" /></div>
-            Objetivo da Viagem: <div><h:inputTextarea id="objetivo" value="#{solicitacaoViagemController.solicitacaoviagem.objetivoViagem}" rows="15" cols="30" /></div>
+            Objetivo da Viagem: <div><h:inputTextarea id="objetivo" value="#{solicitacaoViagemController.solicitacaoviagem.objetivo}" rows="15" cols="30" /></div>
             Passageiros:
             <h:panelGroup id="passgroup">
-                <h:dataTable id="PassData" value="#{solicitPog.passageiros}" var="passageiro">
+                <h:dataTable id="PassData" value="#{solicitacaoViagemController.solicitacaoviagem.passageiros}" var="passageiro">
                     <h:column>
                         <!--<h:panelGroup id="">-->
                         <!--Id:
                         <div>
                             <h:inputText id="" value="" disabled="true"/>
                         </div>-->
-                        <h:inputHidden id="passId" value="#{passageiro.id}"/>
+                        <h:inputHidden id="passId" value="#{passageiro.idPassageiro}"/>
                         Nome: 
                         <div>
                             <h:inputText id="passName" value="#{passageiro.nome}" required="true">
@@ -79,18 +79,18 @@
                 </h:selectOneMenu></div>
             Responsável pela Solicitação:
             <div>
-                <h:selectOneMenu id="responsavel" value="#{solicitacaoViagemController.solicitanteSelect}" required="true" converter="UsuarioConverter" >
+                <h:selectOneMenu id="responsavel" value="#{solicitacaoViagemController.usuarioSolSelect}" required="true" converter="UsuarioConverter" >
                     <f:selectItems value="#{usuarioController.usuarios}" var="usuario" itemLabel="#{usuario.nome}" />
                 </h:selectOneMenu>
             </div>
             Autorizante:
             <div>
-                <h:selectOneMenu id="autorizante" value="#{solicitacaoViagemController.autorizadorSelect}" required="true" converter="UsuarioConverter" >
+                <h:selectOneMenu id="autorizante" value="#{solicitacaoViagemController.usuarioAutSelect}" required="true" converter="UsuarioConverter" >
                     <f:selectItems value="#{usuarioController.usuarios}" var="usuario" itemLabel="#{usuario.nome}" />
                 </h:selectOneMenu>
             </div>
             <div>
-                <h:commandButton value="Salvar" action="#{solicitacaoViagemController.salvar(solicitPog.getInstance())}" />
+                <h:commandButton value="Salvar" action="#{solicitacaoViagemController.salvar()}" />
             </div>
         </h:form>
     </ui:define>
