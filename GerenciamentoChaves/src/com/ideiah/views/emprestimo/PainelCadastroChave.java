@@ -5,7 +5,9 @@
 package com.ideiah.views.emprestimo;
 
 import com.ideiah.controller.AlunoController;
+import com.ideiah.controller.ChaveController;
 import com.ideiah.model.entity.Aluno;
+import com.ideiah.model.entity.Chave;
 import java.util.List;
 
 /**
@@ -136,6 +138,16 @@ public class PainelCadastroChave extends javax.swing.JPanel {
     private void jButton_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cadastrarActionPerformed
         // TODO add your handling code here:
         //this.jButton_buscar.setBack
+        Chave chave = new Chave();
+        chave.setNumero(Integer.decode(this.jTF_cadNumChave.getText()));
+        String tipo = (String)this.jComboBox_listaTamChaves.getItemAt(
+                this.jComboBox_listaTamChaves.getSelectedIndex());
+        tipo = tipo.toLowerCase();
+        chave.setTipo(tipo);
+        chave.setDisponivel(true);
+        ChaveController cc = new ChaveController();
+        cc.setChave(chave);
+        cc.salvar();
     }//GEN-LAST:event_jButton_cadastrarActionPerformed
 
     private void jComboBox_listaTamChavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_listaTamChavesActionPerformed

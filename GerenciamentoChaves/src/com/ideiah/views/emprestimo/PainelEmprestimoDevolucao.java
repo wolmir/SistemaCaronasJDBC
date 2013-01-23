@@ -5,10 +5,12 @@
 package com.ideiah.views.emprestimo;
 
 import com.ideiah.controller.AlunoController;
-import com.ideiah.controller.EmprestimoController;
+import com.ideiah.controller.ChaveController;
 import com.ideiah.model.entity.Aluno;
-import com.ideiah.model.entity.Emprestimo;
+import com.ideiah.model.entity.Chave;
 import java.util.List;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -24,7 +26,9 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private Aluno aluno;
      
     public PainelEmprestimoDevolucao() {
+        System.out.println("Bunda");
         initComponents();
+        carregarAsCoisasQuePrecisamSerCarregadas();
         this.jTF_matriculaBuscarE.grabFocus();
     }
 
@@ -395,24 +399,40 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private void jButton_buscarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarEActionPerformed
         // TODO add your handling code here:
         //this.jButton_buscar.setBack
+        this.setMatricula(this.jTF_matriculaBuscarE.getText());
+        aluno = this.buscarAluno();
+        this.jLabel_nomeBuscadoE.setText(aluno.getNome());
+        this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
     }//GEN-LAST:event_jButton_buscarEActionPerformed
 
     private void jComboBox_listaNumChavesMenoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_listaNumChavesMenoresActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBox_listaNumChavesMenoresActionPerformed
 
     private void jButton_realizarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_realizarEmprestimoActionPerformed
         Aluno aluno;
         AlunoController alunoController = new AlunoController();
         aluno = alunoController.pesquisarPorMatricula(matricula);
-        
-        Senha senha =new Senha(this.jTF_matriculaBuscarE.getText(),aluno);
+        Chave chave;
+        if (this.jRadioButton_armarioMaior.getSelectedObjects() != null) {
+            chave = new ChaveController().getByNumero((Integer)
+                    this.jComboBox_listaNumChavesMaiores.getItemAt(
+                    this.jComboBox_listaNumChavesMaiores.getSelectedIndex()));
+        }
+        else {
+            chave = new ChaveController().getByNumero((Integer)
+                    this.jComboBox_listaNumChavesMenores.getItemAt(
+                    this.jComboBox_listaNumChavesMenores.getSelectedIndex()));
+        }
+        Senha senha =new Senha(this.jTF_matriculaBuscarE.getText(),aluno, chave);
         senha.setVisible(true);
         
     }//GEN-LAST:event_jButton_realizarEmprestimoActionPerformed
 
     private void jComboBox_listaNumChavesMaioresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_listaNumChavesMaioresActionPerformed
-        // TODO add your handling code here:
+
+        
     }//GEN-LAST:event_jComboBox_listaNumChavesMaioresActionPerformed
 
     private void jRadioButton_armarioMaiorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_armarioMaiorActionPerformed
@@ -461,4 +481,22 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private javax.swing.JTextField jTF_matriculaBuscarD;
     private javax.swing.JTextField jTF_matriculaBuscarE;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarAsCoisasQuePrecisamSerCarregadas() {
+        List<Chave> chaves = new ChaveController().getPequenas();
+        Vector<Integer> chaves2 = new Vector<Integer>();
+        for (Chave chave: chaves) {
+            chaves2.add(chave.getNumero());
+        }
+        DefaultComboBoxModel dcm = new DefaultComboBoxModel(chaves2);
+        this.jComboBox_listaNumChavesMenores.setModel(dcm);
+        
+        List<Chave> chaves3 = new ChaveController().getGrandes();
+        Vector<Integer> chaves4 = new Vector<Integer>();
+        for (Chave chave: chaves) {
+            chaves2.add(chave.getNumero());
+        }
+        DefaultComboBoxModel dcm2 = new DefaultComboBoxModel(chaves4);
+        this.jComboBox_listaNumChavesMaiores.setModel(dcm2);
+    }
 }
