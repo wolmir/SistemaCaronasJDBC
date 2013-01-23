@@ -5,6 +5,7 @@
 package com.ideiah.controller;
 
 import com.ideiah.model.dao.EmprestimoDAO;
+import com.ideiah.model.entity.Aluno;
 import com.ideiah.model.entity.Emprestimo;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,22 @@ public class EmprestimoController {
             }
         }
         return abertos;
+    }
+    
+    public boolean getEmprestimoPorAluno(Aluno aluno) {
+        EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
+        List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
+        
+        emprestimos = emprestimoDAO.getByAluno(aluno);
+        
+        for(int i=0; i< emprestimos.size() ;i++){
+            if(emprestimos.get(i).getAluno().getId() == aluno.getId()){
+                if(emprestimos.get(i).getData_devolucao() == null)
+                    return false;
+            }
+        }
+        
+        return true;
     }
 
     /**

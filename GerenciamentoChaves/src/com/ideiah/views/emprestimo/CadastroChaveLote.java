@@ -18,10 +18,12 @@ public class CadastroChaveLote extends javax.swing.JPanel {
     /**
      * Creates new form CadastroChaveLote
      */
+    
     public CadastroChaveLote() {
         initComponents();
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,7 +64,7 @@ public class CadastroChaveLote extends javax.swing.JPanel {
         });
 
         jLabel_cadTamanhoChaveLote.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_cadTamanhoChaveLote.setText("Número da chave:");
+        jLabel_cadTamanhoChaveLote.setText("Tamanho do armário:");
 
         jComboBox_listaTamChaveLote.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox_listaTamChaveLote.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Menor", "Maior" }));
