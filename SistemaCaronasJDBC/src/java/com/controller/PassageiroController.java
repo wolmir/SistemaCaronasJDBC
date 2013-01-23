@@ -7,8 +7,7 @@ package com.controller;
 import com.model.dao.PassageiroDAO;
 import com.model.entity.Passageiro;
 import java.util.List;
-import javax.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 /**
@@ -24,10 +23,11 @@ public class PassageiroController {
     
     public PassageiroController() {
         this.passageiro = new Passageiro();
+        this.passageiros = new PassageiroDAO().getPassageiros();
     }
     
     public String salvar() {
-        if (this.getPassageiro().getId_passageiro() == null) {
+        if (this.getPassageiro().getIdPassageiro() == null) {
             new PassageiroDAO().inserir(this.getPassageiro());
         }
         else {
@@ -36,22 +36,17 @@ public class PassageiroController {
         return "listar";
     }
     
-    public String editar() {
-        this.setPassageiro(new PassageiroDAO().getById(this.getId()));
+    public String editar(Integer id) {
+        this.setPassageiro(new PassageiroDAO().getById(id));
         return "formulario";
     }
     
-    public String deletar() {
+    public String deletar(Integer id) {
         PassageiroDAO dao = new PassageiroDAO();
         this.passageiro = dao.getById(id);
         dao.remove(passageiro);
-        this.passageiros = dao.getPassageiros();
+        this.setPassageiros(dao.getPassageiros());
         return "listar";
-    }
-    
-    @PostConstruct
-    public void listar() {
-        this.passageiros = new PassageiroDAO().getPassageiros();
     }
 
     /**
@@ -80,6 +75,20 @@ public class PassageiroController {
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     * @return the passageiros
+     */
+    public List<Passageiro> getPassageiros() {
+        return passageiros;
+    }
+
+    /**
+     * @param passageiros the passageiros to set
+     */
+    public void setPassageiros(List<Passageiro> passageiros) {
+        this.passageiros = passageiros;
     }
     
 }

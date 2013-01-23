@@ -67,7 +67,7 @@ public class PassageiroDAO {
             
             while (rs.next()) {
                 Passageiro passageiro = new Passageiro();
-                passageiro.setId_passageiro(rs.getInt(PassageiroFields.id));
+                passageiro.setIdPassageiro(rs.getInt(PassageiroFields.id));
                 passageiro.setNome(rs.getString(PassageiroFields.nome));
                 passageiro.setRg(rs.getString(PassageiroFields.rg));
                 passageiro.setTelefone(rs.getString(PassageiroFields.telefone));
@@ -94,7 +94,7 @@ public class PassageiroDAO {
             stmt.setString(1, passageiro.getNome());
             stmt.setString(2, passageiro.getRg());
             stmt.setString(3, passageiro.getTelefone());
-            stmt.setInt(4, passageiro.getId_passageiro());
+            stmt.setInt(4, passageiro.getIdPassageiro());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
@@ -105,7 +105,7 @@ public class PassageiroDAO {
     public void remove(Passageiro passageiro) {
         try {
             PreparedStatement stmt = connection.prepareStatement("delete from passageiro where id_passageiro=?");
-            stmt.setInt(1, passageiro.getId_passageiro());
+            stmt.setInt(1, passageiro.getIdPassageiro());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
@@ -122,7 +122,7 @@ public class PassageiroDAO {
             
             while (rs.next()) {
                 Passageiro passageiro = new Passageiro();
-                passageiro.setId_passageiro(rs.getInt(PassageiroFields.id));
+                passageiro.setIdPassageiro(rs.getInt(PassageiroFields.id));
                 passageiro.setNome(rs.getString(PassageiroFields.nome));
                 passageiro.setRg(rs.getString(PassageiroFields.rg));
                 passageiro.setTelefone(rs.getString(PassageiroFields.telefone));

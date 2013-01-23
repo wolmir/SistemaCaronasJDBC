@@ -9,25 +9,12 @@ package com.model.entity;
  * @author Usuario
  */
 public class Passageiro {
-    private Integer id_passageiro;
+    private Integer idPassageiro;
     private String rg;
     private String nome;
     private String telefone;
 
-    /**
-     * @return the id_passageiro
-     */
-    public Integer getId_passageiro() {
-        return id_passageiro;
-    }
-
-    /**
-     * @param id_passageiro the id_passageiro to set
-     */
-    public void setId_passageiro(Integer id_passageiro) {
-        this.id_passageiro = id_passageiro;
-    }
-
+    
     /**
      * @return the rg
      */
@@ -68,6 +55,20 @@ public class Passageiro {
      */
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    /**
+     * @return the idPassageiro
+     */
+    public Integer getIdPassageiro() {
+        return idPassageiro;
+    }
+
+    /**
+     * @param idPassageiro the idPassageiro to set
+     */
+    public void setIdPassageiro(Integer idPassageiro) {
+        this.idPassageiro = idPassageiro;
     }
     
     

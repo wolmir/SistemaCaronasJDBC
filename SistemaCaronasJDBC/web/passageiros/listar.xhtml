@@ -28,10 +28,10 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header" ><h:outputText value="Comandos" /></f:facet>
-                    <h:commandButton value="Editar" action="#{passageiroController.editar()}">
+                    <h:commandButton value="Editar" action="#{passageiroController.editar(passageiro.idPassageiro)}">
                         <f:param name="id" value="#{passageiro.idPassageiro}" />
                     </h:commandButton>
-                    <h:commandButton value="Deletar" action="#{passageiroController.deletar()}">
+                    <h:commandButton value="Deletar" action="#{passageiroController.deletar(passageiro.idPassageiro)}">
                         <f:param name="id" value="#{passageiro.idPassageiro}" />
                     </h:commandButton>
                 </h:column>
