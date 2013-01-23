@@ -34,21 +34,11 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     public PainelEmprestimoDevolucao() {
         initComponents();
         this.jLabel_alertaEmprestimo.setVisible(false);
-        carregarAsCoisasQuePrecisamSerCarregadas();
+        this.jButton_realizarEmprestimo.setEnabled(false);
         this.jTF_matriculaBuscarE.grabFocus();
-        this.jButton_buscarE.setEnabled(false);
+        carregarAsCoisasQuePrecisamSerCarregadas();
+        
     }
-
-    public void validaNumero(JTextField Numero) {
-        if (Numero.getText().length() != 0){
-            try {
-                this.jButton_buscarE.setEnabled(true);
-            }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(null, "Esse Campo só aceita números" ,"Informação",JOptionPane.INFORMATION_MESSAGE);
-                Numero.grabFocus();
-            }
-        }
-    } 
     
     public String getMatricula() {
         return matricula;
@@ -58,13 +48,35 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         this.matricula = matricula;
     }
     
-    public void teste(){
-    
-    }
     private Aluno buscarAluno(){
        alunoController = new AlunoController();
        aluno  = alunoController.pesquisarPorMatricula(this.getMatricula());
        return aluno;
+    }
+    
+    public boolean verificaFormatoMatricula(String texto){
+        
+        /*
+          String mascara = "1234567890";       
+        
+        for(int i=0; i<= texto.length();i++){
+            for(int k=0; k<= mascara.length();k++){
+                if(texto.charAt(i) != mascara.charAt(k))
+                    return false;
+            }
+        }
+        return true;
+        * */
+        
+            try {  
+                int value = Integer.parseInt(texto);  
+                return true;
+                // text é um double  
+            } catch (NumberFormatException ex) {  
+                return false;
+            }  
+
+
     }
     
     public void verificaEmprestimo(Aluno aluno){
@@ -132,11 +144,6 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         jTF_matriculaBuscarE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTF_matriculaBuscarEActionPerformed(evt);
-            }
-        });
-        jTF_matriculaBuscarE.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTF_matriculaBuscarEFocusLost(evt);
             }
         });
         jTF_matriculaBuscarE.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -437,12 +444,19 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private void jButton_buscarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarEActionPerformed
         // TODO add your handling code here:
         //this.jButton_buscar.setBack
-        this.setMatricula(this.jTF_matriculaBuscarE.getText());
-        aluno = this.buscarAluno();
-        this.jLabel_nomeBuscadoE.setText(aluno.getNome());
-        this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
         
-        verificaEmprestimo(aluno);
+        if(verificaFormatoMatricula(this.jTF_matriculaBuscarE.getText())){
+            this.setMatricula(this.jTF_matriculaBuscarE.getText());
+            aluno = this.buscarAluno();
+            this.jLabel_nomeBuscadoE.setText(aluno.getNome());
+            this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
+            this.jButton_realizarEmprestimo.setEnabled(true);
+            verificaEmprestimo(aluno);
+        }else{
+            JOptionPane.showMessageDialog(null, "Digite somente números!");
+            this.jTF_matriculaBuscarE.grabFocus();
+            this.jButton_realizarEmprestimo.setEnabled(false);
+        }
     }//GEN-LAST:event_jButton_buscarEActionPerformed
 
     private void jComboBox_listaNumChavesMenoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_listaNumChavesMenoresActionPerformed
@@ -490,11 +504,6 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private void jButton_buscarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_buscarDActionPerformed
-
-    private void jTF_matriculaBuscarEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTF_matriculaBuscarEFocusLost
-
-        validaNumero(this.jTF_matriculaBuscarE);
-    }//GEN-LAST:event_jTF_matriculaBuscarEFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup_tamanhosArmarios;
