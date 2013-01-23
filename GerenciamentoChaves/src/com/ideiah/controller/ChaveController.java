@@ -98,7 +98,7 @@ public class ChaveController {
         List<Chave> resultado = new ArrayList<Chave>();
         List<Chave> chaves = new ChaveDAO().getChaves();
         for (Chave chave : chaves) {
-            if (chave.getTipo().equals("menor")) {
+            if (chave.getTipo().equals("pequena")) {
                 resultado.add(chave);
             }
         }
@@ -109,7 +109,7 @@ public class ChaveController {
         List<Chave> resultado = new ArrayList<Chave>();
         List<Chave> chaves = new ChaveDAO().getChaves();
         for (Chave chave : chaves) {
-            if (chave.getTipo().equals("maior")) {
+            if (chave.getTipo().equals("grande")) {
                 resultado.add(chave);
             }
         }
