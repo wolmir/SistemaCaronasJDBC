@@ -26,13 +26,10 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private Aluno aluno;
      
     public PainelEmprestimoDevolucao() {
-        System.out.println("Bunda");
         initComponents();
         carregarAsCoisasQuePrecisamSerCarregadas();
         this.jTF_matriculaBuscarE.grabFocus();
     }
-
- 
 
     
     public String getMatricula() {

@@ -1,28 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
-<record>
-  <date>2013-01-22T13:00:04</date>
-  <millis>1358866804040</millis>
-  <sequence>0</sequence>
-  <logger>com.ideiah.jdbc.ConnectionFactory</logger>
-  <level>SEVERE</level>
-  <class>com.ideiah.jdbc.ConnectionFactory</class>
-  <method>getConnection</method>
-  <thread>13</thread>
-  <message>Erro na conexão do banco de dados.</message>
-</record>
-<record>
-  <date>2013-01-22T13:00:04</date>
-  <millis>1358866804074</millis>
-  <sequence>1</sequence>
-  <logger>com.ideiah.jdbc.ConnectionFactory</logger>
-  <level>SEVERE</level>
-  <class>com.ideiah.jdbc.ConnectionFactory</class>
-  <method>getConnection</method>
-  <thread>13</thread>
-  <message>Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.</message>
-</record>
 </log>
