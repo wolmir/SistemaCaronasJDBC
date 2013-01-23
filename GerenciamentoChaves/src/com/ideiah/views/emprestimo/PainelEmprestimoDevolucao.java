@@ -6,6 +6,7 @@ package com.ideiah.views.emprestimo;
 
 import com.ideiah.controller.AlunoController;
 import com.ideiah.controller.ChaveController;
+import com.ideiah.controller.EmprestimoController;
 import com.ideiah.model.entity.Aluno;
 import com.ideiah.model.entity.Chave;
 import java.util.List;
@@ -49,7 +50,6 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
        return aluno;
     }
     
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -390,8 +390,13 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         if(evt.getKeyCode() == evt.VK_ENTER){
            this.setMatricula(this.jTF_matriculaBuscarE.getText());
            aluno = this.buscarAluno();
-           this.jLabel_nomeBuscadoE.setText(aluno.getNome());
-           this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
+           
+           EmprestimoController emprestimo = new EmprestimoController();
+        
+           if(emprestimo.getEmprestimoPorAluno(aluno)){
+            this.jLabel_nomeBuscadoE.setText(aluno.getNome());
+            this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
+           }
         }
 
     }//GEN-LAST:event_jTF_matriculaBuscarEKeyPressed
