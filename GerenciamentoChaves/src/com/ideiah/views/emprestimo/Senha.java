@@ -4,7 +4,11 @@
  */
 package com.ideiah.views.emprestimo;
 
+import com.ideiah.controller.EmprestimoController;
 import com.ideiah.model.entity.Aluno;
+import com.ideiah.model.entity.Chave;
+import com.ideiah.model.entity.Emprestimo;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,14 +21,16 @@ public class Senha extends javax.swing.JFrame {
      * Creates new form Senha
      */
     private Aluno aluno;
+    private Chave chave;
     
     
-    public Senha(String matricula, Aluno aluno) {
+    public Senha(String matricula, Aluno aluno, Chave chave) {
         initComponents();
         
         
         this.setLocationRelativeTo(null);
         this.setAluno(aluno);
+        this.chave = chave;
     }
 
     public Aluno getAluno() {
@@ -151,7 +157,26 @@ public class Senha extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println(this.aluno.getSenha());
         if (this.comparePass(jPasswordField_senha.getPassword(), this.aluno.getSenha())) {
-            JOptionPane.showInputDialog("Senha correta");
+            Emprestimo emprestimo = new Emprestimo();
+            emprestimo.setAluno(aluno);
+            emprestimo.setChave(chave);
+            emprestimo.setData_retirada(new GregorianCalendar());
+            EmprestimoController ec = new EmprestimoController();
+            ec.setEmprestimo(emprestimo);
+            String msg = ec.salvar();
+            if (msg == null) {
+                JOptionPane.showMessageDialog(null, "Cadastro efetudado!");
+                this.dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Erro no cadastro: " + msg);
+                this.dispose();
+            }
+        }
+        
+        else {
+            JOptionPane.showMessageDialog(null, "Senha Inválida!");
+            this.dispose();
         }
     }//GEN-LAST:event_jButton_okActionPerformed
 

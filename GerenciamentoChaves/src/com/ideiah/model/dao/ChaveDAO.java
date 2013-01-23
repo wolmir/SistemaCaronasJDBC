@@ -38,7 +38,6 @@ public class ChaveDAO {
         LOGGER.setLevel(Level.SEVERE);
         String sql = "insert into chave " +
                 "(numero, tipo, status) values (?, ?, ?)";
-        System.out.println(chave.getTipo());
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             

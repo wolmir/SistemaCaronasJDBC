@@ -4,6 +4,14 @@
  */
 package com.ideiah.views.emprestimo;
 
+import com.ideiah.controller.EmprestimoController;
+import com.ideiah.model.entity.Aluno;
+import com.ideiah.model.entity.Chave;
+import com.ideiah.model.entity.Emprestimo;
+import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Bruna
@@ -15,6 +23,7 @@ public class ListaAlunos extends javax.swing.JPanel {
      */
     public ListaAlunos() {
         initComponents();
+        carregarCoisasQuePrecisamSerCarregadas();
     }
 
     /**
@@ -117,4 +126,19 @@ public class ListaAlunos extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_ListaAlunos;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarCoisasQuePrecisamSerCarregadas() {
+        List<Emprestimo> abertos = new EmprestimoController().getAbertos();
+        //Chave, Tamanho, Aluno, Matricula, Curso
+        for (int i = 0; i < abertos.size(); i++) {
+            Chave chave = abertos.get(i).getChave();
+            Aluno aluno = abertos.get(i).getAluno();
+            TableModel table = this.jTable_ListaAlunos.getModel();
+            table.setValueAt(chave.getNumero(), i, 0);
+            table.setValueAt(chave.getTipo(), i, 1);
+            table.setValueAt(aluno.getNome(), i, 2);
+            table.setValueAt(aluno.getMatricula(), i, 3);
+            table.setValueAt(aluno.getCurso(), i, 4);
+        }
+    }
 }

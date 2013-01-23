@@ -37,7 +37,7 @@ public class EmprestimoDAO {
         }
     }
     
-    public void adiciona(Emprestimo emprestimo) {
+    public boolean adiciona(Emprestimo emprestimo) {
         LOGGER.setLevel(Level.ALL);
         String sql = "insert into emprestimo (id_aluno, id_chave, retirada,"
                 + "devolucao) values (?,?,?,?)";
@@ -60,7 +60,9 @@ public class EmprestimoDAO {
             LOGGER.severe("Erro ao adicionar um emprestimo no banco");
             LOGGER.severe(e.getMessage());
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
     
     
