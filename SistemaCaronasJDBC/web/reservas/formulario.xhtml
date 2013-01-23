@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../template/template.xhtml"
+                xmlns:fnc="http://localhost/fnc"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+        Solicitação de Reserva
+        <h:form id="srfo">
+            Id: <div><h:inputText id="id" value="#{solicitacaoViagemController.solicitacaoviagem.idSolicitacaoViagem}" disabled="true" /></div>
+            <div><h:inputHidden value="#{solicitacaoViagemController.solicitacaoviagem.idSolicitacaoViagem}" /></div>
+            Número de pessoas: 
+            <div>
+                <h:inputText id="numero" value="#{solicitPog.numero}" required="true">
+                    <f:ajax event="valueChange" execute="@this" render="PassData" />
+                </h:inputText>
+            </div>
+            Os passageiros são servidores da Unipampa?: <div><h:selectBooleanCheckbox id="servidores" value="#{solicitacaoViagemController.saoServidores}" /></div>
+            Data de Saída: 
+            <div>
+                <h:inputText id="dataSaida" value="#{solicitacaoViagemController.solicitacaoviagem.dataSaida}" size="20" required="true">
+                    <f:convertDateTime pattern="d-M-yyyy" />
+                </h:inputText>
+            </div>
+            Horário de Saída: 
+            <div>
+                <h:inputText id="horaSaida" value="#{solicitacaoViagemController.solicitacaoviagem.horaSaida}" size="20" required="true">
+                    <f:convertDateTime pattern="HH:mm" />
+                </h:inputText>
+            </div>
+            Local de Saída: <div><h:inputText id="localSaida" value="#{solicitacaoViagemController.solicitacaoviagem.localSaida}" required="true"/></div>
+            Data de Retorno: 
+            <div>
+                <h:inputText id="dataRetorno" value="#{solicitacaoViagemController.solicitacaoviagem.dataRetorno}" size="20" required="true">
+                    <f:convertDateTime pattern="d-M-yyyy" />
+                </h:inputText>
+            </div>
+            Horário de Retorno: 
+            <div>
+                <h:inputText id="horaRetorno" value="#{solicitacaoViagemController.solicitacaoviagem.horaRetorno}" size="20" required="true">
+                    <f:convertDateTime pattern="HH:mm" />
+                </h:inputText>
+            </div>
+            Local de Retorno: <div><h:inputText id="localRetorno" value="#{solicitacaoViagemController.solicitacaoviagem.localRetorno}" required="true"/></div>
+            Percurso: <div><h:inputTextarea id="percurso" value="#{solicitacaoViagemController.solicitacaoviagem.percurso}" rows="15" cols="30" /></div>
+            Objetivo da Viagem: <div><h:inputTextarea id="objetivo" value="#{solicitacaoViagemController.solicitacaoviagem.objetivoViagem}" rows="15" cols="30" /></div>
+            Passageiros:
+            <h:panelGroup id="passgroup">
+                <h:dataTable id="PassData" value="#{solicitPog.passageiros}" var="passageiro">
+                    <h:column>
+                        <!--<h:panelGroup id="">-->
+                        <!--Id:
+                        <div>
+                            <h:inputText id="" value="" disabled="true"/>
+                        </div>-->
+                        <h:inputHidden id="passId" value="#{passageiro.id}"/>
+                        Nome: 
+                        <div>
+                            <h:inputText id="passName" value="#{passageiro.nome}" required="true">
+                                <f:ajax event="valueChange" execute="@this" render="@this passRG passTel"/>
+                            </h:inputText>
+                        </div>
+                        RG:
+                        <div>
+                            <h:inputText id="passRG" value="#{passageiro.rg}" disabled="#{passageiro.disabled}" required="true"/>
+                        </div>
+                        Telefone:
+                        <div>
+                            <h:inputText id="passTel" value="#{passageiro.telefone}" disabled="#{passageiro.disabled}" required="true"/>
+                        </div>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            Tipo de Veículo: <div><h:selectOneMenu required="true" id="tipo" value="#{solicitacaoViagemController.veiculoSelect}" converter="VeiculoConverter" >
+                    <f:selectItems value="#{veiculoController.veiculos}" var="veiculo" itemLabel="#{veiculo.placa}" />
+                </h:selectOneMenu></div>
+            Responsável pela Solicitação:
+            <div>
+                <h:selectOneMenu id="responsavel" value="#{solicitacaoViagemController.solicitanteSelect}" required="true" converter="UsuarioConverter" >
+                    <f:selectItems value="#{usuarioController.usuarios}" var="usuario" itemLabel="#{usuario.nome}" />
+                </h:selectOneMenu>
+            </div>
+            Autorizante:
+            <div>
+                <h:selectOneMenu id="autorizante" value="#{solicitacaoViagemController.autorizadorSelect}" required="true" converter="UsuarioConverter" >
+                    <f:selectItems value="#{usuarioController.usuarios}" var="usuario" itemLabel="#{usuario.nome}" />
+                </h:selectOneMenu>
+            </div>
+            <div>
+                <h:commandButton value="Salvar" action="#{solicitacaoViagemController.salvar(solicitPog.getInstance())}" />
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
