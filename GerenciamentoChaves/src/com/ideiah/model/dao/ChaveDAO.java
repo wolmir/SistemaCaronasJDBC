@@ -48,6 +48,7 @@ public class ChaveDAO {
             stmt.close();
             
         } catch (SQLException e) {
+            e.printStackTrace();
             LOGGER.severe("Erro ao inserir uma Chave no banco.");
             LOGGER.severe(e.getMessage());
         }

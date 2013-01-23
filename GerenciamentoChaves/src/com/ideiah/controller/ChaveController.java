@@ -23,8 +23,15 @@ public class ChaveController {
         this.chave = new Chave();
     }
     
-    public void salvar() {
+    public String salvar() {
+        List<Chave> chaves = this.getTodas();
+        for (Chave chavei: chaves) {
+            if (chavei.getNumero() == chave.getNumero()) {
+                return "Esta chave já existe.";
+            }
+        }
         new ChaveDAO().adiciona(getChave());
+        return null;
     }
     
     public void alterar() {
@@ -41,7 +48,15 @@ public class ChaveController {
     
     public void salvarLote(List<Chave> chaves) {
         ChaveDAO cd = new ChaveDAO();
+        List<Chave> processed = new ArrayList<Chave>();
+        List<Chave> all = this.getTodas();
+        outer:
         for (Chave chavei: chaves) {
+            for (Chave chavei2: all) {
+                if (chavei.getNumero() == chavei2.getNumero()) {
+                    continue outer;
+                }
+            }
             cd.adiciona(chavei);
         }
     }
@@ -83,7 +98,7 @@ public class ChaveController {
         List<Chave> resultado = new ArrayList<Chave>();
         List<Chave> chaves = new ChaveDAO().getChaves();
         for (Chave chave : chaves) {
-            if (chave.getTipo().equals("pequena")) {
+            if (chave.getTipo().equals("menor")) {
                 resultado.add(chave);
             }
         }
@@ -94,7 +109,7 @@ public class ChaveController {
         List<Chave> resultado = new ArrayList<Chave>();
         List<Chave> chaves = new ChaveDAO().getChaves();
         for (Chave chave : chaves) {
-            if (chave.getTipo().equals("grande")) {
+            if (chave.getTipo().equals("maior")) {
                 resultado.add(chave);
             }
         }
@@ -110,6 +125,16 @@ public class ChaveController {
             }
         }
         return disponiveis;
+    }
+    
+    public Chave getByNumero(Integer numero) {
+        List<Chave> chaves = this.getTodas();
+        for (Chave chavei: chaves) {
+            if (chavei.getNumero() == numero) {
+                return chavei;
+            }
+        }
+        return null;
     }
 
     /**

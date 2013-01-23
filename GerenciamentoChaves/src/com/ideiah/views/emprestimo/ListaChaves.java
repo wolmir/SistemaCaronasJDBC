@@ -32,6 +32,7 @@ public class ListaChaves extends javax.swing.JPanel {
         String[] status = {"Ativo","Inativo"};
         formaraValoresCombo(status, 2);
         
+        carregarCoisasQuePrecisamSerCarregadas();
     }
 
     public void formaraValoresCombo(String[] valores, int index){
@@ -174,4 +175,9 @@ public class ListaChaves extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_ListaChaves;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarCoisasQuePrecisamSerCarregadas() {
+        //"Chave", "Tamanho", "Status"
+        
+    }
 }
