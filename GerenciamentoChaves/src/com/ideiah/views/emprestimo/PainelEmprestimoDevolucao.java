@@ -54,29 +54,26 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
        return aluno;
     }
     
+      
     public boolean verificaFormatoMatricula(String texto){
-        
-        /*
-          String mascara = "1234567890";       
-        
-        for(int i=0; i<= texto.length();i++){
-            for(int k=0; k<= mascara.length();k++){
-                if(texto.charAt(i) != mascara.charAt(k))
-                    return false;
-            }
-        }
-        return true;
-        * */
-        
+       
             try {  
                 int value = Integer.parseInt(texto);  
                 return true;
-                // text é um double  
             } catch (NumberFormatException ex) {  
                 return false;
             }  
-
-
+    }
+    
+    public boolean verificaSelecaoChave(){
+        
+        if(this.jRadioButton_armarioMenor.isSelected() && this.jComboBox_listaNumChavesMenores.getSelectedItem() != null)
+                return true;
+            
+        else if(this.jRadioButton_armarioMaior.isSelected() && this.jComboBox_listaNumChavesMaiores.getSelectedItem() != null)
+                return true;
+        
+        return false;
     }
     
     public void verificaEmprestimo(Aluno aluno){
@@ -86,10 +83,6 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
             this.jLabel_nomeBuscadoE.setText(aluno.getNome());
             this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
             this.jLabel_alertaEmprestimo.setVisible(false);
-           }else{
-               this.jButton_realizarEmprestimo.setEnabled(false);
-               this.jLabel_alertaEmprestimo.setText("Aluno já possui empréstimo");
-               this.jLabel_alertaEmprestimo.setVisible(true);
            }
            
     }
@@ -469,6 +462,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         AlunoController alunoController = new AlunoController();
         aluno = alunoController.pesquisarPorMatricula(matricula);
         Chave chave;
+        /*
         if (this.jRadioButton_armarioMaior.getSelectedObjects() != null) {
             chave = new ChaveController().getByNumero((Integer)
                     this.jComboBox_listaNumChavesMaiores.getItemAt(
@@ -479,8 +473,28 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
                     this.jComboBox_listaNumChavesMenores.getItemAt(
                     this.jComboBox_listaNumChavesMenores.getSelectedIndex()));
         }
-        Senha senha =new Senha(this.jTF_matriculaBuscarE.getText(),aluno, chave);
-        senha.setVisible(true);
+        */
+        
+         if(verificaSelecaoChave()){
+             
+            if (this.jRadioButton_armarioMaior.getSelectedObjects() != null) {
+                chave = new ChaveController().getByNumero((Integer)
+                    this.jComboBox_listaNumChavesMaiores.getItemAt(
+                    this.jComboBox_listaNumChavesMaiores.getSelectedIndex()));
+            }
+            else {
+                chave = new ChaveController().getByNumero((Integer)
+                        this.jComboBox_listaNumChavesMenores.getItemAt(
+                        this.jComboBox_listaNumChavesMenores.getSelectedIndex()));
+            }
+             
+             
+            Senha senha =new Senha(this.jTF_matriculaBuscarE.getText(),aluno, chave);
+            senha.setVisible(true);
+        }else{
+             JOptionPane.showMessageDialog(null, "Selecione uma chave");
+        }
+   
         
     }//GEN-LAST:event_jButton_realizarEmprestimoActionPerformed
 
