@@ -13,7 +13,12 @@ public class Passageiro {
     private String rg;
     private String nome;
     private String telefone;
+    private Boolean disabled;
 
+    
+    public Passageiro() {
+        this.disabled = false;
+    }
     
     /**
      * @return the rg
@@ -69,6 +74,20 @@ public class Passageiro {
      */
     public void setIdPassageiro(Integer idPassageiro) {
         this.idPassageiro = idPassageiro;
+    }
+
+    /**
+     * @return the disabled
+     */
+    public Boolean getDisabled() {
+        return disabled;
+    }
+
+    /**
+     * @param disabled the disabled to set
+     */
+    public void setDisabled(Boolean disabled) {
+        this.disabled = disabled;
     }
     
     
