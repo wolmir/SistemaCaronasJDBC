@@ -91,6 +91,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jSeparator_topo = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(876, 710));
         setResizable(false);
 
         jLabel_titulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -246,6 +247,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel_logoUnipampa.setMinimumSize(new java.awt.Dimension(448, 265));
 
         jPanel_conteudo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_conteudo.setPreferredSize(new java.awt.Dimension(609, 527));
 
         javax.swing.GroupLayout jPanel_conteudoLayout = new javax.swing.GroupLayout(jPanel_conteudo);
         jPanel_conteudo.setLayout(jPanel_conteudoLayout);
@@ -255,7 +257,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         jPanel_conteudoLayout.setVerticalGroup(
             jPanel_conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addGap(0, 527, Short.MAX_VALUE)
         );
 
         jLabel_subtitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

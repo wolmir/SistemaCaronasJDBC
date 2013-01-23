@@ -80,7 +80,7 @@ public class PainelCadastroChave extends javax.swing.JPanel {
         });
 
         jLabel_cadTamanhoChave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_cadTamanhoChave.setText("Número da chave:");
+        jLabel_cadTamanhoChave.setText("Tamanho do armário:");
 
         jComboBox_listaTamChaves.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox_listaTamChaves.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Menor", "Maior" }));
@@ -105,10 +105,10 @@ public class PainelCadastroChave extends javax.swing.JPanel {
                         .addComponent(jLabel_tituloCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_cadNumero)
-                            .addComponent(jLabel_cadTamanhoChave))
-                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel_cadTamanhoChave, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(jLabel_cadNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
