@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../template/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+        Cadastro de passageiros
+        <h:form>
+            Id: <div><h:inputText id="id" value="#{passageiroController.passageiro.idPassageiro}" disabled="true" /></div>
+            <div><h:inputHidden value="#{passageiroController.passageiro.idPassageiro}" /></div>
+            Nome: <div><h:inputText id="nome" value="#{passageiroController.passageiro.nome}" /></div>
+            RG: <div><h:inputText id="rg" value="#{passageiroController.passageiro.rg}" /></div>
+            Telefone: <div><h:inputText id="telefone" value="#{passageiroController.passageiro.telefone}" /></div>
+            <h:commandButton value="Salvar" action="#{passageiroController.salvar()}" />
+            
+        </h:form>
+    </ui:define>
+
+</ui:composition>

@@ -64,6 +64,17 @@ public class AlunoController {
         return resultado;
     }
     
+     public boolean existeMatricula(String matricula) {
+        List<Aluno> alunos = new AlunoDAO().getAlunos();
+        for (Aluno alunoi: alunos) {
+            if (alunoi.getMatricula().equals(matricula)){
+                return true;
+            }
+            
+        }
+        return false;
+    }
+    
     public Aluno pesquisarPorMatricula(String matricula) {
         List<Aluno> alunos = new AlunoDAO().getAlunos();
         List<Aluno> resultado = new ArrayList<Aluno>();
