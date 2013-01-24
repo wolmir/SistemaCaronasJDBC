@@ -9,8 +9,8 @@
         <h:form>
             Id: <div><h:inputText id="id" value="#{veiculoController.veiculo.id}" disabled="true"/></div>
             <h:inputHidden value="#{veiculoController.veiculo.id}" />
-            Tipo de Veículo: <div><h:selectOneMenu required="true" id="tipo" value="#{veiculoController.tipoVeiculoSelect}" converter="TipoVeiculoConverter" >
-                    <f:selectItems value="#{tipoVeiculoController.tiposVeiculos}" var="tipoVeiculo" itemLabel="#{tipoVeiculo.tipoVeiculo}" />
+            Tipo de Veículo: <div><h:selectOneMenu required="true" id="tipo" value="#{veiculoController.tipoVeiculoSelect}">
+                    <f:selectItems value="#{veiculoController.veiculoss}" var="tipoVeiculo" itemLabel="#{tipoVeiculo}" />
                 </h:selectOneMenu></div>
             Placa: <div><h:inputText id="placa" value="#{veiculoController.veiculo.placa}" /></div>
             Quilometragem: <div><h:inputText id="quilometragem" value="#{veiculoController.veiculo.quilometragem}" /></div>

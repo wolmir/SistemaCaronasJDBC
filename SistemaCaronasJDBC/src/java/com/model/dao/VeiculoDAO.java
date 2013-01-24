@@ -31,7 +31,7 @@ public class VeiculoDAO {
     
     public void inserir(Veiculo veiculo) {
         String sql = "insert into veiculo (id_tipo_veiculo, "
-                + "placa, quilometragem, capacidade_veiculo, "
+                + "placa, quilometragem, capacidade_passageiro, "
                 + "cor) values (?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -75,7 +75,7 @@ public class VeiculoDAO {
     
     public void altera(Veiculo veiculo) {
         String sql = "update veiculo set placa=?," +
-                "quilometragem=?, capacidade_veiculo=?, cor=? where id_veiculo=?";
+                "quilometragem=?, capacidade_passageiro=?, cor=? where id=?";
         
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
