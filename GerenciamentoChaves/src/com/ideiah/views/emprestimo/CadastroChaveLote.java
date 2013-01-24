@@ -8,6 +8,7 @@ import com.ideiah.controller.ChaveController;
 import com.ideiah.model.entity.Chave;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +25,24 @@ public class CadastroChaveLote extends javax.swing.JPanel {
     }
 
     
+    public boolean verificaFormatoChave(String texto){
+       
+            try {  
+                Double value = Double.parseDouble(texto);  
+                return true;
+            } catch (NumberFormatException ex) {  
+                return false;
+            }  
+    }
+    
+    public boolean verificaSelecao(){
+       
+            if(this.jComboBox_listaTamChaveLote.getSelectedItem() != "-")
+                return true;
+            else
+                return false;
+    }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,13 +199,23 @@ public class CadastroChaveLote extends javax.swing.JPanel {
         
         for (int i = start; i <= end; i++) {
             Chave chave = new Chave();
-            chave.setNumero(i);
-            String tamanho = (String)this.jComboBox_listaTamChaveLote.getItemAt(
-                    this.jComboBox_listaTamChaveLote.getSelectedIndex());
-            tamanho = tamanho.toLowerCase();
-            chave.setTipo(tamanho);
-            chave.setDisponivel(true);
-            chaves.add(chave);
+            if(verificaFormatoChave(this.jTF_cadNumChaveInicial.getText()) && verificaFormatoChave(this.jTF_cadNumChaveFinal.getText())){
+                
+                if(verificaSelecao()){
+                    chave.setNumero(i);
+                    String tamanho = (String)this.jComboBox_listaTamChaveLote.getItemAt(
+                            this.jComboBox_listaTamChaveLote.getSelectedIndex());
+                    tamanho = tamanho.toLowerCase();
+                    chave.setTipo(tamanho);
+                    chave.setDisponivel(true);
+                    chaves.add(chave);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Selecione um tamanho!");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Digite somente números!");
+                this.jTF_cadNumChaveInicial.grabFocus();
+            }
         }
         new ChaveController().salvarLote(chaves);
     }//GEN-LAST:event_jButton_cadastrarLoteActionPerformed
