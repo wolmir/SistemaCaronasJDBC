@@ -45,6 +45,11 @@ public class UsuarioController {
         if (this.usuario.getId() == null) {
             ud.inserir(this.usuario);
         } else {
+            if (usuario.getSenha() == null ||
+                    usuario.getSenha().equals("")) {
+                String senhaAntiga = ud.getById(usuario.getId()).getSenha();
+                usuario.setSenha(senhaAntiga);
+            }
             ud.alterar(this.usuario);
         }
         this.usuarios = ud.getUsuarios();
@@ -53,6 +58,7 @@ public class UsuarioController {
 
     public String editar(Integer id) {
         this.usuario = new UsuarioDAO().getById(id);
+        tipoUsuarioSelect = usuario.getTipo().getTipoUsuario();
         return "formulario";
     }
 

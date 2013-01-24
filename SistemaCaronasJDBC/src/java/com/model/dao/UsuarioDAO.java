@@ -110,9 +110,9 @@ public class UsuarioDAO {
     
     
     public void alterar(Usuario usuario) {
-        String sql = "update usuario set"
+        String sql = "update usuario set "
                 + "id_tipo_usuario=?, nome=?, rg=?, nome_usuario=?, numero_servidor=?, "
-                + "senha=?, telefone=?, email=? where id_usuario=?";
+                + "senha=?, telefone=?, email=? where id_usuario=?;";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
