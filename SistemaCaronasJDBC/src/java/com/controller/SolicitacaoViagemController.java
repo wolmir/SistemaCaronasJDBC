@@ -4,6 +4,7 @@
  */
 package com.controller;
 
+import com.model.dao.PassageiroDAO;
 import com.model.dao.SolicitacaoViagemDAO;
 import com.model.dao.UsuarioDAO;
 import com.model.dao.VeiculoDAO;
@@ -257,11 +258,24 @@ public class SolicitacaoViagemController {
      * @param numero the numero to set
      */
     public void setNumero(Integer numero) throws Exception {
-        throw new Exception("Whoopi! " + numero);
-        /*this.numero = numero;
+        this.numero = numero;
         List<Passageiro> passageiros = new ArrayList<Passageiro>();
-        this.solicitacaoviagem.setPassageiros(passageiros);*/
-        
+        for (int i = 0; i < numero; i++) {
+            passageiros.add(new Passageiro(this));
+        }
+        this.solicitacaoviagem.setPassageiros(passageiros);
+        //throw new Exception("Whoopi! " + passageiros.size() + numero);
+    }
+    
+    public void adjust(Passageiro passageiro) {
+        List<Passageiro> passageiros = new PassageiroDAO().getByNome(
+                passageiro.getNome());
+        if (passageiros.size() == 1) {
+            Passageiro pass = passageiros.get(0);
+            passageiro.setRg(pass.getRg());
+            passageiro.setTelefone(pass.getTelefone());
+            passageiro.setDisabled(true);
+        }
     }
     
     

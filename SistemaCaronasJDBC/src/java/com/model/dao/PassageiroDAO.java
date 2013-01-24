@@ -138,4 +138,33 @@ public class PassageiroDAO {
         }
         return null;
     }
+    
+    public List<Passageiro> getByNome(String nome) {
+        List<Passageiro> passageiros = new ArrayList<Passageiro>();
+        try {
+            
+            PreparedStatement stmt = this.connection.prepareStatement(
+                    "select * from passageiro where nome=?");
+            stmt.setString(1, nome);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                Passageiro passageiro = new Passageiro();
+                passageiro.setIdPassageiro(rs.getInt(PassageiroFields.id));
+                passageiro.setNome(rs.getString(PassageiroFields.nome));
+                passageiro.setRg(rs.getString(PassageiroFields.rg));
+                passageiro.setTelefone(rs.getString(PassageiroFields.telefone));
+                passageiros.add(passageiro);
+                
+            }
+            rs.close();
+            stmt.close();
+            //return passageiros;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return passageiros;
+        
+    }
 }
