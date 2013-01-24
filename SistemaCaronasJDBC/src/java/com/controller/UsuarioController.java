@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.controller;
 
 import com.model.dao.TipoUsuarioDAO;
@@ -20,61 +16,60 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class UsuarioController {
+
     private Usuario usuario;
     private List<Usuario> usuarios;
     private String tipoUsuarioSelect;
     private List<TipoUsuario> tipoUsuarios;
     private List<String> tiposUsuarios;
-    
+
     public UsuarioController() throws Exception {
         this.usuario = new Usuario();
         this.usuarios = new UsuarioDAO().getUsuarios();
         this.tipoUsuarios = new TipoUsuarioDAO().getTiposUsuarios();
         this.tiposUsuarios = new ArrayList<String>();
-        for (TipoUsuario tipo: this.tipoUsuarios) {
+        for (TipoUsuario tipo : this.tipoUsuarios) {
             this.tiposUsuarios.add(tipo.getTipoUsuario());
         }
     }
 
-    
     public String salvar() throws Exception {
         UsuarioDAO ud = new UsuarioDAO();
-        if (this.usuario.getId() == null) {
-            TipoUsuario tipo = null;
-            for (TipoUsuario t: this.tipoUsuarios) {
-                if (t.getTipoUsuario().equals(this.tipoUsuarioSelect)) {
-                    tipo = t;
-                }
+        TipoUsuario tipo = null;
+        for (TipoUsuario t : this.tipoUsuarios) {
+            if (t.getTipoUsuario().equals(this.tipoUsuarioSelect)) {
+                tipo = t;
             }
-            this.usuario.setTipo(tipo);
-            ud.inserir(this.usuario);
         }
-        
-        else {
-            TipoUsuario tipo = null;
-            for (TipoUsuario t: this.tipoUsuarios) {
-                if (t.getTipoUsuario().equals(this.tipoUsuarioSelect)) {
-                    tipo = t;
-                }
+        this.usuario.setTipo(tipo);
+        if (this.usuario.getId() == null) {
+            ud.inserir(this.usuario);
+        } else {
+            if (usuario.getSenha() == null ||
+                    usuario.getSenha().equals("")) {
+                String senhaAntiga = ud.getById(usuario.getId()).getSenha();
+                usuario.setSenha(senhaAntiga);
             }
-            this.usuario.setTipo(tipo);
             ud.alterar(this.usuario);
         }
+        this.usuarios = ud.getUsuarios();
         return "listar";
     }
-    
+
     public String editar(Integer id) {
         this.usuario = new UsuarioDAO().getById(id);
+        tipoUsuarioSelect = usuario.getTipo().getTipoUsuario();
         return "formulario";
     }
-    
+
     public String deletar(Integer id) {
         UsuarioDAO ud = new UsuarioDAO();
         this.usuario = ud.getById(id);
         ud.deletar(this.usuario);
+        this.usuarios = ud.getUsuarios();
         return "listar";
     }
-    
+
     /**
      * @return the usuario
      */
@@ -144,5 +139,4 @@ public class UsuarioController {
     public void setTiposUsuarios(List<String> tiposUsuarios) {
         this.tiposUsuarios = tiposUsuarios;
     }
-    
 }
