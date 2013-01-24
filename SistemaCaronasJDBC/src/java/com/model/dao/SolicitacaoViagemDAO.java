@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -44,7 +45,7 @@ public class SolicitacaoViagemDAO {
                 + "(id_passageiro, id_solicitacao_viagem) values (?, ?)";
         
         try {
-            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            PreparedStatement stmt = this.connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, solicitacao.getNumero());
             stmt.setBoolean(2, solicitacao.getServidores());
             stmt.setDate(3, new Date(solicitacao.getDataSaida().getTime()));
@@ -62,7 +63,7 @@ public class SolicitacaoViagemDAO {
             stmt.execute();
             ResultSet rsid = stmt.getGeneratedKeys();
             rsid.next();
-            Integer gid = rsid.getInt("id_solicitacao_viagem");
+            Integer gid = rsid.getInt(1);
             stmt.close();
             
             List<Passageiro> passageiros = solicitacao.getPassageiros();
