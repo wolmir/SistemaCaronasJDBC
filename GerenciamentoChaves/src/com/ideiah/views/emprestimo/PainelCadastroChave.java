@@ -9,6 +9,7 @@ import com.ideiah.controller.ChaveController;
 import com.ideiah.model.entity.Aluno;
 import com.ideiah.model.entity.Chave;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,10 +26,28 @@ public class PainelCadastroChave extends javax.swing.JPanel {
      
     public PainelCadastroChave() {
         initComponents();
+        this.jLabel_alertaChave.setVisible(false);
 //        this.jTF_matriculaBuscarE.grabFocus();
     }
 
- 
+    public boolean verificaSelecao(){
+       
+            if(this.jComboBox_listaTamChaves.getSelectedItem() != "-")
+                return true;
+            else
+                return false;
+    }
+    
+    
+    public boolean verificaFormatoChave(String texto){
+       
+            try {  
+                Double value = Double.parseDouble(texto);  
+                return true;
+            } catch (NumberFormatException ex) {  
+                return false;
+            }  
+    }
 
     
     public String getMatricula() {
@@ -60,6 +79,7 @@ public class PainelCadastroChave extends javax.swing.JPanel {
         jLabel_cadTamanhoChave = new javax.swing.JLabel();
         jComboBox_listaTamChaves = new javax.swing.JComboBox();
         jLabel_tituloCadastro = new javax.swing.JLabel();
+        jLabel_alertaChave = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -94,6 +114,11 @@ public class PainelCadastroChave extends javax.swing.JPanel {
         jLabel_tituloCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_tituloCadastro.setText("Cadastro de novo número de chave");
 
+        jLabel_alertaChave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_alertaChave.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel_alertaChave.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_alertaChave.setText("Número de chave inválido");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,20 +136,24 @@ public class PainelCadastroChave extends javax.swing.JPanel {
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTF_cadNumChave)
-                                .addComponent(jComboBox_listaTamChaves, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTF_cadNumChave)
+                                    .addComponent(jComboBox_listaTamChaves, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel_alertaChave, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel_tituloCadastro)
-                .addGap(90, 90, 90)
+                .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTF_cadNumChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_cadNumero))
+                    .addComponent(jLabel_cadNumero)
+                    .addComponent(jLabel_alertaChave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_cadTamanhoChave)
@@ -139,15 +168,34 @@ public class PainelCadastroChave extends javax.swing.JPanel {
         // TODO add your handling code here:
         //this.jButton_buscar.setBack
         Chave chave = new Chave();
-        chave.setNumero(Integer.decode(this.jTF_cadNumChave.getText()));
-        String tipo = (String)this.jComboBox_listaTamChaves.getItemAt(
-                this.jComboBox_listaTamChaves.getSelectedIndex());
-        tipo = tipo.toLowerCase();
-        chave.setTipo(tipo);
-        chave.setDisponivel(true);
-        ChaveController cc = new ChaveController();
-        cc.setChave(chave);
-        cc.salvar();
+        Integer numChave = Integer.decode(this.jTF_cadNumChave.getText());
+                
+        ChaveController chaveController = new ChaveController();
+        
+        if(verificaFormatoChave(this.jTF_cadNumChave.getText())){
+            this.jLabel_alertaChave.setVisible(false);
+            if(verificaSelecao()){
+                
+                if(chaveController.getByNumero(numChave) == null){
+                    chave.setNumero(numChave);
+                    String tipo = (String)this.jComboBox_listaTamChaves.getItemAt(
+                            this.jComboBox_listaTamChaves.getSelectedIndex());
+                    tipo = tipo.toLowerCase();
+                    chave.setTipo(tipo);
+                    chave.setDisponivel(true);
+                    ChaveController cc = new ChaveController();
+                    cc.setChave(chave);
+                    cc.salvar();
+                }else{
+                     JOptionPane.showMessageDialog(null, "Chave já existe!");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Selecione um tamanho!");
+            }
+        }else{
+             this.jLabel_alertaChave.setVisible(true);
+             this.jTF_cadNumChave.grabFocus();
+        }
     }//GEN-LAST:event_jButton_cadastrarActionPerformed
 
     private void jComboBox_listaTamChavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_listaTamChavesActionPerformed
@@ -157,6 +205,7 @@ public class PainelCadastroChave extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_cadastrar;
     private javax.swing.JComboBox jComboBox_listaTamChaves;
+    private javax.swing.JLabel jLabel_alertaChave;
     private javax.swing.JLabel jLabel_cadNumero;
     private javax.swing.JLabel jLabel_cadTamanhoChave;
     private javax.swing.JLabel jLabel_tituloCadastro;
