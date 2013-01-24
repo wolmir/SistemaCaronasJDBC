@@ -17,60 +17,54 @@ import javax.faces.bean.RequestScoped;
  *
  * @author Usuario
  */
-@ManagedBean(name="veiculoController")
+@ManagedBean(name = "veiculoController")
 @RequestScoped
 public class VeiculoController {
+
     private Veiculo veiculo;
     private List<Veiculo> veiculos;
     private List<String> veiculoss;
     private Integer id;
     private String tipoVeiculoSelect;
     private List<TipoVeiculo> tipos;
-    
+
     public VeiculoController() {
         this.veiculo = new Veiculo();
         this.veiculos = new VeiculoDAO().getVeiculos();
         this.tipos = new TipoVeiculoDAO().getTiposVeiculos();
         this.veiculoss = new ArrayList<String>();
-        for (TipoVeiculo veiculoi: this.tipos) {
+        for (TipoVeiculo veiculoi : this.tipos) {
             this.veiculoss.add(veiculoi.getTipoVeiculo());
         }
     }
-    
+
     public String salvar() {
+        TipoVeiculo tv = null;
+        for (TipoVeiculo t : this.getTipos()) {
+            if (t.getTipoVeiculo().equals(this.tipoVeiculoSelect)) {
+                tv = t;
+            }
+        }
+        veiculo.setTipoVeiculo(tv);
         if (this.getVeiculo().getId() == null) {
-            TipoVeiculo tv = null;
-            for (TipoVeiculo t: this.getTipos()) {
-                if (t.getTipoVeiculo().equals(this.tipoVeiculoSelect)) {
-                    tv = t;
-                }
-            }
-            veiculo.setTipoVeiculo(tv);
             new VeiculoDAO().inserir(veiculo);
+        } else {
+            new VeiculoDAO().altera(veiculo);
         }
-        else {
-            TipoVeiculo tv = null;
-            for (TipoVeiculo t: this.getTipos()) {
-                if (t.getTipoVeiculo().equals(this.tipoVeiculoSelect)) {
-                    tv = t;
-                }
-            }
-            veiculo.setTipoVeiculo(tv);
-            new VeiculoDAO().altera(this.getVeiculo());
-        }
+        this.veiculos = new VeiculoDAO().getVeiculos();
         return "listar";
     }
-    
-    
+
     public String deletar(Integer id) {
         veiculo.setId(id);
         new VeiculoDAO().deletar(veiculo);
+        this.veiculos = new VeiculoDAO().getVeiculos();
         return "listar";
     }
-    
+
     public String editar(Integer id) throws Exception {
         veiculo = new VeiculoDAO().getById(id);
-        //throw new Exception("" + veiculo.getPlaca());
+        tipoVeiculoSelect = veiculo.getTipoVeiculo().getTipoVeiculo();
         return "formulario";
     }
 
@@ -158,5 +152,4 @@ public class VeiculoController {
     public void setTipos(List<TipoVeiculo> tipos) {
         this.tipos = tipos;
     }
-    
 }
