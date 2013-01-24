@@ -7,6 +7,7 @@ package com.ideiah.views.emprestimo;
 import com.ideiah.controller.ChaveController;
 import com.ideiah.model.entity.Chave;
 import java.awt.Component;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
@@ -23,7 +24,9 @@ public class ListaChaves extends javax.swing.JPanel {
     /**
      * Creates new form ListaChaves
      */
+    private List<Chave> chaves;
     public ListaChaves() {
+        chaves = new ChaveController().getTodas();
         initComponents();
         
         
@@ -62,7 +65,7 @@ public class ListaChaves extends javax.swing.JPanel {
         jLabel_tituloListaC = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_ListaChaves = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButtonSalvar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel_alertaFinal = new javax.swing.JLabel();
 
@@ -95,13 +98,23 @@ public class ListaChaves extends javax.swing.JPanel {
         jTable_ListaChaves.getColumnModel().getColumn(0).setResizable(false);
         jTable_ListaChaves.getColumnModel().getColumn(1).setResizable(false);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/ok.png"))); // NOI18N
-        jButton1.setText("Salvar Alterações");
+        jButtonSalvar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/ok.png"))); // NOI18N
+        jButtonSalvar.setText("Salvar Alterações");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/delete.png"))); // NOI18N
         jButton2.setText("Excluir Chave");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel_alertaFinal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel_alertaFinal.setForeground(new java.awt.Color(255, 0, 51));
@@ -121,7 +134,7 @@ public class ListaChaves extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel_alertaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(36, 36, 36)
                                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(106, 106, 106))
@@ -135,7 +148,7 @@ public class ListaChaves extends javax.swing.JPanel {
                 .addComponent(jLabel_tituloListaC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jButtonSalvar)
                     .addComponent(jButton2))
                 .addGap(28, 28, 28)
                 .addComponent(jLabel_alertaFinal)
@@ -170,9 +183,45 @@ public class ListaChaves extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable_ListaChavesComponentAdded
 
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        DefaultTableModel dm =((DefaultTableModel)this.jTable_ListaChaves.getModel());
+        int rn = dm.getRowCount();
+        for (int i = 0; i < rn; i++) {
+            Integer numero = (Integer)dm.getValueAt(i, 0);
+            String tamanho = ((String)dm.getValueAt(i, 1)).toLowerCase();
+            Boolean status = (((String)dm.getValueAt(i, 2)).equals("Ativa")) ? (true) : (false);
+            this.chaves.get(i).setDisponivel(status);
+            this.chaves.get(i).setNumero(numero);
+            this.chaves.get(i).setTipo(tamanho);
+        }
+        for (Chave chave: chaves) {
+            ChaveController cc = new ChaveController();
+            cc.setChave(chave);
+            cc.alterar();
+        }
+        
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dm = (DefaultTableModel)this.jTable_ListaChaves.getModel();
+        int[] srows = this.jTable_ListaChaves.getSelectedRows();
+        for (int i = 0; i < srows.length; i++) {
+            Integer numero = (Integer)dm.getValueAt(srows[i], 0);
+            for (Chave chave: chaves) {
+                if (chave.getNumero() == numero) {
+                    ChaveController cc = new ChaveController();
+                    cc.setChave(chave);
+                    cc.deletar();
+                }
+            }
+        }
+        carregarCoisasQuePrecisamSerCarregadas();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel_alertaFinal;
     private javax.swing.JLabel jLabel_tituloListaC;
     private javax.swing.JPanel jPanel1;
@@ -182,7 +231,7 @@ public class ListaChaves extends javax.swing.JPanel {
 
     private void carregarCoisasQuePrecisamSerCarregadas() {
         //"Chave", "Tamanho", "Status"
-        List<Chave> chaves = new ChaveController().getTodas();
+        chaves = new ChaveController().getTodas();
         
         DefaultTableModel modelTable = (DefaultTableModel) this.jTable_ListaChaves.getModel();
         modelTable.setNumRows(0);
