@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../template/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+        <h:form>
+            Id: <div><h:inputText id="id" value="#{veiculoController.veiculo.id}" disabled="true"/></div>
+            <h:inputHidden value="#{veiculoController.veiculo.id}" />
+            Tipo de Veículo: <div><h:selectOneMenu required="true" id="tipo" value="#{veiculoController.tipoVeiculoSelect}">
+                    <f:selectItems value="#{veiculoController.veiculoss}" var="tipoVeiculo" itemLabel="#{tipoVeiculo}" />
+                </h:selectOneMenu></div>
+            Placa: <div><h:inputText id="placa" value="#{veiculoController.veiculo.placa}" /></div>
+            Quilometragem: <div><h:inputText id="quilometragem" value="#{veiculoController.veiculo.quilometragem}" /></div>
+            Capacidade de Passageiros: <div><h:inputText id="capacidadePassageiros" value="#{veiculoController.veiculo.capacidadePassageiro}" /></div>
+            Cor do Veículo: <div><h:inputText id="cor" value="#{veiculoController.veiculo.cor}" /></div>
+            <div>
+                <h:commandButton value="Salvar" action="#{veiculoController.salvar()}" />
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

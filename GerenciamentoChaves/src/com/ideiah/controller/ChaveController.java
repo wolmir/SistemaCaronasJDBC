@@ -105,6 +105,29 @@ public class ChaveController {
         return resultado;
     }
     
+    public List<Chave> getPequenasDisponiveis() {
+        List<Chave> pequenas = this.getPequenas();
+        List<Chave> disponiveis = new ArrayList<Chave>();
+        for (Chave chavei: pequenas) {
+            if (chavei.getDisponivel()) {
+                disponiveis.add(chavei);
+            }
+        }
+        return disponiveis;
+    }
+    
+    
+    public List<Chave> getGrandesDisponiveis() {
+        List<Chave> pequenas = this.getGrandes();
+        List<Chave> disponiveis = new ArrayList<Chave>();
+        for (Chave chavei: pequenas) {
+            if (chavei.getDisponivel()) {
+                disponiveis.add(chavei);
+            }
+        }
+        return disponiveis;
+    }
+    
     public List<Chave> getGrandes() {
         List<Chave> resultado = new ArrayList<Chave>();
         List<Chave> chaves = new ChaveDAO().getChaves();
