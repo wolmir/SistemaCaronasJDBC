@@ -4,7 +4,10 @@
  */
 package com.ideiah.views.emprestimo;
 
+import com.ideiah.controller.ChaveController;
+import com.ideiah.model.entity.Chave;
 import java.awt.Component;
+import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +29,7 @@ public class ListaChaves extends javax.swing.JPanel {
         
         // RECEBE OS DADOS DO BANCO
         //
+                
         String[] tamanho = {"Maior","Menor"};
         formaraValoresCombo(tamanho, 1);
         
@@ -178,6 +182,28 @@ public class ListaChaves extends javax.swing.JPanel {
 
     private void carregarCoisasQuePrecisamSerCarregadas() {
         //"Chave", "Tamanho", "Status"
+        List<Chave> chaves = new ChaveController().getTodas();
         
+        DefaultTableModel modelTable = (DefaultTableModel) this.jTable_ListaChaves.getModel();
+        modelTable.setNumRows(0);
+        
+        for (Chave chave: chaves) {
+            String tipo = "";
+            
+            if (chave.getTipo().equals("menor")) {
+                tipo = "Menor";
+            }
+            else {
+                tipo = "Maior";
+            }
+            
+            String disponivel = (chave.getDisponivel()) ? ("Ativa") : ("Inativa");
+            
+            modelTable.addRow(new Object[]{
+                  chave.getNumero(),
+                  tipo,
+                  disponivel}
+                      );
+        }
     }
 }

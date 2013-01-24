@@ -21,7 +21,8 @@ COLLATE = utf8_general_ci;
 CREATE  TABLE IF NOT EXISTS `gerenciamento_biblioteca`.`chave` (
   `id_chave` INT(11) NOT NULL AUTO_INCREMENT ,
   `numero` INT(11) NULL DEFAULT NULL ,
-  `tipo` ENUM('pequena', 'grande') NULL DEFAULT NULL ,
+  `tipo` VARCHAR(45) NULL DEFAULT NULL ,
+  `status` TINYINT(1) NULL DEFAULT NULL ,
   PRIMARY KEY (`id_chave`) ,
   UNIQUE INDEX `numero_UNIQUE` (`numero` ASC) )
 ENGINE = InnoDB
