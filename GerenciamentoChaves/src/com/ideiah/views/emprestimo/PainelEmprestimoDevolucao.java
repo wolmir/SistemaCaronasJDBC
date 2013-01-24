@@ -34,11 +34,21 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
      
     public PainelEmprestimoDevolucao() {
         initComponents();
+        zerarCampus();
+        this.jTF_matriculaBuscarE.grabFocus();
+        carregarAsCoisasQuePrecisamSerCarregadas();
+        
+    }
+    
+    public void zerarCampus(){
+        
+        this.jTF_matriculaBuscarE.setText("");
+        this.jLabel_cursoE.setText("");
+        this.jLabel_nomeBuscadoE.setText("");
         this.jLabel_alertaEmprestimo.setVisible(false);
         this.jButton_realizarEmprestimo.setEnabled(false);
         this.jButton_realizarDevolucao.setEnabled(false);
-        this.jTF_matriculaBuscarE.grabFocus();
-        carregarAsCoisasQuePrecisamSerCarregadas();
+        
         
     }
     
@@ -451,16 +461,15 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
                     aluno = this.buscarAluno();
                     verificaEmprestimo(aluno);
                 }else{
-                    this.jLabel_alertaEmprestimo.setVisible(true);
+                   zerarCampus();
+                   this.jLabel_alertaEmprestimo.setVisible(true);
                    this.jTF_matriculaBuscarE.grabFocus();
-                   this.jButton_realizarEmprestimo.setEnabled(false);
-
+                   
                 }
             }else{
                 JOptionPane.showMessageDialog(null, "Digite somente números!");
+                zerarCampus();
                 this.jTF_matriculaBuscarE.grabFocus();
-                this.jTF_matriculaBuscarE.setText("");
-                this.jButton_realizarEmprestimo.setEnabled(false);
             }
         }
 
@@ -479,10 +488,9 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
                 this.jButton_realizarEmprestimo.setEnabled(true);
                 verificaEmprestimo(aluno);
             }else{
+                zerarCampus();
                 this.jLabel_alertaEmprestimo.setVisible(true);
                 this.jTF_matriculaBuscarE.grabFocus();
-                this.jTF_matriculaBuscarE.setText("");
-                this.jButton_realizarEmprestimo.setEnabled(false);
             }
         }else{
             JOptionPane.showMessageDialog(null, "Digite somente números!");
