@@ -67,7 +67,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     public boolean verificaFormatoMatricula(String texto){
        
             try {  
-                int value = Integer.parseInt(texto);  
+                Double value = Double.parseDouble(texto);  
                 return true;
             } catch (NumberFormatException ex) {  
                 return false;
@@ -438,16 +438,22 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
             this.setMatricula(this.jTF_matriculaBuscarE.getText());
            aluno = this.buscarAluno();
            */
-           
-            if(existeAluno()){
-                this.setMatricula(this.jTF_matriculaBuscarE.getText());
-                aluno = this.buscarAluno();
-                verificaEmprestimo(aluno);
+            if(verificaFormatoMatricula(this.jTF_matriculaBuscarE.getText())){
+                if(existeAluno()){
+                    this.setMatricula(this.jTF_matriculaBuscarE.getText());
+                    aluno = this.buscarAluno();
+                    verificaEmprestimo(aluno);
+                }else{
+                    this.jLabel_alertaEmprestimo.setVisible(true);
+                   this.jTF_matriculaBuscarE.grabFocus();
+                   this.jButton_realizarEmprestimo.setEnabled(false);
+
+                }
             }else{
-                this.jLabel_alertaEmprestimo.setVisible(true);
-               this.jTF_matriculaBuscarE.grabFocus();
-               this.jButton_realizarEmprestimo.setEnabled(false);
-                
+                JOptionPane.showMessageDialog(null, "Digite somente números!");
+                this.jTF_matriculaBuscarE.grabFocus();
+                this.jTF_matriculaBuscarE.setText("");
+                this.jButton_realizarEmprestimo.setEnabled(false);
             }
         }
 
@@ -474,6 +480,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         }else{
             JOptionPane.showMessageDialog(null, "Digite somente números!");
             this.jTF_matriculaBuscarE.grabFocus();
+            this.jTF_matriculaBuscarE.setText("");
             this.jButton_realizarEmprestimo.setEnabled(false);
         }
     }//GEN-LAST:event_jButton_buscarEActionPerformed
