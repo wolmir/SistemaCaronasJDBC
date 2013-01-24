@@ -6,11 +6,17 @@ package com.ideiah.views.emprestimo;
 
 import com.ideiah.controller.AlunoController;
 import com.ideiah.controller.ChaveController;
+import com.ideiah.controller.EmprestimoController;
 import com.ideiah.model.entity.Aluno;
 import com.ideiah.model.entity.Chave;
 import java.util.List;
 import java.util.Vector;
+import javax.mail.internet.ParseException;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -26,14 +32,13 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private Aluno aluno;
      
     public PainelEmprestimoDevolucao() {
-        System.out.println("Bunda");
         initComponents();
-        carregarAsCoisasQuePrecisamSerCarregadas();
+        this.jLabel_alertaEmprestimo.setVisible(false);
+        this.jButton_realizarEmprestimo.setEnabled(false);
         this.jTF_matriculaBuscarE.grabFocus();
+        carregarAsCoisasQuePrecisamSerCarregadas();
+        
     }
-
- 
-
     
     public String getMatricula() {
         return matricula;
@@ -43,16 +48,44 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         this.matricula = matricula;
     }
     
-    public void teste(){
-    
-    }
     private Aluno buscarAluno(){
        alunoController = new AlunoController();
        aluno  = alunoController.pesquisarPorMatricula(this.getMatricula());
        return aluno;
     }
     
-  
+      
+    public boolean verificaFormatoMatricula(String texto){
+       
+            try {  
+                int value = Integer.parseInt(texto);  
+                return true;
+            } catch (NumberFormatException ex) {  
+                return false;
+            }  
+    }
+    
+    public boolean verificaSelecaoChave(){
+        
+        if(this.jRadioButton_armarioMenor.isSelected() && this.jComboBox_listaNumChavesMenores.getSelectedItem() != null)
+                return true;
+            
+        else if(this.jRadioButton_armarioMaior.isSelected() && this.jComboBox_listaNumChavesMaiores.getSelectedItem() != null)
+                return true;
+        
+        return false;
+    }
+    
+    public void verificaEmprestimo(Aluno aluno){
+            EmprestimoController emprestimo = new EmprestimoController();
+        
+           if(emprestimo.getEmprestimoPorAluno(aluno)){
+            this.jLabel_nomeBuscadoE.setText(aluno.getNome());
+            this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
+            this.jLabel_alertaEmprestimo.setVisible(false);
+           }
+           
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,6 +96,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup_tamanhosArmarios = new javax.swing.ButtonGroup();
         jLabel_matriculaBuscarE = new javax.swing.JLabel();
         jTF_matriculaBuscarE = new javax.swing.JTextField();
         jButton_buscarE = new javax.swing.JButton();
@@ -161,6 +195,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         });
 
         jRadioButton_armarioMaior.setBackground(new java.awt.Color(204, 255, 204));
+        buttonGroup_tamanhosArmarios.add(jRadioButton_armarioMaior);
         jRadioButton_armarioMaior.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton_armarioMaior.setText("Armario maior:");
         jRadioButton_armarioMaior.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +205,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         });
 
         jRadioButton_armarioMenor.setBackground(new java.awt.Color(204, 255, 204));
+        buttonGroup_tamanhosArmarios.add(jRadioButton_armarioMenor);
         jRadioButton_armarioMenor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton_armarioMenor.setText("Armário menor:");
         jRadioButton_armarioMenor.addActionListener(new java.awt.event.ActionListener() {
@@ -311,7 +347,8 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jButton_buscarE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel_alertaEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel_alertaEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator_meio)
                         .addContainerGap())
@@ -390,8 +427,9 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         if(evt.getKeyCode() == evt.VK_ENTER){
            this.setMatricula(this.jTF_matriculaBuscarE.getText());
            aluno = this.buscarAluno();
-           this.jLabel_nomeBuscadoE.setText(aluno.getNome());
-           this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
+           
+           verificaEmprestimo(aluno);
+           
         }
 
     }//GEN-LAST:event_jTF_matriculaBuscarEKeyPressed
@@ -399,10 +437,19 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private void jButton_buscarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarEActionPerformed
         // TODO add your handling code here:
         //this.jButton_buscar.setBack
-        this.setMatricula(this.jTF_matriculaBuscarE.getText());
-        aluno = this.buscarAluno();
-        this.jLabel_nomeBuscadoE.setText(aluno.getNome());
-        this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
+        
+        if(verificaFormatoMatricula(this.jTF_matriculaBuscarE.getText())){
+            this.setMatricula(this.jTF_matriculaBuscarE.getText());
+            aluno = this.buscarAluno();
+            this.jLabel_nomeBuscadoE.setText(aluno.getNome());
+            this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
+            this.jButton_realizarEmprestimo.setEnabled(true);
+            verificaEmprestimo(aluno);
+        }else{
+            JOptionPane.showMessageDialog(null, "Digite somente números!");
+            this.jTF_matriculaBuscarE.grabFocus();
+            this.jButton_realizarEmprestimo.setEnabled(false);
+        }
     }//GEN-LAST:event_jButton_buscarEActionPerformed
 
     private void jComboBox_listaNumChavesMenoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_listaNumChavesMenoresActionPerformed
@@ -415,6 +462,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         AlunoController alunoController = new AlunoController();
         aluno = alunoController.pesquisarPorMatricula(matricula);
         Chave chave;
+        /*
         if (this.jRadioButton_armarioMaior.getSelectedObjects() != null) {
             chave = new ChaveController().getByNumero((Integer)
                     this.jComboBox_listaNumChavesMaiores.getItemAt(
@@ -425,8 +473,28 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
                     this.jComboBox_listaNumChavesMenores.getItemAt(
                     this.jComboBox_listaNumChavesMenores.getSelectedIndex()));
         }
-        Senha senha =new Senha(this.jTF_matriculaBuscarE.getText(),aluno, chave);
-        senha.setVisible(true);
+        */
+        
+         if(verificaSelecaoChave()){
+             
+            if (this.jRadioButton_armarioMaior.getSelectedObjects() != null) {
+                chave = new ChaveController().getByNumero((Integer)
+                    this.jComboBox_listaNumChavesMaiores.getItemAt(
+                    this.jComboBox_listaNumChavesMaiores.getSelectedIndex()));
+            }
+            else {
+                chave = new ChaveController().getByNumero((Integer)
+                        this.jComboBox_listaNumChavesMenores.getItemAt(
+                        this.jComboBox_listaNumChavesMenores.getSelectedIndex()));
+            }
+             
+             
+            Senha senha =new Senha(this.jTF_matriculaBuscarE.getText(),aluno, chave);
+            senha.setVisible(true);
+        }else{
+             JOptionPane.showMessageDialog(null, "Selecione uma chave");
+        }
+   
         
     }//GEN-LAST:event_jButton_realizarEmprestimoActionPerformed
 
@@ -452,6 +520,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_buscarDActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup_tamanhosArmarios;
     private javax.swing.JButton jButton_buscarD;
     private javax.swing.JButton jButton_buscarE;
     private javax.swing.JButton jButton_realizarDevolucao;
@@ -493,8 +562,9 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         
         List<Chave> chaves3 = new ChaveController().getGrandes();
         Vector<Integer> chaves4 = new Vector<Integer>();
-        for (Chave chave: chaves) {
-            chaves2.add(chave.getNumero());
+        for (Chave chave: chaves3) {
+            System.out.println("aqui "+chave.getNumero());
+            chaves4.add(chave.getNumero());
         }
         DefaultComboBoxModel dcm2 = new DefaultComboBoxModel(chaves4);
         this.jComboBox_listaNumChavesMaiores.setModel(dcm2);

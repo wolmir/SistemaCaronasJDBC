@@ -89,8 +89,8 @@ public class ChaveDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, chave.getNumero());
             stmt.setString(2, chave.getTipo());
-            stmt.setLong(3, chave.getId());
-            stmt.setBoolean(4, chave.getDisponivel());
+            stmt.setBoolean(3, chave.getDisponivel());
+            stmt.setLong(4, chave.getId());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
