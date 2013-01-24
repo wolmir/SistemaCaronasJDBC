@@ -40,6 +40,15 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         
     }
     
+    public boolean existeAluno(){
+        alunoController = new AlunoController();
+            
+           if(alunoController.existeMatricula(this.jTF_matriculaBuscarE.getText()))
+               return true;
+           else
+               return false;
+    }
+    
     public String getMatricula() {
         return matricula;
     }
@@ -425,26 +434,43 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     private void jTF_matriculaBuscarEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTF_matriculaBuscarEKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == evt.VK_ENTER){
-           this.setMatricula(this.jTF_matriculaBuscarE.getText());
+           /*
+            this.setMatricula(this.jTF_matriculaBuscarE.getText());
            aluno = this.buscarAluno();
+           */
            
-           verificaEmprestimo(aluno);
-           
+            if(existeAluno()){
+                this.setMatricula(this.jTF_matriculaBuscarE.getText());
+                aluno = this.buscarAluno();
+                verificaEmprestimo(aluno);
+            }else{
+                this.jLabel_alertaEmprestimo.setVisible(true);
+               this.jTF_matriculaBuscarE.grabFocus();
+               this.jButton_realizarEmprestimo.setEnabled(false);
+                
+            }
         }
 
     }//GEN-LAST:event_jTF_matriculaBuscarEKeyPressed
 
     private void jButton_buscarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarEActionPerformed
-        // TODO add your handling code here:
-        //this.jButton_buscar.setBack
-        
+    
+        System.out.println("---> "+ existeAluno() );
         if(verificaFormatoMatricula(this.jTF_matriculaBuscarE.getText())){
-            this.setMatricula(this.jTF_matriculaBuscarE.getText());
-            aluno = this.buscarAluno();
-            this.jLabel_nomeBuscadoE.setText(aluno.getNome());
-            this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
-            this.jButton_realizarEmprestimo.setEnabled(true);
-            verificaEmprestimo(aluno);
+            if (existeAluno()){
+                this.setMatricula(this.jTF_matriculaBuscarE.getText()); 
+                aluno = this.buscarAluno();
+                this.jLabel_alertaEmprestimo.setVisible(false);
+                this.jLabel_nomeBuscadoE.setText(aluno.getNome());
+                this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
+                this.jButton_realizarEmprestimo.setEnabled(true);
+                verificaEmprestimo(aluno);
+            }else{
+                this.jLabel_alertaEmprestimo.setVisible(true);
+                this.jTF_matriculaBuscarE.grabFocus();
+                this.jTF_matriculaBuscarE.setText("");
+                this.jButton_realizarEmprestimo.setEnabled(false);
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Digite somente números!");
             this.jTF_matriculaBuscarE.grabFocus();
