@@ -4,6 +4,8 @@
  */
 package com.model.entity;
 
+import com.controller.SolicitacaoViagemController;
+
 /**
  *
  * @author Usuario
@@ -14,10 +16,16 @@ public class Passageiro {
     private String nome;
     private String telefone;
     private Boolean disabled;
+    private SolicitacaoViagemController gambi = null;
 
     
     public Passageiro() {
         this.disabled = false;
+    }
+    
+    public Passageiro(SolicitacaoViagemController c) {
+        this.disabled = false;
+        this.gambi = c;
     }
     
     /**
@@ -46,6 +54,9 @@ public class Passageiro {
      */
     public void setNome(String nome) {
         this.nome = nome;
+        if (this.gambi != null) {
+            this.gambi.adjust(this);
+        }
     }
 
     /**

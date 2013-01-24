@@ -63,11 +63,16 @@ public class SolicitacaoViagemDAO {
             
             List<Passageiro> passageiros = solicitacao.getPassageiros();
             for (Passageiro passageiro: passageiros) {
-                stmt = this.connection.prepareStatement(sql2);
-                stmt.setInt(1, passageiro.getIdPassageiro());
-                stmt.setInt(2, solicitacao.getId());
-                stmt.execute();
-                stmt.close();
+                if (passageiro.getIdPassageiro() == null) {
+                    Passageiro teste = new PassageiroDAO().getByRG(passageiro.rg);
+                    if (teste != )
+                    stmt = this.connection.prepareStatement(sql2);
+                    stmt.setInt(1, passageiro.getIdPassageiro());
+                    stmt.setInt(2, solicitacao.getId());
+                    stmt.execute();
+                    stmt.close();
+                }
+                
             }
         } catch(SQLException e) {
             e.printStackTrace();

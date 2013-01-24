@@ -17,25 +17,10 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public class ConnectionFactory {
-    private final static Logger LOGGER = Logger.getLogger(ConnectionFactory.class.getName());
-    
-    public ConnectionFactory() {
-        try {
-        FileHandler fh = new FileHandler(this.getClass().getName() + "log.txt");
-        LOGGER.addHandler(fh);
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }
-    }
-    
     public Connection getConnection() throws SQLException {
-        LOGGER.setLevel(Level.ALL);
         try {
             return DriverManager.getConnection("jdbc:mysql://localhost/sistema_caronas", "root", "");
         } catch (SQLException e) {
-            LOGGER.severe("Erro na conexão do banco de dados.");
-            LOGGER.severe(e.getMessage());
             e.printStackTrace();
             throw new SQLException(e);
         }
