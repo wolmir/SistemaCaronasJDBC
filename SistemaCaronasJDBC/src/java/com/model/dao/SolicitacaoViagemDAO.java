@@ -36,8 +36,8 @@ public class SolicitacaoViagemDAO {
         String sql = "insert into solicitacao_viagem "
                 + "(numero_transportados, servidores, data_saida, hora_saida, "
                 + "local_saida, data_retorno, hora_retorno, local_retorno, "
-                + "percurso, objetivo, id_veiculo, id_responsavel_solicitacao, "
-                + "id_resposponsavel_autorizante) values (?,?,?,?,?,?,?,?,?,?,?," 
+                + "percurso, objetivo_viagem, id_veiculo, id_responsavel_solicitacao, "
+                + "id_responsavel_autorizante) values (?,?,?,?,?,?,?,?,?,?,?," 
                 + "?, ?)";
         
         String sql2 = "insert into passageiro_solicitacao_viagem "
@@ -47,30 +47,41 @@ public class SolicitacaoViagemDAO {
             PreparedStatement stmt = this.connection.prepareStatement(sql);
             stmt.setInt(1, solicitacao.getNumero());
             stmt.setBoolean(2, solicitacao.getServidores());
-            stmt.setDate(3, new Date(solicitacao.getDataSaida().getTimeInMillis()));
-            stmt.setDate(4, new Date(solicitacao.getHoraSaida().getTimeInMillis()));
+            stmt.setDate(3, new Date(solicitacao.getDataSaida().getTime()));
+            stmt.setDate(4, new Date(solicitacao.getHoraSaida().getTime()));
             stmt.setString(5, solicitacao.getLocalSaida());
-            stmt.setDate(6, new Date(solicitacao.getDataRetorno().getTimeInMillis()));
-            stmt.setDate(7, new Date(solicitacao.getHoraRetorno().getTimeInMillis()));
+            stmt.setDate(6, new Date(solicitacao.getDataRetorno().getTime()));
+            stmt.setDate(7, new Date(solicitacao.getHoraRetorno().getTime()));
             stmt.setString(8, solicitacao.getLocalRetorno());
             stmt.setString(9, solicitacao.getPercurso());
             stmt.setString(10, solicitacao.getObjetivo());
             stmt.setInt(11, solicitacao.getVeiculo().getId());
             stmt.setInt(12, solicitacao.getSolicitante().getId());
             stmt.setInt(13, solicitacao.getAutorizante().getId());
+            
             stmt.execute();
+            ResultSet rsid = stmt.getGeneratedKeys();
+            rsid.next();
+            Integer gid = rsid.getInt("id_solicitacao_viagem");
             stmt.close();
             
             List<Passageiro> passageiros = solicitacao.getPassageiros();
             for (Passageiro passageiro: passageiros) {
                 if (passageiro.getIdPassageiro() == null) {
-                    Passageiro teste = new PassageiroDAO().getByRG(passageiro.rg);
-                    if (teste != )
+                    Passageiro teste = new PassageiroDAO().getByRG(passageiro.getRg());
+                    if (teste == null) {
+                        new PassageiroDAO().inserir(passageiro);
+                    }
                     stmt = this.connection.prepareStatement(sql2);
-                    stmt.setInt(1, passageiro.getIdPassageiro());
-                    stmt.setInt(2, solicitacao.getId());
+                    String rgp = passageiro.getRg();
+                    Passageiro pass2 = new PassageiroDAO().getByRG(rgp);
+                    Integer id2 = pass2.getIdPassageiro();
+                    stmt.setInt(1, id2);
+                    Integer id3 = gid;
+                    stmt.setInt(2, id3);
                     stmt.execute();
                     stmt.close();
+                    
                 }
                 
             }
@@ -85,8 +96,8 @@ public class SolicitacaoViagemDAO {
         String sql = "update solicitacao_viagem set"
                 + "numero_transportados=?, servidores=?, data_saida=?, hora_saida=?, "
                 + "local_saida=?, data_retorno=?, hora_retorno=?, local_retorno=?, "
-                + "percurso=?, objetivo=?, id_veiculo=?, id_responsavel_solicitacao=?, "
-                + "id_resposponsavel_autorizante=? where id_solcitacao_viagem=? ";
+                + "percurso=?, objetivo_viagem=?, id_veiculo=?, id_responsavel_solicitacao=?, "
+                + "id_responsavel_autorizante=? where id_solcitacao_viagem=? ";
         
         String sql2 = "insert into passageiro_solicitacao_viagem "
                 + "(id_passageiro, id_solicitacao_viagem) values (?, ?)";
@@ -96,11 +107,11 @@ public class SolicitacaoViagemDAO {
             PreparedStatement stmt = this.connection.prepareStatement(sql);
             stmt.setInt(1, solicitacao.getNumero());
             stmt.setBoolean(2, solicitacao.getServidores());
-            stmt.setDate(3, new Date(solicitacao.getDataSaida().getTimeInMillis()));
-            stmt.setDate(4, new Date(solicitacao.getHoraSaida().getTimeInMillis()));
+            stmt.setDate(3, new Date(solicitacao.getDataSaida().getTime()));
+            stmt.setDate(4, new Date(solicitacao.getHoraSaida().getTime()));
             stmt.setString(5, solicitacao.getLocalSaida());
-            stmt.setDate(6, new Date(solicitacao.getDataRetorno().getTimeInMillis()));
-            stmt.setDate(7, new Date(solicitacao.getHoraRetorno().getTimeInMillis()));
+            stmt.setDate(6, new Date(solicitacao.getDataRetorno().getTime()));
+            stmt.setDate(7, new Date(solicitacao.getHoraRetorno().getTime()));
             stmt.setString(8, solicitacao.getLocalRetorno());
             stmt.setString(9, solicitacao.getPercurso());
             stmt.setString(10, solicitacao.getObjetivo());
@@ -141,16 +152,16 @@ public class SolicitacaoViagemDAO {
                 sv.setId(rs.getInt("id_solicitacao_viagem"));
                 Calendar c = Calendar.getInstance();
                 c.setTime(rs.getDate("data_saida"));
-                sv.setDataSaida(c);
+                sv.setDataSaida(c.getTime());
                 c = Calendar.getInstance();
                 c.setTime(rs.getDate("hora_saida"));
-                sv.setHoraSaida(c);
+                sv.setHoraSaida(c.getTime());
                 c = Calendar.getInstance();
                 c.setTime(rs.getDate("data_retorno"));
-                sv.setDataRetorno(c);
+                sv.setDataRetorno(c.getTime());
                 c = Calendar.getInstance();
                 c.setTime(rs.getDate("hora_retorno"));
-                sv.setHoraRetorno(c);
+                sv.setHoraRetorno(c.getTime());
                 sv.setLocalSaida(rs.getString("local_saida"));
                 sv.setLocalRetorno(rs.getString("local_retorno"));
                 sv.setNumero(rs.getInt("numero_transportados"));

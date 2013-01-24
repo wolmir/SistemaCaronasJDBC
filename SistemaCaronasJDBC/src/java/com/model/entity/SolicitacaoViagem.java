@@ -5,6 +5,8 @@
 package com.model.entity;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -53,57 +55,69 @@ public class SolicitacaoViagem {
     /**
      * @return the dataSaida
      */
-    public Calendar getDataSaida() {
-        return dataSaida;
+    public Date getDataSaida() {
+        if (dataSaida != null)
+            return dataSaida.getTime();
+        return null;
     }
 
     /**
      * @param dataSaida the dataSaida to set
      */
-    public void setDataSaida(Calendar dataSaida) {
-        this.dataSaida = dataSaida;
+    public void setDataSaida(Date dataSaida) {
+        this.dataSaida = new GregorianCalendar();
+        this.dataSaida.setTime(dataSaida);
     }
 
     /**
      * @return the dataRetorno
      */
-    public Calendar getDataRetorno() {
-        return dataRetorno;
+    public Date getDataRetorno() {
+        if (dataRetorno != null)
+            return dataRetorno.getTime();
+        return null;
     }
 
     /**
      * @param dataRetorno the dataRetorno to set
      */
-    public void setDataRetorno(Calendar dataRetorno) {
-        this.dataRetorno = dataRetorno;
+    public void setDataRetorno(Date dataRetorno) {
+        this.dataRetorno = new GregorianCalendar();
+        this.dataRetorno.setTime(dataRetorno);
     }
 
     /**
      * @return the horaSaida
      */
-    public Calendar getHoraSaida() {
-        return horaSaida;
+    public Date getHoraSaida() {
+        if (horaSaida != null)
+            return horaSaida.getTime();
+        return null;
     }
 
     /**
      * @param horaSaida the horaSaida to set
      */
-    public void setHoraSaida(Calendar horaSaida) {
-        this.horaSaida = horaSaida;
+    public void setHoraSaida(Date horaSaida) {
+        this.horaSaida = new GregorianCalendar();
+        this.horaSaida.setTime(horaSaida);
     }
 
     /**
      * @return the horaRetorno
      */
-    public Calendar getHoraRetorno() {
-        return horaRetorno;
+    public Date getHoraRetorno() {
+        if (horaRetorno != null)
+            return horaRetorno.getTime();
+        return null;
     }
 
     /**
      * @param horaRetorno the horaRetorno to set
      */
-    public void setHoraRetorno(Calendar horaRetorno) {
-        this.horaRetorno = horaRetorno;
+    public void setHoraRetorno(Date horaRetorno) {
+        this.horaRetorno = new GregorianCalendar();
+        this.horaRetorno.setTime(horaRetorno);
     }
 
     /**

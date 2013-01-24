@@ -167,4 +167,35 @@ public class PassageiroDAO {
         return passageiros;
         
     }
+    
+    public Passageiro getByRG(String nome) {
+        //List<Passageiro> passageiros = new ArrayList<Passageiro>();
+        try {
+            
+            PreparedStatement stmt = this.connection.prepareStatement(
+                    "select * from passageiro where rg=?");
+            stmt.setString(1, nome);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                Passageiro passageiro = new Passageiro();
+                passageiro.setIdPassageiro(rs.getInt(PassageiroFields.id));
+                passageiro.setNome(rs.getString(PassageiroFields.nome));
+                passageiro.setRg(rs.getString(PassageiroFields.rg));
+                passageiro.setTelefone(rs.getString(PassageiroFields.telefone));
+                rs.close();
+                stmt.close();
+                return passageiro;
+                
+            }
+            rs.close();
+            stmt.close();
+            //return passageiros;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+        
+    }
 }

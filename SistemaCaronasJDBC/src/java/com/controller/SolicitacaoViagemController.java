@@ -81,6 +81,7 @@ public class SolicitacaoViagemController {
             this.getSolicitacaoviagem().setAutorizante(u2);
             this.getSolicitacaoviagem().setSolicitante(u);
             this.getSolicitacaoviagem().setVeiculo(v);
+            this.getSolicitacaoviagem().setNumero(numero);
             new SolicitacaoViagemDAO().inserir(getSolicitacaoviagem());
         }
         
@@ -110,6 +111,7 @@ public class SolicitacaoViagemController {
             this.getSolicitacaoviagem().setAutorizante(u2);
             this.getSolicitacaoviagem().setSolicitante(u);
             this.getSolicitacaoviagem().setVeiculo(v);
+            this.getSolicitacaoviagem().setNumero(numero);
             new SolicitacaoViagemDAO().alterar(getSolicitacaoviagem());
         }
         
@@ -275,6 +277,7 @@ public class SolicitacaoViagemController {
             passageiro.setRg(pass.getRg());
             passageiro.setTelefone(pass.getTelefone());
             passageiro.setDisabled(true);
+            passageiro.setIdPassageiro(pass.getIdPassageiro());
         }
     }
     
