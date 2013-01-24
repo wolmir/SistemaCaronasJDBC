@@ -43,7 +43,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     public void zerarCampus(){
         
         this.jTF_matriculaBuscarE.setText("");
-        this.jLabel_cursoE.setText("");
+        this.jLabel_cursoBuscadoE.setText("");
         this.jLabel_nomeBuscadoE.setText("");
         this.jLabel_alertaEmprestimo.setVisible(false);
         this.jButton_realizarEmprestimo.setEnabled(false);
