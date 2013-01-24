@@ -76,6 +76,51 @@ public class SolicitacaoViagemDAO {
     }
     
     
+    public void alterar(SolicitacaoViagem solicitacao) {
+        String sql = "update solicitacao_viagem set"
+                + "numero_transportados=?, servidores=?, data_saida=?, hora_saida=?, "
+                + "local_saida=?, data_retorno=?, hora_retorno=?, local_retorno=?, "
+                + "percurso=?, objetivo=?, id_veiculo=?, id_responsavel_solicitacao=?, "
+                + "id_resposponsavel_autorizante=? where id_solcitacao_viagem=? ";
+        
+        String sql2 = "insert into passageiro_solicitacao_viagem "
+                + "(id_passageiro, id_solicitacao_viagem) values (?, ?)";
+        String sql3 = "select * from passageiro_solicitacao_viagem";
+        
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setInt(1, solicitacao.getNumero());
+            stmt.setBoolean(2, solicitacao.getServidores());
+            stmt.setDate(3, new Date(solicitacao.getDataSaida().getTimeInMillis()));
+            stmt.setDate(4, new Date(solicitacao.getHoraSaida().getTimeInMillis()));
+            stmt.setString(5, solicitacao.getLocalSaida());
+            stmt.setDate(6, new Date(solicitacao.getDataRetorno().getTimeInMillis()));
+            stmt.setDate(7, new Date(solicitacao.getHoraRetorno().getTimeInMillis()));
+            stmt.setString(8, solicitacao.getLocalRetorno());
+            stmt.setString(9, solicitacao.getPercurso());
+            stmt.setString(10, solicitacao.getObjetivo());
+            stmt.setInt(11, solicitacao.getVeiculo().getId());
+            stmt.setInt(12, solicitacao.getSolicitante().getId());
+            stmt.setInt(13, solicitacao.getAutorizante().getId());
+            stmt.setInt(14, solicitacao.getId());
+            stmt.execute();
+            stmt.close();
+            
+            List<Passageiro> passageiros = solicitacao.getPassageiros();
+            for (Passageiro passageiro: passageiros) {
+                stmt = this.connection.prepareStatement(sql2);
+                stmt.setInt(1, passageiro.getIdPassageiro());
+                stmt.setInt(2, solicitacao.getId());
+                stmt.execute();
+                stmt.close();
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    
     public List<SolicitacaoViagem> getSolicitacoes() {
         String sql = "select * from solicitacao_viagem";
         String sql2 = "select * from passageiro_solicitacao_viagem where "

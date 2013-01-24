@@ -59,7 +59,7 @@ public class UsuarioDAO {
     }
     
     
-    public List<Usuario> getUsuarios() throws Exception {
+    public List<Usuario> getUsuarios() {
         String sql = "select * from usuario";
         List<Usuario> usuarios = new ArrayList<Usuario>();
         try {
@@ -116,7 +116,7 @@ public class UsuarioDAO {
     public void alterar(Usuario usuario) {
         String sql = "update usuario set"
                 + "id_tipo_usuario=?, nome=?, rg=?, nome_usuario=?, numero_servidor=?, "
-                + "senha=?, telefone=?, email=?";
+                + "senha=?, telefone=?, email=? where id_usuario=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
@@ -128,6 +128,7 @@ public class UsuarioDAO {
             stmt.setString(6, usuario.getSenha());
             stmt.setString(7, usuario.getTelefone());
             stmt.setString(8, usuario.getEmail());
+            stmt.setInt(9, usuario.getId());
             stmt.execute();
             stmt.close();
             

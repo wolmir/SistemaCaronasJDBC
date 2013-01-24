@@ -14,7 +14,7 @@
             <div><h:inputHidden value="#{solicitacaoViagemController.solicitacaoviagem.id}" /></div>
             Número de pessoas: 
             <div>
-                <h:inputText id="numero" value="#{solicitPog.numero}" required="true">
+                <h:inputText id="numero" value="#{solicitacaoViagemController.numero}" required="true">
                     <f:ajax event="valueChange" execute="@this" render="PassData" />
                 </h:inputText>
             </div>
@@ -74,19 +74,19 @@
                     </h:column>
                 </h:dataTable>
             </h:panelGroup>
-            Tipo de Veículo: <div><h:selectOneMenu required="true" id="tipo" value="#{solicitacaoViagemController.veiculoSelect}" converter="VeiculoConverter" >
-                    <f:selectItems value="#{veiculoController.veiculos}" var="veiculo" itemLabel="#{veiculo.placa}" />
+            Tipo de Veículo: <div><h:selectOneMenu required="true" id="tipo" value="#{solicitacaoViagemController.veiculoSelect}" >
+                    <f:selectItems value="#{solicitacaoViagemController.veiculoss}" var="veiculo" itemLabel="#{veiculo}" />
                 </h:selectOneMenu></div>
             Responsável pela Solicitação:
             <div>
-                <h:selectOneMenu id="responsavel" value="#{solicitacaoViagemController.usuarioSolSelect}" required="true" converter="UsuarioConverter" >
-                    <f:selectItems value="#{usuarioController.usuarios}" var="usuario" itemLabel="#{usuario.nome}" />
+                <h:selectOneMenu id="responsavel" value="#{solicitacaoViagemController.usuarioSolSelect}" required="true">
+                    <f:selectItems value="#{solicitacaoViagemController.usuarioss}" var="usuario" itemLabel="#{usuario}" />
                 </h:selectOneMenu>
             </div>
             Autorizante:
             <div>
-                <h:selectOneMenu id="autorizante" value="#{solicitacaoViagemController.usuarioAutSelect}" required="true" converter="UsuarioConverter" >
-                    <f:selectItems value="#{usuarioController.usuarios}" var="usuario" itemLabel="#{usuario.nome}" />
+                <h:selectOneMenu id="autorizante" value="#{solicitacaoViagemController.usuarioAutSelect}" required="true">
+                    <f:selectItems value="#{solicitacaoViagemController.usuarioss}" var="usuario" itemLabel="#{usuario}" />
                 </h:selectOneMenu>
             </div>
             <div>
