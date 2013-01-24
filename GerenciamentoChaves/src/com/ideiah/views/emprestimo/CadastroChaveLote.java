@@ -22,6 +22,7 @@ public class CadastroChaveLote extends javax.swing.JPanel {
     
     public CadastroChaveLote() {
         initComponents();
+        
     }
 
     
@@ -193,6 +194,7 @@ public class CadastroChaveLote extends javax.swing.JPanel {
 
     private void jButton_cadastrarLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cadastrarLoteActionPerformed
         // TODO add your handling code here:
+        ChaveController chaveController = new ChaveController();
         List<Chave> chaves = new ArrayList<Chave>();
         Integer start = Integer.decode(this.jTF_cadNumChaveInicial.getText());
         Integer end = Integer.decode(this.jTF_cadNumChaveFinal.getText());
@@ -202,13 +204,19 @@ public class CadastroChaveLote extends javax.swing.JPanel {
             if(verificaFormatoChave(this.jTF_cadNumChaveInicial.getText()) && verificaFormatoChave(this.jTF_cadNumChaveFinal.getText())){
                 
                 if(verificaSelecao()){
-                    chave.setNumero(i);
-                    String tamanho = (String)this.jComboBox_listaTamChaveLote.getItemAt(
-                            this.jComboBox_listaTamChaveLote.getSelectedIndex());
-                    tamanho = tamanho.toLowerCase();
-                    chave.setTipo(tamanho);
-                    chave.setDisponivel(true);
-                    chaves.add(chave);
+                    
+                    if(chaveController.getByNumero(start) == null){
+                        chave.setNumero(i);
+                        String tamanho = (String)this.jComboBox_listaTamChaveLote.getItemAt(
+                                this.jComboBox_listaTamChaveLote.getSelectedIndex());
+                        tamanho = tamanho.toLowerCase();
+                        chave.setTipo(tamanho);
+                        chave.setDisponivel(true);
+                        chaves.add(chave);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Chave inicial já existe!");
+                    }
+                    
                 }else{
                     JOptionPane.showMessageDialog(null, "Selecione um tamanho!");
                 }

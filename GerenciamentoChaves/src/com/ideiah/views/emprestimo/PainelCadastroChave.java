@@ -168,18 +168,27 @@ public class PainelCadastroChave extends javax.swing.JPanel {
         // TODO add your handling code here:
         //this.jButton_buscar.setBack
         Chave chave = new Chave();
+        Integer numChave = Integer.decode(this.jTF_cadNumChave.getText());
+                
+        ChaveController chaveController = new ChaveController();
+        
         if(verificaFormatoChave(this.jTF_cadNumChave.getText())){
             this.jLabel_alertaChave.setVisible(false);
             if(verificaSelecao()){
-                chave.setNumero(Integer.decode(this.jTF_cadNumChave.getText()));
-                String tipo = (String)this.jComboBox_listaTamChaves.getItemAt(
-                        this.jComboBox_listaTamChaves.getSelectedIndex());
-                tipo = tipo.toLowerCase();
-                chave.setTipo(tipo);
-                chave.setDisponivel(true);
-                ChaveController cc = new ChaveController();
-                cc.setChave(chave);
-                cc.salvar();
+                
+                if(chaveController.getByNumero(numChave) == null){
+                    chave.setNumero(numChave);
+                    String tipo = (String)this.jComboBox_listaTamChaves.getItemAt(
+                            this.jComboBox_listaTamChaves.getSelectedIndex());
+                    tipo = tipo.toLowerCase();
+                    chave.setTipo(tipo);
+                    chave.setDisponivel(true);
+                    ChaveController cc = new ChaveController();
+                    cc.setChave(chave);
+                    cc.salvar();
+                }else{
+                     JOptionPane.showMessageDialog(null, "Chave já existe!");
+                }
             }else{
                 JOptionPane.showMessageDialog(null, "Selecione um tamanho!");
             }
