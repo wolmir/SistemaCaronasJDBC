@@ -9,6 +9,7 @@ import com.ideiah.controller.ChaveController;
 import com.ideiah.controller.EmprestimoController;
 import com.ideiah.model.entity.Aluno;
 import com.ideiah.model.entity.Chave;
+import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Vector;
 import javax.mail.internet.ParseException;
@@ -35,6 +36,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         initComponents();
         this.jLabel_alertaEmprestimo.setVisible(false);
         this.jButton_realizarEmprestimo.setEnabled(false);
+        this.jButton_realizarDevolucao.setEnabled(false);
         this.jTF_matriculaBuscarE.grabFocus();
         carregarAsCoisasQuePrecisamSerCarregadas();
         
@@ -272,21 +274,22 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
         jButton_realizarDevolucao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton_realizarDevolucao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ideiah/views/imagens/ok.png"))); // NOI18N
         jButton_realizarDevolucao.setText("Realizar Devolução");
+        jButton_realizarDevolucao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_realizarDevolucaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(171, 171, 171)
-                .addComponent(jButton_realizarDevolucao)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(336, 336, 336)
-                        .addComponent(jLabel_cursoBuscadoD, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                        .addComponent(jLabel_cursoBuscadoD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel_matriculaBuscarD)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -348,7 +351,7 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
                         .addComponent(jButton_buscarE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel_alertaEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 24, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator_meio)
                         .addContainerGap())
@@ -357,6 +360,10 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
                             .addComponent(jLabel_tituloEmprestimo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4_tituloDevolucao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(jButton_realizarDevolucao)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,9 +419,9 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_numChaveD)
                     .addComponent(jLabel_ChaveBuscadaD, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(33, 33, 33)
                 .addComponent(jButton_realizarDevolucao)
-                .addGap(33, 33, 33))
+                .addGap(41, 41, 41))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -499,7 +506,6 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_realizarEmprestimoActionPerformed
 
     private void jComboBox_listaNumChavesMaioresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_listaNumChavesMaioresActionPerformed
-
         
     }//GEN-LAST:event_jComboBox_listaNumChavesMaioresActionPerformed
 
@@ -517,8 +523,25 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
 
     private void jButton_buscarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarDActionPerformed
         // TODO add your handling code here:
+        
+        if(verificaFormatoMatricula(this.jTF_matriculaBuscarD.getText())){
+            this.setMatricula(this.jTF_matriculaBuscarD.getText());
+            aluno = this.buscarAluno();
+            this.jLabel_nomeBuscadoD.setText(aluno.getNome());
+            this.jLabel_cursoBuscadoD.setText(aluno.getCurso());
+            this.jButton_realizarDevolucao.setEnabled(true);
+            verificaEmprestimo(aluno);
+        }else{
+            JOptionPane.showMessageDialog(null, "Digite somente números!");
+            this.jTF_matriculaBuscarD.grabFocus();
+            this.jButton_realizarDevolucao.setEnabled(false);
+        }
     }//GEN-LAST:event_jButton_buscarDActionPerformed
-
+    
+    private void jButton_realizarDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {                                                           
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup_tamanhosArmarios;
     private javax.swing.JButton jButton_buscarD;
