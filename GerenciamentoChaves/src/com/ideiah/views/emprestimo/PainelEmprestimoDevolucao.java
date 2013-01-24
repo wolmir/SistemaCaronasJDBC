@@ -104,6 +104,9 @@ public class PainelEmprestimoDevolucao extends javax.swing.JPanel {
             this.jLabel_nomeBuscadoE.setText(aluno.getNome());
             this.jLabel_cursoBuscadoE.setText(aluno.getCurso());
             this.jLabel_alertaEmprestimo.setVisible(false);
+           }else{
+               this.jLabel_alertaEmprestimo.setText("Possui pendência");
+               this.jLabel_alertaEmprestimo.setVisible(true);
            }
            
     }
