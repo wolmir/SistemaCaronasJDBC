@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../template/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+        <h:form>
+            <h:commandButton value="Solicitar Viagem" action="/reservas/formulario.jsf" />
+            
+            <h:dataTable id="viagens" rendered="#{! empty solicitacaoViagemController.viagens}" var="viagem" value="#{solicitacaoViagemController.viagens}" >
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Id" /></f:facet>
+                    <h:outputText value="#{viagem.id}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Percurso" /></f:facet>
+                    <h:outputText value="#{viagem.percurso}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Objetivo" /></f:facet>
+                    <h:outputText value="#{viagem.objetivo}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Passageiros" /></f:facet>
+                    <h:outputText value="#{viagem.numero}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Data Saída" /></f:facet>
+                    <h:outputText value="#{viagem.dataSaida}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Comandos" /></f:facet>
+                    <h:commandButton value="Editar" action="#{solicitacaoViagemController.editar(viagem.id)}">
+                        <f:param name="id" value="#{viagem.id}" />
+                    </h:commandButton>
+                    <h:commandButton value="Deletar" action="#{solicitacaoViagemController.deletar(viagem)}">
+                        <f:param name="id" value="#{viagem.id}" />
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

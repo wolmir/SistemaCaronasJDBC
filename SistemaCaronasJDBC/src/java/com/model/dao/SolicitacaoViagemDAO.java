@@ -138,7 +138,7 @@ public class SolicitacaoViagemDAO {
     }
     
     
-    public List<SolicitacaoViagem> getSolicitacoes() {
+    public List<SolicitacaoViagem> getSolicitacoes() throws Exception {
         String sql = "select * from solicitacao_viagem";
         String sql2 = "select * from passageiro_solicitacao_viagem where "
                 + "id_solicitacao_viagem = ?";
@@ -173,7 +173,7 @@ public class SolicitacaoViagemDAO {
                 stmt2.setInt(1, sv.getId());
                 ResultSet rs2 = stmt2.executeQuery();
                 while (rs2.next()) {
-                    Integer ids = rs.getInt("id_passageiro");
+                    Integer ids = rs2.getInt("id_passageiro");
                     sv.getPassageiros().add(new PassageiroDAO().getById(ids));
                 }
                 Integer uid = rs.getInt("id_responsavel_solicitacao");
@@ -184,7 +184,64 @@ public class SolicitacaoViagemDAO {
                 sv.setVeiculo(new VeiculoDAO().getById(vid));
                 solicitacoes.add(sv);
             }
+            //throw new Exception("Getting here.");
             return solicitacoes;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+    
+    
+    public SolicitacaoViagem getById(Integer id) {
+        String sql = "select * from solicitacao_viagem";
+        String sql2 = "select * from passageiro_solicitacao_viagem where "
+                + "id_solicitacao_viagem = ?";
+        String sql4 = "select * from usuario where id_usuario=?";
+        //List<SolicitacaoViagem> solicitacoes = new ArrayList<SolicitacaoViagem>();
+        
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while ((rs.next())) {
+                SolicitacaoViagem sv = new SolicitacaoViagem();
+                sv.setId(rs.getInt("id_solicitacao_viagem"));
+                Calendar c = Calendar.getInstance();
+                c.setTime(rs.getDate("data_saida"));
+                sv.setDataSaida(c.getTime());
+                c = Calendar.getInstance();
+                c.setTime(rs.getDate("hora_saida"));
+                sv.setHoraSaida(c.getTime());
+                c = Calendar.getInstance();
+                c.setTime(rs.getDate("data_retorno"));
+                sv.setDataRetorno(c.getTime());
+                c = Calendar.getInstance();
+                c.setTime(rs.getDate("hora_retorno"));
+                sv.setHoraRetorno(c.getTime());
+                sv.setLocalSaida(rs.getString("local_saida"));
+                sv.setLocalRetorno(rs.getString("local_retorno"));
+                sv.setNumero(rs.getInt("numero_transportados"));
+                sv.setObjetivo(rs.getString("objetivo_viagem"));
+                sv.setPercurso(rs.getString("percurso"));
+                sv.setServidores(rs.getBoolean("servidores"));
+                PreparedStatement stmt2 = this.connection.prepareStatement(sql2);
+                stmt2.setInt(1, sv.getId());
+                ResultSet rs2 = stmt2.executeQuery();
+                while (rs2.next()) {
+                    Integer ids = rs2.getInt("id_passageiro");
+                    sv.getPassageiros().add(new PassageiroDAO().getById(ids));
+                }
+                Integer uid = rs.getInt("id_responsavel_solicitacao");
+                sv.setSolicitante(new UsuarioDAO().getById(uid));
+                Integer uaid = rs.getInt("id_responsavel_autorizante");
+                sv.setAutorizante(new UsuarioDAO().getById(uaid));
+                Integer vid = rs.getInt("id_veiculo");
+                sv.setVeiculo(new VeiculoDAO().getById(vid));
+                return sv;
+            }
+            //throw new Exception("Getting here.");
+            //return solicitacoes;
         } catch (SQLException e) {
             e.printStackTrace();
         }

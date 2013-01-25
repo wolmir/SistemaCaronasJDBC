@@ -4,6 +4,7 @@
  */
 package com.model.entity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -36,8 +37,15 @@ public class SolicitacaoViagem {
     
     private Veiculo veiculo;
     
+    private String status;
+    
     private List<Passageiro> passageiros;
 
+    
+    
+    public SolicitacaoViagem() {
+        this.passageiros = new ArrayList<Passageiro>();
+    }
     /**
      * @return the id
      */
@@ -257,8 +265,23 @@ public class SolicitacaoViagem {
      * @param passageiros the passageiros to set
      */
     public void setPassageiros(List<Passageiro> passageiros) {
-        this.passageiros = passageiros;
+        this.setPassageiros(passageiros);
     }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     
     
     

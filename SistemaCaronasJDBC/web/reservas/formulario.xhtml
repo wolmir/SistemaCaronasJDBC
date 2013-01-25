@@ -9,7 +9,7 @@
 
     <ui:define name="content">
         Solicitação de Reserva
-        <h:form id="srfo">
+        <h:form id="srfo" rendered="#{! solicitacaoViagemController.listingMode}">
             Id: <div><h:inputText id="id" value="#{solicitacaoViagemController.solicitacaoviagem.id}" disabled="true" /></div>
             <div><h:inputHidden value="#{solicitacaoViagemController.solicitacaoviagem.id}" /></div>
             Número de pessoas: 
@@ -92,6 +92,42 @@
             <div>
                 <h:commandButton value="Salvar" action="#{solicitacaoViagemController.salvar()}" />
             </div>
+        </h:form>
+        
+        <h:form rendered="#{solicitacaoViagemController.listingMode}">
+            <h:commandButton value="Solicitar Viagem" action="/reservas/formulario.jsf" />
+            
+            <h:dataTable id="viagens" rendered="#{! empty solicitacaoViagemController.viagens}" var="viagem" value="#{solicitacaoViagemController.viagens}" >
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Id" /></f:facet>
+                    <h:outputText value="#{viagem.id}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Percurso" /></f:facet>
+                    <h:outputText value="#{viagem.percurso}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Objetivo" /></f:facet>
+                    <h:outputText value="#{viagem.objetivo}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Passageiros" /></f:facet>
+                    <h:outputText value="#{viagem.numero}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Data Saída" /></f:facet>
+                    <h:outputText value="#{viagem.dataSaida}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header" ><h:outputText value="Comandos" /></f:facet>
+                    <h:commandButton value="Editar" action="#{solicitacaoViagemController.editar(viagem.id)}">
+                        <f:param name="id" value="#{viagem.id}" />
+                    </h:commandButton>
+                    <h:commandButton value="Deletar" action="#{solicitacaoViagemController.deletar(viagem)}">
+                        <f:param name="id" value="#{viagem.id}" />
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
         </h:form>
     </ui:define>
 

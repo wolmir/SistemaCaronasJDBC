@@ -36,10 +36,12 @@ public class SolicitacaoViagemController {
     private List<Usuario> usuarios;
     private List<String> usuarioss;
     private Integer numero;
+    private Boolean listingMode = true;
     
-    public SolicitacaoViagemController() {
+    public SolicitacaoViagemController() throws Exception {
         this.solicitacaoviagem = new SolicitacaoViagem();
         this.viagens = new SolicitacaoViagemDAO().getSolicitacoes();
+        //throw new Exception("" + this.viagens.size());
         this.veiculos = new VeiculoDAO().getVeiculos();
         this.usuarios = new UsuarioDAO().getUsuarios();
         this.veiculoss = new ArrayList<String>();
@@ -116,6 +118,12 @@ public class SolicitacaoViagemController {
         }
         
         return "listar";
+    }
+    
+    public String editar(Integer id) throws Exception {
+        this.solicitacaoviagem = new SolicitacaoViagemDAO().getById(id);
+        //throw new Exception("Objetivo: " + this.solicitacaoviagem.getObjetivo());
+        return "formulario";
     }
     
     @PostConstruct
@@ -279,6 +287,20 @@ public class SolicitacaoViagemController {
             passageiro.setDisabled(true);
             passageiro.setIdPassageiro(pass.getIdPassageiro());
         }
+    }
+
+    /**
+     * @return the listingMode
+     */
+    public Boolean getListingMode() {
+        return listingMode;
+    }
+
+    /**
+     * @param listingMode the listingMode to set
+     */
+    public void setListingMode(Boolean listingMode) {
+        this.listingMode = listingMode;
     }
     
     
